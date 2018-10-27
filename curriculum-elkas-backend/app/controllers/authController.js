@@ -3,6 +3,26 @@ const mongoose = require('mongoose');
 const User = mongoose.model('User');
 
 module.exports = {
+  async signin(req, res, next) {
+    try {
+      const { email, password } = req.body;
+
+      const user = await User.findOne({ email });
+
+      if (!user) {
+        return res.json({ status: 400, code: 2, error: 'User not found' });
+      }
+
+      if (!(await user.compareHash(password))) {
+        return res.json({ status: 400, code: 3, error: 'Invalid password' });
+      }
+
+      return res.json(user);
+    } catch (error) {
+      return next(error);
+    }
+  },
+
   async signup(req, res, next) {
     try {
       const { email } = req.body;
