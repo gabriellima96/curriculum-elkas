@@ -8,6 +8,12 @@ const UserSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  username: {
+    type: String,
+    required: true,
+    unique: true,
+    lowercase: true,
+  },
   email: {
     type: String,
     required: true,
@@ -17,6 +23,66 @@ const UserSchema = new mongoose.Schema({
   password: {
     type: String,
     required: true,
+  },
+  personalInformation: {
+    emails: [
+      {
+        type: String,
+      },
+    ],
+    phones: [
+      {
+        type: String,
+      },
+    ],
+    dateOfBirth: {
+      type: Date,
+    },
+    maritalStatus: {
+      type: String,
+    },
+    academicDegree: [
+      {
+        institution: {
+          type: String,
+        },
+        degree: {
+          type: String,
+        },
+        course: {
+          type: String,
+        },
+        initialization: {
+          type: Date,
+        },
+        conclusion: {
+          type: Date,
+        },
+      },
+    ],
+    address: {
+      publicArea: {
+        type: String,
+      },
+      district: {
+        type: String,
+      },
+      city: {
+        type: String,
+      },
+      postalCode: {
+        type: String,
+      },
+      country: {
+        type: String,
+        required: false,
+        default: 'Brasil',
+      },
+      state: {
+        type: String,
+        required: false,
+      },
+    },
   },
   createdAt: {
     type: Date,

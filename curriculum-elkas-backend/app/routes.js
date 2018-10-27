@@ -15,4 +15,9 @@ router.post('/signup', controllers.authController.signup);
  */
 router.post('/signin', controllers.authController.signin);
 
+/**
+ * CURRICULUM
+ */
+// route.get('/:id/informations', controllers.userController.index);
+
 module.exports = router;
