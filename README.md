@@ -8,7 +8,7 @@ o compartilhamento, atualização e manutenção dessas informações.
 
 **1.** :pushpin: [Requirement](##Requirement).
 
-**2.** :pushpin: [Modules used](##Modules used).
+**2.** :pushpin: [Modules](##Modules-used).
 
 **3.** :pushpin: [Observações](##Observações).
 
