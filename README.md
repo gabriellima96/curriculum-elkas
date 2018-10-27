@@ -1,4 +1,4 @@
-# Curriculum-Elkas: **Gerador de currículo online**
+# Curriculum-Elkas: **Gerador de currículo online** :memo:
 
 O software é um gerador de currículo gratuito, do qual o(a) usuário(a) entrará com as informações de perfil 
 profissional e em seguida será gerado uma página com o perfil profissional dele(a), possibilitando então,
@@ -6,11 +6,15 @@ o compartilhamento, atualização e manutenção dessas informações.
 
 ## Menu
 
-**1.** [Requirement](##Requirement).
-**2.** [Modules used](##Modules used).
-**3.** [Observações](##Observações).
-**4.** [Front-end](##curriculum-elkas-frontend-app).
-**5.** [Back-end](##curriculum-elkas-backend).
+**1.** :pushpin: [Requirement](##Requirement).
+
+**2.** :pushpin: [Modules used](##Modules used).
+
+**3.** :pushpin: [Observações](##Observações).
+
+**4.** :pushpin: [Front-end](##curriculum-elkas-frontend-app).
+
+**5.** :pushpin: [Back-end](##curriculum-elkas-backend).
 
 
 ## **Requirement**
@@ -50,30 +54,15 @@ git push -f origin master
 ### **Execute**
 
 ```
-  npm install
-  npm start
+  npm install ou yarn install
+  npm start ou yarn start
 ```
-
-**ou**
-
-```
-  yarn install
-  yarn start
-```
-
 
 ## **curriculum-elkas-backend**
 
 ### **Execute**
 
 ```
-  npm install
-  npm start
-```
-
-**ou**
-
-```
-  yarn install
-  yarn start
+  npm install ou yarn install
+  npm start ou yarn start
 ```
