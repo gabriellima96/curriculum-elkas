@@ -6,15 +6,15 @@ o compartilhamento, atualização e manutenção dessas informações.
 
 ## Menu
 
-**1.** :pushpin: [Requirement](##Requirement).
+**1.** :pushpin: [Requirement](#Requirement).
 
-**2.** :pushpin: [Modules](##Modules-used).
+**2.** :pushpin: [Modules](#Modules-used).
 
-**3.** :pushpin: [Observações](##Observações).
+**3.** :pushpin: [Observações](#Observações).
 
-**4.** :pushpin: [Front-end](##curriculum-elkas-frontend-app).
+**4.** :pushpin: [Front-end](#curriculum-elkas-frontend-app).
 
-**5.** :pushpin: [Back-end](##curriculum-elkas-backend).
+**5.** :pushpin: [Back-end](#curriculum-elkas-backend).
 
 
 ## **Requirement**
