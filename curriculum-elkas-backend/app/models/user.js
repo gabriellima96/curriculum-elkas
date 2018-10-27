@@ -102,6 +102,12 @@ UserSchema.pre('save', async function hashPassword(next) {
   this.password = await bcrypt.hash(this.password, 5);
 });
 
+UserSchema.pre('save', function addingEmail() {
+  if (this.personalInformation.emails.length === 0) {
+    this.personalInformation.emails.push(this.email);
+  }
+});
+
 UserSchema.methods = {
   compareHash(password) {
     return bcrypt.compare(password, this.password);

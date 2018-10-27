@@ -7,14 +7,14 @@ module.exports = {
     try {
       const { email, password } = req.body;
 
-      const user = await User.findOne({ email });
+      const user = await User.findOne({ $or: [{ email }, { username: email }] });
 
       if (!user) {
-        return res.json({ status: 400, code: 2, error: 'User not found' });
+        return res.json({ status: 400, code: 3, error: 'User not found' });
       }
 
       if (!(await user.compareHash(password))) {
-        return res.json({ status: 400, code: 3, error: 'Invalid password' });
+        return res.json({ status: 400, code: 4, error: 'Invalid password' });
       }
 
       return res.json({
@@ -28,10 +28,16 @@ module.exports = {
 
   async signup(req, res, next) {
     try {
-      const { email } = req.body;
+      const { email, username } = req.body;
 
-      if (await User.findOne({ email })) {
+      const userDB = await User.findOne({ $or: [{ email }, { username }] });
+
+      if (userDB != null && userDB.email === email) {
         return res.status(400).json({ status: 400, code: 1, error: 'User already exists' });
+      }
+
+      if (userDB != null && userDB.username) {
+        return res.status(400).json({ status: 400, code: 2, error: 'Username already exists' });
       }
 
       const user = await User.create(req.body);
