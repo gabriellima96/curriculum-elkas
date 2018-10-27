@@ -9,6 +9,7 @@
 # production
 /build
 
+
 # misc
 .DS_Store
 .env.local
@@ -19,6 +20,39 @@
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+package-lock.json
 
-curriculum-elkas-backend/node_modules/
-curriculum-elkas-backend-app/node_modules/
+# curriculum-elkas-backend
+
+/curriculum-elkas-backend/coverage
+/curriculum-elkas-backend/build
+
+/curriculum-elkas-backend/.DS_Store
+/curriculum-elkas-backend/.env.local
+/curriculum-elkas-backend/.env.development.local
+/curriculum-elkas-backend/.env.test.local
+/curriculum-elkas-backend/.env.production.local
+
+/curriculum-elkas-backend/node_modules/
+/curriculum-elkas-backend/npm-debug.log*
+/curriculum-elkas-backend/yarn-debug.log*
+/curriculum-elkas-backend/yarn-error.log*
+/curriculum-elkas-backend/package-lock.json
+
+
+# curriculum-elkas-frontend-app
+
+/curriculum-elkas-frontend-app/coverage
+/curriculum-elkas-frontend-app/build
+
+/curriculum-elkas-frontend-app/.DS_Store
+/curriculum-elkas-frontend-app/.env.local
+/curriculum-elkas-frontend-app/.env.development.local
+/curriculum-elkas-frontend-app/.env.test.local
+/curriculum-elkas-frontend-app/.env.production.local
+
+/curriculum-elkas-frontend-app/node_modules/
+/curriculum-elkas-frontend-app/npm-debug.log*
+/curriculum-elkas-frontend-app/yarn-debug.log*
+/curriculum-elkas-frontend-app/yarn-error.log*
+/curriculum-elkas-frontend-app/package-lock.json
