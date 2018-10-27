@@ -10,6 +10,7 @@
   "author": "GABRIEL LIMA, MAYARA RYSIA E FILIPE ESTEVES",
   "license": "MIT",
   "dependencies": {
+    "body-parser": "^1.18.3",
     "express": "^4.16.4",
     "mongoose": "^5.3.7",
     "require-dir": "^1.1.0"

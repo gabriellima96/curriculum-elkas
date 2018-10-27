@@ -1,6 +1,6 @@
 const app = require('express')();
 const mongoose = require('mongoose');
-
+const bodyParser = require('body-parser');
 const requireDir = require('require-dir');
 const configDb = require('./config/database');
 
@@ -11,8 +11,8 @@ mongoose.connect(
 
 requireDir(configDb.modelPath);
 
-app.get('/', (req, res) => {
-  res.send('Hello world');
-});
+app.use(bodyParser.json());
+
+app.use('/api', require('./app/routes'));
 
 app.listen(8080);
