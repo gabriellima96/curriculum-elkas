@@ -1,6 +1,12 @@
-const express = require('express');
+const app = require('express')();
+const mongoose = require('mongoose');
 
-const app = express();
+const configDb = require('./config/database');
+
+mongoose.connect(
+  configDb.url,
+  configDb.config,
+);
 
 app.get('/', (req, res) => {
   res.send('Hello world');
