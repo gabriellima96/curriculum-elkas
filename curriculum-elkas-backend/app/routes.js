@@ -20,6 +20,6 @@ router.post('/signin', controllers.authController.signin);
  */
 // route.get('/:id/informations', controllers.userController.index);
 
-router.get('/test', (req, res) => res.send('CI success 2'));
+router.get('/test', (req, res) => res.send('CI success 3'));
 
 module.exports = router;
