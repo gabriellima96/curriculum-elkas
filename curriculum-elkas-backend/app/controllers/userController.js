@@ -31,4 +31,16 @@ module.exports = {
       return next(error);
     }
   },
+
+  async index(req, res, next) {
+    try {
+      const id = req.userId;
+
+      const user = await User.findById(id);
+
+      return res.json(user);
+    } catch (error) {
+      return next(error);
+    }
+  },
 };

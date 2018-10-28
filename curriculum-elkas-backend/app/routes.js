@@ -25,6 +25,7 @@ router.use(authMiddleware);
  * Users
  */
 router.put('/users', controllers.userController.update);
+router.get('/users/informations', controllers.userController.index);
 
 /**
  * CURRICULUM
