@@ -2,9 +2,7 @@ import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 const Cadastrar = () => (
-    <cadastrar>
-
-        
+    <cadastrar>        
                 <div className="col m6">
                     <div className="card">                        
                         <form>   
@@ -28,7 +26,7 @@ const Cadastrar = () => (
                                 <label for="password">Repetir a senha</label>
                                 </div>
                             </div>
-                            <button className="btn waves-effect waves-light" type="submit" name="action" id="cadastrar">Cadastrar <FontAwesomeIcon icon="sign-in-alt" />
+                            <button className="btn waves-effect waves-light" type="submit" name="action" id="cadastrar">Cadastrar <FontAwesomeIcon icon="user-plus" />
                             </button>
                         </form>
                     </div>
