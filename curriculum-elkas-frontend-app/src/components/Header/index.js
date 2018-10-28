@@ -2,10 +2,12 @@ import React from 'react';
 import './styles.css';
 
 const Header = () => (
-        <header id="main-header">
+        <header id="mai-header">
         
-        <nav class="navbar navbar-black justify-content-center">
-            <span className="navbar-brand mb-0 h1 navegacao">CurriculumElkas</span>
+        <nav>
+            <div className="nav-wrapper grey darken-4">
+            <a href="#" className="brand-logo center">Curriculum Elkas</a>
+            </div>
         </nav>
         
         </header>
