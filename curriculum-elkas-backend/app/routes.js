@@ -4,6 +4,7 @@ const requireDir = require('require-dir');
 const router = express.Router();
 
 const controllers = requireDir('./controllers');
+const authMiddleware = require('./middlewares/auth');
 
 /**
  * CREATE USER
@@ -16,10 +17,13 @@ router.post('/signup', controllers.authController.signup);
 router.post('/signin', controllers.authController.signin);
 
 /**
+ * AUTH ROUTERS
+ */
+router.use(authMiddleware);
+
+/**
  * CURRICULUM
  */
 // route.get('/:id/informations', controllers.userController.index);
-
-router.get('/test', (req, res) => res.send('CI success 1'));
 
 module.exports = router;
