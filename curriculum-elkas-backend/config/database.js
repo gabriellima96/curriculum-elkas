@@ -1,7 +1,7 @@
 const path = require('path');
 
 module.exports = {
-  url: 'mongodb://localhost:27017/curriculumelkasdb',
+  url: process.env.DATABASE_URL,
   config: { useNewUrlParser: true, useCreateIndex: true },
   modelPath: path.resolve('app', 'models'),
 };
