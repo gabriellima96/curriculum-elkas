@@ -22,6 +22,11 @@ router.post('/signin', controllers.authController.signin);
 router.use(authMiddleware);
 
 /**
+ * Users
+ */
+router.put('/users', controllers.userController.update);
+
+/**
  * CURRICULUM
  */
 // route.get('/:id/informations', controllers.userController.index);
