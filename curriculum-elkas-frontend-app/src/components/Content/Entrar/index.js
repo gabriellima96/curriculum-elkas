@@ -3,8 +3,6 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 const Entrar = () => (     
     <entrar>
-        <div className="container">
-            <div className="row">
                 <div className="col m6"> 
                     <div className="card">                        
                         <form>   
@@ -27,8 +25,6 @@ const Entrar = () => (
                         </form>
                     </div>
                 </div>
-            </div>        
-        </div>
     </entrar>        
     );    
 

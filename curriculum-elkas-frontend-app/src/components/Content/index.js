@@ -7,8 +7,14 @@ import './styles.css';
 const Content = () => (
         <content>
             
-            <Entrar/>
-            <Cadastrar/>            
+            <div className="container">
+                <div className="row">
+
+                    <Entrar/>
+                    <Cadastrar/> 
+
+                </div>        
+            </div>    
         
         </content>
     );    

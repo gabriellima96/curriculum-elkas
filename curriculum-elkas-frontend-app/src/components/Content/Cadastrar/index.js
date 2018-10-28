@@ -4,8 +4,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 const Cadastrar = () => (
     <cadastrar>
 
-        <div className="container">
-            <div className="row">
+        
                 <div className="col m6">
                     <div className="card">                        
                         <form>   
@@ -34,8 +33,6 @@ const Cadastrar = () => (
                         </form>
                     </div>
                 </div>
-            </div>        
-        </div>
 
        </cadastrar>
     );    
