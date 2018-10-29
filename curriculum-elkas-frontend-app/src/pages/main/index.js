@@ -4,7 +4,7 @@ import SignIn from '../../components/SignIn';
 import Header from '../../components/Header';
 import './styles.css';
 
-const Content = () => (
+const Main = () => (
   <Fragment>
     <Header />
     <div className="container">
@@ -16,4 +16,4 @@ const Content = () => (
   </Fragment>
 );
 
-export default Content;
+export default Main;
