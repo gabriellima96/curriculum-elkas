@@ -1,20 +1,18 @@
 import React, { Fragment } from 'react';
-import Cadastrar from '../../components/Cadastrar';
-import Entrar from '../../components/Entrar';
+import SignUp from '../../components/SignUp';
+import SignIn from '../../components/SignIn';
 import Header from '../../components/Header';
 import './styles.css';
 
 const Content = () => (
   <Fragment>
     <Header />
-    <content>
-      <div className="container">
-        <div className="row">
-          <Entrar />
-          <Cadastrar />
-        </div>
+    <div className="container">
+      <div className="row">
+        <SignIn />
+        <SignUp />
       </div>
-    </content>
+    </div>
   </Fragment>
 );
 

@@ -1,9 +1,0 @@
-{
-  "dependencies": {
-    "axios": "^0.18.0",
-    "font-awesome": "^4.7.0",
-    "prop-types": "^15.6.2",
-    "react-materialize": "^2.4.7",
-    "react-router-dom": "^4.3.1"
-  }
-}
