@@ -61,6 +61,38 @@ module.exports = {
           },
         },
       },
+      '/signup': {
+        post: {
+          tags: ['Signup'],
+          summary: 'Cadastro no sistema',
+          description: 'Cadastro no sistema',
+          operationId: 'signup',
+          consumes: ['application/json'],
+          produces: ['application/json'],
+          parameters: [
+            {
+              in: 'body',
+              name: 'body',
+              description: 'Um JSON contendo o email, username, name e password do usuário.',
+              required: true,
+              schema: {
+                $ref: '#/definitions/Signup',
+              },
+            },
+          ],
+          responses: {
+            400: {
+              description: 'Já existe um usuário com o e-mail cadastrado',
+            },
+            409: {
+              description: 'Já existe um usuário com o username cadastrado',
+            },
+            200: {
+              description: 'Sucesso, será retornado um objeto user e um token',
+            },
+          },
+        },
+      },
     },
     definitions: {
       Signin: {
