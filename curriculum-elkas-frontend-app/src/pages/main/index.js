@@ -8,13 +8,13 @@ const Main = () => (
   <Fragment>    
     <Header /> 
     <div className="container">    
-      <div className="row collap">
-        <div class="col m12 s12">
+      <div className="row">
+        <div class="col m7 push-m3 collap">
           <ul class="collapsible popout">
             <li>
               <div class="collapsible-header"><i class="material-icons">input</i>Entrar</div>
               <div class="collapsible-body">
-                        
+              <SignIn /> 
               </div>
             </li>
             <li>

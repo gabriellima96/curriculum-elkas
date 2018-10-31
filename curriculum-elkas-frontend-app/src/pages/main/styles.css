@@ -1,18 +1,7 @@
 form {
-  margin: 40px 0px 40px 0px;
+
   padding-left: 50px;
   padding-right: 50px;
-  padding-bottom: 2px;
-}
-
-.card {
-  margin-top: 40px;
-  padding-top: 5px;
-  padding-bottom: 5px;
-  border-radius: 30px;
-  border: none;
-  width: 350px;
-  box-shadow: 0px 0px 50px #4747473b;
 }
 
 label {
@@ -20,16 +9,6 @@ label {
   font-weight: bold;
 }
 
-input#exampleInputEmail1,
-#exampleInputPassword1,
-#exampleInputUser {
-  border-style: none;
-  border-radius: 500px;
-  background-color: rgb(36, 36, 36);
-  color: white;
-  padding: 18px;
-}
-
 .collap{
-  margin-top: 80px;
+  margin-top: 100px;
 }
