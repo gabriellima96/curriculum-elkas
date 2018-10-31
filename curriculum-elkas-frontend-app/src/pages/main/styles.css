@@ -1,5 +1,8 @@
 form {
-  margin: 60px 40px 60px 40px;
+  margin: 40px 0px 40px 0px;
+  padding-left: 50px;
+  padding-right: 50px;
+  padding-bottom: 2px;
 }
 
 .card {
@@ -8,6 +11,7 @@ form {
   padding-bottom: 5px;
   border-radius: 30px;
   border: none;
+  width: 350px;
   box-shadow: 0px 0px 50px #4747473b;
 }
 
@@ -26,20 +30,6 @@ input#exampleInputEmail1,
   padding: 18px;
 }
 
-button#entrar,
-#cadastrar {
-  width: 100%;
-  border: none;
-  color: black;
-  background-color: white;
-  box-shadow: 0px 0px 2px #474747;
-  font-weight: bold;
-}
-
-button#entrar:hover {
-  background-color: rgb(243, 243, 243);
-}
-
-button#entrar:active {
-  background-color: rgb(221, 221, 221);
+.collap{
+  margin-top: 80px;
 }

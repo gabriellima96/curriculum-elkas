@@ -42,11 +42,8 @@ class SignUp extends Component {
     const { error } = this.state;
 
     return (
-      <div className="col m6">
-        <div className="card">
           <form onSubmit={this.handleSignUp}>
-            <h4>Cadastrar</h4>
-            {error && <p>{error}</p>}
+            <h4><i class="material-icons">view_agenda</i> Cadastrar</h4>
             <div className="row">
               <div className="input-field col s12">
                 <input
@@ -79,7 +76,6 @@ class SignUp extends Component {
                 />
                 <label htmlFor="email_inline">Email</label>
                 <span className="helper-text" data-error="Algo está errado!" data-success="Ok.">
-                  Verificação
                 </span>
               </div>
             </div>
@@ -105,19 +101,17 @@ class SignUp extends Component {
                 <label htmlFor="confirmPassword">Confirmar senha</label>
               </div>
             </div>
-            <button
-              className="btn waves-effect waves-light"
-              type="submit"
-              name="action"
-              id="cadastrar"
-            >
-              Cadastrar
+           
+          <div className=" center-align">
+            <button className="waves-effect waves-light btn indigo" type="submit" name="action">
+              Cadastrar 
               {' '}
               <FontAwesomeIcon icon="user-plus" />
             </button>
+          </div>
+
+            {error && <p className="center-align red-text">{error}</p>}
           </form>
-        </div>
-      </div>
     );
   }
 }

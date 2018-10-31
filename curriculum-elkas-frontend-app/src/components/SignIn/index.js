@@ -2,16 +2,13 @@ import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 const SignIn = () => (
-  <div className="col m6">
-    <div className="card">
       <form>
-        <h4>Entrar</h4>
+        <h4><i class="material-icons">input</i> Entrar</h4>
         <div className="row">
           <div className="input-field col s12">
             <input id="email_inline" type="email" className="validate" />
             <label htmlFor="email_inline">Email</label>
             <span className="helper-text" data-error="Algo está errado!" data-success="Ok.">
-              Verificação
             </span>
           </div>
         </div>
@@ -21,14 +18,14 @@ const SignIn = () => (
             <label htmlFor="password">Senha</label>
           </div>
         </div>
-        <button className="btn waves-effect waves-light" type="submit" name="action" id="entrar">
-          Entrar
-          {' '}
-          <FontAwesomeIcon icon="sign-in-alt" />
-        </button>
+        <div className=" center-align">
+          <button className="waves-effect waves-light btn indigo" type="submit" name="action">
+            Entrar
+            {' '}
+            <FontAwesomeIcon icon="sign-in-alt" />
+          </button>
+        </div>
       </form>
-    </div>
-  </div>
 );
 
 export default SignIn;
