@@ -13,7 +13,7 @@ module.exports = {
         return res.status(404).json({ status: 404, error: 'E-mail/Usuário não encontrado' });
       }
 
-      if (!(await user.compareHash(password))) {
+      if (!password || !(await user.compareHash(password))) {
         return res.status(400).json({ status: 400, error: 'Senha inválida' });
       }
 

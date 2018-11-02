@@ -18,7 +18,7 @@ requireDir(configDb.modelPath);
 
 app.use(bodyParser.json());
 app.use(cors());
-app.use('/api-docs', swaggerUI.serve, swaggerUI.setup(swaggerDocument.json));
+app.use('/docs', swaggerUI.serve, swaggerUI.setup(swaggerDocument.json));
 app.use('/api', require('./app/routes'));
 
 app.listen(8080);

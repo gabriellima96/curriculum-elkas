@@ -7,25 +7,16 @@ const controllers = requireDir('./controllers');
 const authMiddleware = require('./middlewares/auth');
 
 /**
- * CREATE USER
- */
-router.post('/signup', controllers.authController.signup);
-
-/**
- * AUTH USER
- */
-router.post('/signin', controllers.authController.signin);
-
-/**
- * AUTH ROUTERS
- */
-// router.use(authMiddleware);
-
-/**
  * Users
  */
-router.put('/users', authMiddleware, controllers.userController.update);
-router.get('/users/informations', authMiddleware, controllers.userController.index);
+router.post('/users', controllers.authController.signup);
+
+/**
+ * Users Auth
+ */
+router.post('/users/signin', controllers.authController.signin);
+router.put('/users/:username', authMiddleware, controllers.userController.update);
+router.get('/users/:username', authMiddleware, controllers.userController.index);
 
 /**
  * CURRICULUM
@@ -41,9 +32,16 @@ router.use((req, res) => res.status(404).json({ error: 'Router not found' }));
  * Middleware de errors
  */
 router.use((error, req, res, _next) => {
-  res.status(error.status || 500);
+  let messageInfo = error.message;
+  let statusInfo = error.status || 500;
 
-  return res.json({ error: error.message });
+  if (error.name === 'ValidationError') {
+    statusInfo = 405;
+    const parts = error.message.split('`');
+    messageInfo = `O campo ${parts[1]} é obrigatório`;
+  }
+
+  return res.status(statusInfo).json({ status: statusInfo, error: messageInfo });
 });
 
 module.exports = router;
