@@ -5,17 +5,17 @@ const authConfig = require('../../config/auth');
 module.exports = async (req, res, next) => {
   const authHeader = req.headers.authorization;
   if (!authHeader) {
-    return res.status(401).json({ error: 'No token provided' });
+    return res.status(401).json({ status: 401, error: 'Nenhum token fornecido' });
   }
 
   const parts = authHeader.split(' ');
   if (!parts.length === 2) {
-    return res.status(401).json({ error: 'Token error' });
+    return res.status(401).json({ status: 401, error: 'Nenhum token fornecido' });
   }
 
   const [scheme, token] = parts;
   if (scheme !== 'Bearer') {
-    return res.status(401).json({ error: 'TOken malformatted' });
+    return res.status(401).json({ status: 401, error: 'Token malformatado' });
   }
 
   try {
@@ -25,6 +25,6 @@ module.exports = async (req, res, next) => {
 
     return next();
   } catch (error) {
-    return res.status(401).json({ error: 'Token invalid' });
+    return res.status(401).json({ status: 401, error: 'Token inválido' });
   }
 };

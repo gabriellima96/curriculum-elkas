@@ -68,7 +68,7 @@ module.exports = {
       const id = req.userId;
       const usernamePath = req.params.username;
 
-      const user = await User.findOne(usernamePath);
+      const user = await User.findOne({ username: usernamePath });
 
       if (!user) {
         return res.status(404).json({ status: 404, error: 'Usuário não encontrado' });
