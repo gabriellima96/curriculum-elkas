@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { withRouter } from 'react-router-dom';
 import api from '../../services/api';
+import { login } from '../../services/auth';
 
 class SignUp extends Component {
   state = {
@@ -32,9 +34,10 @@ class SignUp extends Component {
           password,
         });
 
-        console.log(response);
-        console.log('criado com sucesso');
-        this.setState({ error: '' });
+        login(response.data.token);
+
+        const { history } = this.props;
+        history.push('/app');
       } catch (error) {
         this.setState({ error: error.response.data.error });
       } finally {
@@ -126,4 +129,4 @@ class SignUp extends Component {
     );
   }
 }
-export default SignUp;
+export default withRouter(SignUp);
