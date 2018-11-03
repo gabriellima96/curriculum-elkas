@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { withRouter } from 'react-router-dom';
 import api from '../../services/api';
-import { login } from '../../services/auth';
+import { login, username } from '../../services/auth';
 
 class SignIn extends Component {
   state = {
@@ -12,7 +12,7 @@ class SignIn extends Component {
     error: '',
   };
 
-  handleSignUp = async (e) => {
+  handleSignIn = async (e) => {
     e.preventDefault();
     const { email, password } = this.state;
 
@@ -23,6 +23,7 @@ class SignIn extends Component {
         this.setState({ loading: true });
         const response = await api.post('/users/signin', { email, password });
         login(response.data.token);
+        username(response.data.user.username);
         const { history } = this.props;
         history.push('/app');
       } catch (error) {
@@ -37,7 +38,7 @@ class SignIn extends Component {
     const { error, loading } = this.state;
 
     return (
-      <form onSubmit={this.handleSignUp}>
+      <form onSubmit={this.handleSignIn}>
         <h4>
           <i className="material-icons">input</i>
           {' '}

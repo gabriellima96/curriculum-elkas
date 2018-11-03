@@ -2,7 +2,7 @@ import React, { Fragment } from 'react';
 import SignUp from '../../components/SignUp';
 import SignIn from '../../components/SignIn';
 import Header from '../../components/Header';
-import 'font-awesome/css/font-awesome.css';
+
 import './styles.css';
 
 const Main = () => (

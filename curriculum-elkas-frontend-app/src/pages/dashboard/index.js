@@ -1,5 +1,9 @@
-import React from 'react';
+import React, { Fragment } from 'react';
+import HeaderApp from '../../components/HeaderApp';
 
-const Dashboard = () => <h1>Dashboard</h1>;
-
+const Dashboard = () => (
+  <Fragment>
+    <HeaderApp />
+  </Fragment>
+);
 export default Dashboard;

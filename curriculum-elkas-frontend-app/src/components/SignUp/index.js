@@ -35,7 +35,7 @@ class SignUp extends Component {
         });
 
         login(response.data.token);
-
+        username(response.data.user.username);
         const { history } = this.props;
         history.push('/app');
       } catch (error) {
