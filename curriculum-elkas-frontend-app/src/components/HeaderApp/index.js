@@ -38,12 +38,12 @@ class HeaderApp extends Component {
       <header>
         <nav>
           <div className="nav-wrapper grey darken-4">
-            <a href="/" className="brand-logo">
+            <a href="/" className="brand-logo center">
               Gerador de Currículo
             </a>
             <ul id="nav-mobile" className="right hide-on-med-and-down">
               <li>
-                <a href="/">{loading ? <i className="fa fa-spinner fa-pulse" /> : name}</a>
+                <a href="/">Seja bem vindo, {loading ? <i className="fa fa-spinner fa-pulse" /> : name}!</a>
               </li>
               <li>
                 <a href="/app/settings">
