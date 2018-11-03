@@ -19,7 +19,8 @@ class HeaderApp extends Component {
         this.setState({ name: response.data.name });
       } catch (error) {
         logout();
-        this.props.history.push('/');
+        const { history } = this.props;
+        history.push('/app');
       } finally {
         this.setState({ loading: false });
       }
@@ -45,7 +46,9 @@ class HeaderApp extends Component {
                 <a href="/">{loading ? <i className="fa fa-spinner fa-pulse" /> : name}</a>
               </li>
               <li>
-                <a href="/app/settings">Configurações</a>
+                <a href="/app/settings">
+                  <i className="material-icons">settings</i>
+                </a>
               </li>
               <li>
                 <a href="/" onClick={this.handleLogout}>
