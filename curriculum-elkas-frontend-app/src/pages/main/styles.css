@@ -1,6 +1,10 @@
 form {
-  padding-left: 50px;
-  padding-right: 50px;
+  padding: 25px;
+  border-radius: 20px;
+}
+
+.collapsible-body{
+  background-color: white;
 }
 
 label {
@@ -13,5 +17,5 @@ label {
 }
 
 body{
-  background-color: rgb(235, 235, 235);
+  background-color: rgb(233, 233, 233);
 }
