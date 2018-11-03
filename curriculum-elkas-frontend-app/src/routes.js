@@ -5,6 +5,7 @@ import {
 
 import { isAuthenticated } from './services/auth';
 import Main from './pages/main';
+import Dashboard from './pages/dashboard';
 
 const PrivateRoute = ({ component: Component, ...rest }) => (
   <Route
@@ -34,7 +35,9 @@ const Routes = () => (
   <BrowserRouter>
     <Switch>
       <RouteDefaults exact path="/" component={Main} />
-      <PrivateRoute path="/app" component={() => <h1>App</h1>} />
+      <PrivateRoute exact path="/app" component={Dashboard} />
+      <PrivateRoute exact path="/app/settings" component={() => <h1>Settings</h1>} />
+      <PrivateRoute exact path="/app/templates" component={() => <h1>Templates</h1>} />
       <Route path="*" component={() => <h1>Page not found</h1>} />
     </Switch>
   </BrowserRouter>
