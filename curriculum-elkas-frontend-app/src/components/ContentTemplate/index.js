@@ -7,8 +7,7 @@ import "./styles.css";
 
 const ContentTemplate = () => (
 
-    <div className="container">
-    
+    <div className="container">    
         <div className="row">
             <div className="col s12 m6">
             <div className="card z-depth-2">
