@@ -44,6 +44,9 @@ router.use((error, req, res, _next) => {
     statusInfo = 405;
     const parts = error.message.split('`');
     messageInfo = `O campo ${parts[1]} é obrigatório`;
+    if (!parts[1]) {
+      messageInfo = error.errors;
+    }
   }
 
   return res.status(statusInfo).json({ status: statusInfo, error: messageInfo });

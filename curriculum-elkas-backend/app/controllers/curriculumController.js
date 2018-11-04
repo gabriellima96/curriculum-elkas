@@ -25,7 +25,15 @@ module.exports = {
 
   async show(req, res, next) {
     try {
-      return res.send();
+      const { id } = req.params;
+
+      const curriculum = await Curriculum.findById(id);
+
+      if (!curriculum) {
+        return res.status(404).json({ status: 404, error: 'Curriculum não encontrado' });
+      }
+
+      return res.json(curriculum);
     } catch (error) {
       return next(error);
     }
