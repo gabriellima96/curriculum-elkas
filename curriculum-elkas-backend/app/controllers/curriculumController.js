@@ -47,6 +47,7 @@ module.exports = {
       const curriculums = await Curriculum.find({ user: userId }, null, {
         skip: (page - 1) * 5,
         limit: 5,
+        sort: 'createdAt',
       });
 
       return res.json({
@@ -84,7 +85,11 @@ module.exports = {
 
   async destroy(req, res, next) {
     try {
-      return res.send();
+      const { userId } = req;
+      const { id } = req.params;
+
+      await Curriculum.findOneAndRemove({ $and: [{ id }, { user: userId }] });
+      return res.json();
     } catch (error) {
       return next(error);
     }
