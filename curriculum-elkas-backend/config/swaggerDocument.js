@@ -28,7 +28,7 @@ module.exports = {
     schemes: ['http'],
     paths: {
       '/users/signin': {
-        post: {
+       post: {
           tags: ['Users'],
           summary: 'Entrar no sistema',
           description: 'Entrar no sistema para receber um Token de acesso para as demais áreas',
