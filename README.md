@@ -18,7 +18,7 @@ o compartilhamento, atualização e manutenção dessas informações.
 
 **6.** :pushpin: [Back-end](#curriculum-elkas-backend).
 
-**7.** :pushpin: [Documentação das Rotas] (#Documentação-das-Rotas-para-os-Testes-de-Rotas).
+**7.** :pushpin: [Documentação das Rotas](#Documentação-das-Rotas-para-os-Testes-de-Rotas).
 
 
 ## **Requirement**
