@@ -217,34 +217,6 @@ paths:
           schema:
             $ref: '#/definitions/ApiResponse'
   /curriculums:
-    post:
-      tags:
-        - Curriculums
-      summary: Criar um novo curriculum no sistema
-      description: Criar um novo curriculum no sistema
-      operationId: curriculum.store
-      consumes:
-        - application/json
-      produces:
-        - application/json
-      security:
-        - Bearer: []
-      parameters:
-        - in: body
-          name: body
-          description: Um JSON contendo os dados do curriculum
-          required: true
-          schema:
-            $ref: '#/definitions/Curriculum'
-      responses:
-        '200':
-          description: Sucesso!
-        '401':
-          description: Não autorizado
-        '405':
-          description: Error de validação
-        '500':
-          description: Error interno no servidor
     get:
       tags:
         - Curriculums
@@ -274,13 +246,12 @@ paths:
           description: Não é possível obter uma página menor ou igual a 0
           schema:
             $ref: '#/definitions/ApiResponse'
-  '/curriculums/:id':
-    delete:
+    post:
       tags:
         - Curriculums
-      summary: Remove um curriculum
-      description: Remove um curriculum do usuário
-      operationId: curriculum.destroy
+      summary: Criar um novo curriculum no sistema
+      description: Criar um novo curriculum no sistema
+      operationId: curriculum.store
       consumes:
         - application/json
       produces:
@@ -288,14 +259,22 @@ paths:
       security:
         - Bearer: []
       parameters:
-        - name: id
-          in: path
-          description: ID do curriculum
+        - in: body
+          name: body
+          description: Um JSON contendo os dados do curriculum
           required: true
-          type: string
+          schema:
+            $ref: '#/definitions/Curriculum'
       responses:
         '200':
           description: Sucesso!
+        '401':
+          description: Não autorizado!
+        '405':
+          description: Error de validação!
+        '500':
+          description: Error interno no servidor!
+  '/curriculums/:id':
     get:
       tags:
         - Curriculums
@@ -318,9 +297,31 @@ paths:
           schema:
             $ref: '#/definitions/Curriculum'
         '404':
-          description: Curriculum não encontrado
+          description: Curriculum não encontrado!
         '500':
-          description: Error interno no servidor
+          description: Error interno no servidor!
+    delete:
+      tags:
+        - Curriculums
+      summary: Remove um curriculum
+      description: Remove um curriculum do usuário
+      operationId: curriculum.destroy
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      security:
+        - Bearer: []
+      parameters:
+        - name: id
+          in: path
+          description: ID do curriculum
+          required: true
+          type: string
+      responses:
+        '200':
+          description: Sucesso!
+    
 definitions:
   Credentials:
     type: object
