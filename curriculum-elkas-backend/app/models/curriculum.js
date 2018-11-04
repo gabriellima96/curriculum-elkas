@@ -91,29 +91,31 @@ const CurriculumSchema = new mongoose.Schema({
       },
     },
   ],
-  experiences: {
-    office: {
-      type: String,
+  experiences: [
+    {
+      office: {
+        type: String,
+      },
+      location: {
+        type: String,
+      },
+      company: {
+        type: String,
+      },
+      description: {
+        type: String,
+      },
+      type: {
+        type: String,
+      },
+      initialization: {
+        type: Date,
+      },
+      conclusion: {
+        type: Date,
+      },
     },
-    location: {
-      type: String,
-    },
-    company: {
-      type: String,
-    },
-    description: {
-      type: String,
-    },
-    type: {
-      type: String,
-    },
-    initialization: {
-      type: Date,
-    },
-    conclusion: {
-      type: Date,
-    },
-  },
+  ],
   languages: [
     {
       language: {

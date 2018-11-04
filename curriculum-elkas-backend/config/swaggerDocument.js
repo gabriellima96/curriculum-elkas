@@ -20,6 +20,10 @@ module.exports = {
         name: 'Users',
         description: 'API para fazer operações com Usuário',
       },
+      {
+        name: 'Curriculums',
+        description: 'API para fazer operações com Curriculums',
+      },
     ],
     schemes: ['http'],
     paths: {
@@ -280,6 +284,35 @@ module.exports = {
           },
         },
       },
+      '/curriculums': {
+        post: {
+          tags: ['Curriculums'],
+          summary: 'Criar um novo curriculum no sistema',
+          description: 'Criar um novo curriculum no sistema',
+          operationId: 'curriculum.store',
+          consumes: ['application/json'],
+          produces: ['application/json'],
+          parameters: [
+            {
+              in: 'body',
+              name: 'body',
+              description: 'Um JSON contendo os dados do curriculum',
+              required: true,
+              schema: {
+                $ref: '#/definitions/Curriculum',
+              },
+            },
+          ],
+          responses: {
+            404: {
+              description: '',
+            },
+            400: {
+              description: '',
+            },
+          },
+        },
+      },
     },
     definitions: {
       Credentials: {
@@ -394,6 +427,153 @@ module.exports = {
               },
               state: {
                 type: 'string',
+              },
+            },
+          },
+        },
+      },
+      Curriculum: {
+        type: 'object',
+        properties: {
+          user: {
+            type: 'string',
+          },
+          template: {
+            type: 'string',
+          },
+          name: {
+            type: 'string',
+          },
+          emails: {
+            type: 'array',
+            items: {
+              type: 'string',
+            },
+          },
+          phones: {
+            type: 'array',
+            items: {
+              type: 'string',
+            },
+          },
+          dataOfbirth: {
+            type: 'string',
+            format: 'date',
+          },
+          maritalStatus: {
+            type: 'string',
+          },
+          academicDegree: {
+            type: 'array',
+            items: {
+              type: 'object',
+              properties: {
+                institution: {
+                  type: 'string',
+                },
+                degree: {
+                  type: 'string',
+                },
+                course: {
+                  type: 'string',
+                },
+                initialization: {
+                  type: 'string',
+                  format: 'date',
+                },
+                conclusion: {
+                  type: 'string',
+                  format: 'date',
+                },
+              },
+            },
+          },
+          address: {
+            type: 'object',
+            properties: {
+              publicArea: {
+                type: 'string',
+              },
+              district: {
+                type: 'string',
+              },
+              city: {
+                type: 'string',
+              },
+              postalCode: {
+                type: 'string',
+              },
+              country: {
+                type: 'string',
+              },
+              state: {
+                type: 'string',
+              },
+            },
+          },
+          goals: {
+            type: 'string',
+            required: true,
+          },
+          skills: {
+            type: 'array',
+            items: {
+              type: 'object',
+              properties: {
+                title: {
+                  type: 'string',
+                },
+                description: {
+                  type: 'string',
+                },
+                other: {
+                  type: 'string',
+                },
+              },
+            },
+          },
+          experiences: {
+            type: 'array',
+            items: {
+              type: 'object',
+              properties: {
+                office: {
+                  type: 'string',
+                },
+                location: {
+                  type: 'string',
+                },
+                company: {
+                  type: 'string',
+                },
+                description: {
+                  type: 'string',
+                },
+                type: {
+                  type: 'string',
+                },
+                initialization: {
+                  type: 'string',
+                  format: 'date',
+                },
+                conclusion: {
+                  type: 'string',
+                  format: 'date',
+                },
+              },
+            },
+          },
+          languages: {
+            type: 'array',
+            items: {
+              type: 'object',
+              properties: {
+                language: {
+                  type: 'string',
+                },
+                fluency: {
+                  type: 'string',
+                },
               },
             },
           },
