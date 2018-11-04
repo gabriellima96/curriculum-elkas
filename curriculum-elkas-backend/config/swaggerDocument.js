@@ -28,7 +28,7 @@ module.exports = {
     schemes: ['http'],
     paths: {
       '/users/signin': {
-       post: {
+        post: {
           tags: ['Users'],
           summary: 'Entrar no sistema',
           description: 'Entrar no sistema para receber um Token de acesso para as demais áreas',
@@ -54,9 +54,9 @@ module.exports = {
             400: {
               description: 'Senha inválida',
             },
-			      404: {
-			        description: 'E-mail/Usuário não encontrado',
-			      },
+            404: {
+              description: 'E-mail/Usuário não encontrado',
+            },
           },
         },
       },
@@ -65,7 +65,7 @@ module.exports = {
           tags: ['Users'],
           summary: 'Buscar o usuário por username',
           description: 'Buscar informações sobre o usuário pelo username',
-          operationId: 'userController.index',
+          operationId: 'user.index',
           consumes: ['application/json'],
           produces: ['application/json'],
           parameters: [
@@ -84,52 +84,17 @@ module.exports = {
                 $ref: '#/definitions/User',
               },
             },
-            404: {
-              description: 'Usuário não encontrado!',
-              schema: {
-                $ref: '#/definitions/ApiResponse',
-              },
-            },
             403: {
               description: 'Permissão negada para acessar esse usuário!',
               schema: {
                 $ref: '#/definitions/ApiResponse',
               },
             },
-          },
-        },
-        '/users': {
-          post: {
-            tags: ['Users'],
-            summary: 'Cadastro no sistema',
-            description: 'Cadastro no sistema',
-            operationId: 'signup',
-            consumes: ['application/json'],
-            produces: ['application/json'],
-            parameters: [
-              {
-                in: 'body',
-                name: 'body',
-                description: 'Um JSON contendo o e-mail, username, name e password do usuário.',
-                required: true,
-                schema: {
-                  $ref: '#/definitions/Signup',
-                },
+            404: {
+              description: 'Usuário não encontrado!',
+              schema: {
+                $ref: '#/definitions/ApiResponse',
               },
-            ],
-            responses: {
-              200: {
-                description: 'Sucesso! Será retornado um objeto user e um token!',
-              },
-              400: {
-                description: 'Já existe um usuário com o e-mail cadastrado!',
-              },
-              405: {
-                description: 'O campo é [nome] obrigatório!',
-              },
-              409: {
-                description: 'Já existe um usuário com o username cadastrado!',
-              },           
             },
           },
         },
@@ -137,13 +102,12 @@ module.exports = {
           tags: ['Users'],
           summary: 'Atualizar o usuário por username',
           description: 'Atualizar informações sobre o usuário pelo username',
-          operationId: 'userController.update',
-          consumes: ['application/json'],
-          produces: ['application/json'],
+          operationId: 'user.update',
+          produces: ['application/xml', 'application/json'],
           parameters: [
             {
-              in: 'path',
               name: 'username',
+              in: 'path',
               description: 'O username que precisa ser buscado',
               required: true,
               type: 'string',
@@ -218,28 +182,28 @@ module.exports = {
                           },
                         },
                       },
-                    },
-                  },
-                  address: {
-                    type: 'object',
-                    properties: {
-                      publicArea: {
-                        type: 'string',
-                      },
-                      district: {
-                        type: 'string',
-                      },
-                      city: {
-                        type: 'string',
-                      },
-                      postalCode: {
-                        type: 'string',
-                      },
-                      country: {
-                        type: 'string',
-                      },
-                      state: {
-                        type: 'string',
+                      address: {
+                        type: 'object',
+                        properties: {
+                          publicArea: {
+                            type: 'string',
+                          },
+                          district: {
+                            type: 'string',
+                          },
+                          city: {
+                            type: 'string',
+                          },
+                          postalCode: {
+                            type: 'string',
+                          },
+                          country: {
+                            type: 'string',
+                          },
+                          state: {
+                            type: 'string',
+                          },
+                        },
                       },
                     },
                   },
@@ -254,14 +218,8 @@ module.exports = {
                 $ref: '#/definitions/User',
               },
             },
-            404: {
-              description: 'Usuário não encontrado!',
-              schema: {
-                $ref: '#/definitions/ApiResponse',
-              },
-            },
-            403: {
-              description: 'Permissão negada para acessar esse usuário!',
+            400: {
+              description: 'Já existe um usuário com o e-mail cadastrado!',
               schema: {
                 $ref: '#/definitions/ApiResponse',
               },
@@ -272,17 +230,58 @@ module.exports = {
                 $ref: '#/definitions/ApiResponse',
               },
             },
+            403: {
+              description: 'Permissão negada para acessar esse usuário!',
+              schema: {
+                $ref: '#/definitions/ApiResponse',
+              },
+            },
+            404: {
+              description: 'Usuário não encontrado!',
+              schema: {
+                $ref: '#/definitions/ApiResponse',
+              },
+            },
             409: {
               description: 'Já existe um usuário com o username cadastrado!',
               schema: {
                 $ref: '#/definitions/ApiResponse',
               },
             },
+          },
+        },
+      },
+      '/users': {
+        post: {
+          tags: ['Users'],
+          summary: 'Cadastro no sistema',
+          description: 'Cadastro no sistema',
+          operationId: 'signup',
+          consumes: ['application/json'],
+          produces: ['application/json'],
+          parameters: [
+            {
+              in: 'body',
+              name: 'body',
+              description: 'Um JSON contendo o e-mail   username   name e password do usuário.',
+              required: true,
+              schema: {
+                $ref: '#/definitions/Signup',
+              },
+            },
+          ],
+          responses: {
+            200: {
+              description: 'Sucesso! Será retornado um objeto user e um token!',
+            },
             400: {
               description: 'Já existe um usuário com o e-mail cadastrado!',
-              schema: {
-                $ref: '#/definitions/ApiResponse',
-              },
+            },
+            405: {
+              description: 'O campo é [nome] obrigatório!',
+            },
+            409: {
+              description: 'Já existe um usuário com o username cadastrado!',
             },
           },
         },
@@ -307,15 +306,15 @@ module.exports = {
             },
           ],
           responses: {
-            404: {
+            200: {
               description: 'Sucesso!',
             },
             400: {
               description: 'Mal Requisição!',
             },
-			      404: {
-			        description: 'Não Encontrado!',
-			      },
+            404: {
+              description: 'Não Encontrado!',
+            },
           },
         },
       },
@@ -332,19 +331,13 @@ module.exports = {
           },
         },
       },
-      Signup: {
+      ApiResponse: {
         type: 'object',
         properties: {
-          name: {
-            type: 'string',
+          status: {
+            type: 'number',
           },
-          username: {
-            type: 'string',
-          },
-          email: {
-            type: 'string',
-          },
-          password: {
+          error: {
             type: 'string',
           },
         },
@@ -411,30 +404,47 @@ module.exports = {
                   },
                 },
               },
+              address: {
+                type: 'object',
+                properties: {
+                  publicArea: {
+                    type: 'string',
+                  },
+                  district: {
+                    type: 'string',
+                  },
+                  city: {
+                    type: 'string',
+                  },
+                  postalCode: {
+                    type: 'string',
+                  },
+                  country: {
+                    type: 'string',
+                  },
+                  state: {
+                    type: 'string',
+                  },
+                },
+              },
             },
           },
-          address: {
-            type: 'object',
-            properties: {
-              publicArea: {
-                type: 'string',
-              },
-              district: {
-                type: 'string',
-              },
-              city: {
-                type: 'string',
-              },
-              postalCode: {
-                type: 'string',
-              },
-              country: {
-                type: 'string',
-              },
-              state: {
-                type: 'string',
-              },
-            },
+        },
+      },
+      Signup: {
+        type: 'object',
+        properties: {
+          name: {
+            type: 'string',
+          },
+          username: {
+            type: 'string',
+          },
+          email: {
+            type: 'string',
+          },
+          password: {
+            type: 'string',
           },
         },
       },
@@ -519,24 +529,6 @@ module.exports = {
           },
           goals: {
             type: 'string',
-            required: true,
-          },
-          skills: {
-            type: 'array',
-            items: {
-              type: 'object',
-              properties: {
-                title: {
-                  type: 'string',
-                },
-                description: {
-                  type: 'string',
-                },
-                other: {
-                  type: 'string',
-                },
-              },
-            },
           },
           experiences: {
             type: 'array',
@@ -583,16 +575,22 @@ module.exports = {
               },
             },
           },
-        },
-      },
-      ApiResponse: {
-        type: 'object',
-        properties: {
-          status: {
-            type: 'number',
-          },
-          error: {
-            type: 'string',
+          skills: {
+            type: 'array',
+            items: {
+              type: 'object',
+              properties: {
+                title: {
+                  type: 'string',
+                },
+                description: {
+                  type: 'string',
+                },
+                other: {
+                  type: 'string',
+                },
+              },
+            },
           },
         },
       },
