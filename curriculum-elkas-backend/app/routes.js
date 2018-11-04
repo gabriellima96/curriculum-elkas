@@ -21,7 +21,12 @@ router.get('/users/:username', authMiddleware, controllers.userController.index)
 /**
  * CURRICULUM
  */
-// route.get('/:id/informations', controllers.userController.index);
+router.post('/curriculums', authMiddleware, controllers.curriculumController.store);
+router.put('/curriculums/:id', authMiddleware, controllers.curriculumController.update);
+router.delete('/curriculums/:id', authMiddleware, controllers.curriculumController.destroy);
+router.get('/curriculums', authMiddleware, controllers.curriculumController.index);
+/** ABERTO */
+router.get('/curriculums/:id', controllers.curriculumController.show);
 
 /**
  * Rota não encontrada
