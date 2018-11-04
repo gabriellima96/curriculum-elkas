@@ -65,7 +65,7 @@ git pull
 
 ## **curriculum-elkas-frontend-app**
 
-### * **Execute**
+* ### **Execute**
 
 ```
   npm install ou yarn install
@@ -74,7 +74,7 @@ git pull
 
 ## **curriculum-elkas-backend**
 
-### * **Execute**
+* ### **Execute**
 
 ```
   npm install ou yarn install
