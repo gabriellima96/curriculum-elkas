@@ -4,7 +4,7 @@ module.exports = {
     info: {
       description: 'API do software: Curriculum-Elkas: Gerador de currículo online',
       version: '1.0.0',
-      title: 'Aplicação Curriculum Elkas API',
+      title: 'Curriculum-Elkas API',
       contact: {
         email: 'gabriellima.silva96@gmail.com',
       },
@@ -18,20 +18,20 @@ module.exports = {
     tags: [
       {
         name: 'Users',
-        description: 'API para fazer operações com Usuário',
+        description: 'Rota para operações com o(a) Usuário(a)',
       },
       {
         name: 'Curriculums',
-        description: 'API para fazer operações com Curriculums',
+        description: 'Rota para operações com Curriculums',
       },
     ],
     schemes: ['http'],
     paths: {
       '/users/signin': {
-        post: {
+        get: {
           tags: ['Users'],
           summary: 'Entrar no sistema',
-          description: 'Entrar no sistema para receber um Token de acesso as demais áreas',
+          description: 'Entrar no sistema para receber um Token de acesso para as demais áreas',
           operationId: 'signin',
           consumes: ['application/json'],
           produces: ['application/json'],
@@ -40,7 +40,7 @@ module.exports = {
               in: 'body',
               name: 'body',
               description:
-                'Um JSON contendo o email e senha do usuário. Obs: também pode enviar o usuário no atributo email.',
+                'Um JSON contendo o e-mail e senha do usuário. Obs: também pode enviar o usuário no atributo e-mail.',
               required: true,
               schema: {
                 $ref: '#/definitions/Credentials',
@@ -48,12 +48,15 @@ module.exports = {
             },
           ],
           responses: {
-            404: {
-              description: 'E-mail/Usuário não encontrado',
+            200: {
+              description: 'Sucesso!',
             },
             400: {
               description: 'Senha inválida',
             },
+			      404: {
+			        description: 'E-mail/Usuário não encontrado',
+			      },
           },
         },
       },
@@ -69,7 +72,7 @@ module.exports = {
             {
               in: 'body',
               name: 'body',
-              description: 'Um JSON contendo o email, username, name e password do usuário.',
+              description: 'Um JSON contendo o e-mail, username, name e password do usuário.',
               required: true,
               schema: {
                 $ref: '#/definitions/Signup',
@@ -77,18 +80,18 @@ module.exports = {
             },
           ],
           responses: {
+			      200: {
+              description: 'Sucesso! Será retornado um objeto user e um token!',
+            },
             400: {
-              description: 'Já existe um usuário com o e-mail cadastrado',
+              description: 'Já existe um usuário com o e-mail cadastrado!',
             },
             405: {
-              description: 'O campo é [nome] obrigatório',
+              description: 'O campo é [nome] obrigatório!',
             },
             409: {
-              description: 'Já existe um usuário com o username cadastrado',
-            },
-            200: {
-              description: 'Sucesso, será retornado um objeto user e um token',
-            },
+              description: 'Já existe um usuário com o username cadastrado!',
+            },           
           },
         },
       },
@@ -111,19 +114,19 @@ module.exports = {
           ],
           responses: {
             200: {
-              description: 'sucesso na operação',
+              description: 'Sucesso na operação!',
               schema: {
                 $ref: '#/definitions/User',
               },
             },
             404: {
-              description: 'Usuário não encontrado',
+              description: 'Usuário não encontrado!',
               schema: {
                 $ref: '#/definitions/ApiResponse',
               },
             },
             403: {
-              description: 'Permissão negada para acessar esse usuário',
+              description: 'Permissão negada para acessar esse usuário!',
               schema: {
                 $ref: '#/definitions/ApiResponse',
               },
@@ -246,19 +249,19 @@ module.exports = {
           ],
           responses: {
             200: {
-              description: 'sucesso na operação',
+              description: 'Sucesso na operação!',
               schema: {
                 $ref: '#/definitions/User',
               },
             },
             404: {
-              description: 'Usuário não encontrado',
+              description: 'Usuário não encontrado!',
               schema: {
                 $ref: '#/definitions/ApiResponse',
               },
             },
             403: {
-              description: 'Permissão negada para acessar esse usuário',
+              description: 'Permissão negada para acessar esse usuário!',
               schema: {
                 $ref: '#/definitions/ApiResponse',
               },
@@ -270,13 +273,13 @@ module.exports = {
               },
             },
             409: {
-              description: 'Já existe um usuário com o username cadastrado',
+              description: 'Já existe um usuário com o username cadastrado!',
               schema: {
                 $ref: '#/definitions/ApiResponse',
               },
             },
             400: {
-              description: 'Já existe um usuário com o e-mail cadastrado',
+              description: 'Já existe um usuário com o e-mail cadastrado!',
               schema: {
                 $ref: '#/definitions/ApiResponse',
               },
@@ -305,11 +308,14 @@ module.exports = {
           ],
           responses: {
             404: {
-              description: '',
+              description: 'Sucesso!',
             },
             400: {
-              description: '',
+              description: 'Mal Requisição!',
             },
+			      404: {
+			        description: 'Não Encontrado!',
+			      },
           },
         },
       },
