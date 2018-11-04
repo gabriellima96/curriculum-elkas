@@ -14,6 +14,13 @@ module.exports = {
       },
     },
     host: '167.99.182.79',
+    securityDefinitions: {
+      Bearer: {
+        type: 'apiKey',
+        name: 'Authorization',
+        in: 'header',
+      },
+    },
     basePath: '/api',
     tags: [
       {
@@ -68,6 +75,11 @@ module.exports = {
           operationId: 'user.index',
           consumes: ['application/json'],
           produces: ['application/json'],
+          security: [
+            {
+              Bearer: [],
+            },
+          ],
           parameters: [
             {
               in: 'path',
@@ -103,6 +115,11 @@ module.exports = {
           summary: 'Atualizar o usuário por username',
           description: 'Atualizar informações sobre o usuário pelo username',
           operationId: 'user.update',
+          security: [
+            {
+              Bearer: [],
+            },
+          ],
           produces: ['application/xml', 'application/json'],
           parameters: [
             {
@@ -294,6 +311,11 @@ module.exports = {
           operationId: 'curriculum.store',
           consumes: ['application/json'],
           produces: ['application/json'],
+          security: [
+            {
+              Bearer: [],
+            },
+          ],
           parameters: [
             {
               in: 'body',
@@ -309,11 +331,113 @@ module.exports = {
             200: {
               description: 'Sucesso!',
             },
+            401: {
+              description: 'Não autorizado',
+            },
+            405: {
+              description: 'Error de validação',
+            },
+            500: {
+              description: 'Error interno no servidor',
+            },
+          },
+        },
+        get: {
+          tags: ['Curriculums'],
+          summary: 'Buscar um array de curriculums no sistema',
+          description: 'Buscar um array de curriculums no sistema (5 por página)',
+          operationId: 'curriculum.index',
+          consumes: ['application/json'],
+          produces: ['application/json'],
+          security: [
+            {
+              Bearer: [],
+            },
+          ],
+          parameters: [
+            {
+              name: 'page',
+              in: 'query',
+              description: 'Quantidade de paginas',
+              required: true,
+              type: 'integer',
+            },
+          ],
+          responses: {
+            200: {
+              description: 'Sucesso!',
+              schema: {
+                type: 'array',
+                items: {
+                  $ref: '#/definitions/Curriculum',
+                },
+              },
+            },
             400: {
-              description: 'Mal Requisição!',
+              description: 'Não é possível obter uma página menor ou igual a 0',
+              schema: {
+                $ref: '#/definitions/ApiResponse',
+              },
+            },
+          },
+        },
+      },
+      '/curriculums/:id': {
+        delete: {
+          tags: ['Curriculums'],
+          summary: 'Remove um curriculum',
+          description: 'Remove um curriculum do usuário',
+          operationId: 'curriculum.destroy',
+          consumes: ['application/json'],
+          produces: ['application/json'],
+          security: [
+            {
+              Bearer: [],
+            },
+          ],
+          parameters: [
+            {
+              name: 'id',
+              in: 'path',
+              description: 'ID do curriculum',
+              required: true,
+              type: 'string',
+            },
+          ],
+          responses: {
+            200: {
+              description: 'Sucesso!',
+            },
+          },
+        },
+        get: {
+          tags: ['Curriculums'],
+          summary: 'Buscar um curriculum por id',
+          description: 'Buscar um curriculum do usuário por id',
+          operationId: 'curriculum.show',
+          consumes: ['application/json'],
+          produces: ['application/json'],
+          parameters: [
+            {
+              name: 'id',
+              in: 'path',
+              description: 'ID do curriculum',
+              required: true,
+              type: 'string',
+            },
+          ],
+          responses: {
+            200: {
+              description: 'Sucesso!',
+              schema: {
+                $ref: '#/definitions/Curriculum',
+              },
             },
             404: {
-              description: 'Não Encontrado!',
+              description: 'Curriculum não encontrado',
+            },
+            500: {
+              description: 'Error interno no servidor',
             },
           },
         },
@@ -451,9 +575,6 @@ module.exports = {
       Curriculum: {
         type: 'object',
         properties: {
-          user: {
-            type: 'string',
-          },
           template: {
             type: 'string',
           },
