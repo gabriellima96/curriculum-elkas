@@ -72,6 +72,8 @@ git pull
   npm start ou yarn start
 ```
 
+* Acesse pelo navegador : http://localhost:3000/
+
 ## **curriculum-elkas-backend**
 
 * ### **Execute**
@@ -80,6 +82,8 @@ git pull
   npm install ou yarn install
   npm start ou yarn start
 ```
+
+* Acesse pelo navegador : http://localhost:8080/
 
 ### **Documentação das Rotas para os Testes de Rotas**
 
