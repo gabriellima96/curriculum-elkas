@@ -1,3 +1,14 @@
-.formSettings{
+.titleForm{
     margin-top: 60px;
+    
+}
+
+.subtitle{
+    color: rgb(88, 88, 88);
+    margin-bottom: 30px;
+    margin-top: 40px;
+}
+
+.formSettings{
+    margin-top: 30px;
 }
