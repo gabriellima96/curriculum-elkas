@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { Button, Card, Row, Col, Input } from "react-materialize";
+import { Input } from "react-materialize";
 import "./styles.css";
 
 class SettingsUser extends Component {
