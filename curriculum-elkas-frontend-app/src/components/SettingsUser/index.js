@@ -46,7 +46,6 @@ class SettingsUser extends Component {
             addEmail:[...newaddEmail]
         })
     }
-   
 
     render() {
         const {addEmail, message} = this.state;
@@ -59,19 +58,13 @@ class SettingsUser extends Component {
                         <form className="col s12 formSettings" >
                             <div className="row">
                                 <h5 className="subtitle center-align" >Informações da conta<hr></hr></h5>
-                                <div className="input-field col s12">
+                                <div className="input-field col s6">
                                     <input id="user_name" type="text" className="validate"></input>
                                     <label for="user_name">Nome de usuário</label>
                                 </div>
-                            </div>
-                            <div className="row">
                                 <div className="input-field col s6">
                                     <input id="first_name" type="text" className="validate"></input>
-                                    <label for="first_name">Nome</label>
-                                </div>
-                                <div className="input-field col s6">
-                                    <input id="last_name" type="text" className="validate"></input>
-                                    <label for="last_name">Sobrenome</label>
+                                    <label for="first_name">Nome completo</label>
                                 </div>
                             </div>
                             <div className="row">
@@ -114,31 +107,35 @@ class SettingsUser extends Component {
                                             message !== '' && <p className="red-text">{message}</p>
                                         }
 
-                                        <table>
-                                            <thead>
-                                                <tr>
-                                                    <th>Emails</th>
-                                                </tr>
-                                            </thead>
+                                        {
+                                            addEmail.length > 0 && 
+                                            <div>
+                                                <table>
+                                                    <thead>
+                                                        <tr>
+                                                            <th>Seus emails</th>
+                                                        </tr>
+                                                    </thead>
 
-                                            <tbody>
-                                                {
-                                                    addEmail.map(email => {
-                                                        return (
-                                                            <tr key={email}>
-                                                                <td>{email}</td>
-                                                                <td className="right-align">
-                                                                    <button onClick={(e) => this.deleteEmail(email)} className="waves-effect waves-light btn red darken-3" type="button">
-                                                                        Excluir                   
-                                                                    </button>
-                                                                </td>
-                                                            </tr>
-                                                        );
-                                                    })
-                                                }
-                                            </tbody>
-                                            
-                                        </table>
+                                                    <tbody>
+                                                        {
+                                                            addEmail.map(email => {
+                                                                return (
+                                                                    <tr key={email}>
+                                                                        <td>{email}</td>
+                                                                        <td className="right-align">
+                                                                            <button onClick={(e) => this.deleteEmail(email)} className="waves-effect waves-light btn red darken-3" type="button">
+                                                                                Excluir                   
+                                                                            </button>
+                                                                        </td>
+                                                                    </tr>
+                                                                );
+                                                            })
+                                                        }
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        }                                        
                                     </div> 
                                     <div className="col s1">            
                                     <button className="btn-floating btn-small waves-effect waves-light purple">
@@ -146,15 +143,6 @@ class SettingsUser extends Component {
                                     </button>
                                 </div> 
                                 </form>
-                                
-                                <div className="input-field col s6">
-                                    <input id="password" type="password" className="validate"></input>
-                                    <label for="password">Nova senha</label>
-                                </div>
-                                <div className="input-field col s6">
-                                    <input id="password" type="password" className="validate"></input>
-                                    <label for="password">Repetir nova senha</label>
-                                </div>
                             </div>
 
                             <div className=" center-align">
