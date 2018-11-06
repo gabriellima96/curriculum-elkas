@@ -1,38 +1,40 @@
+@import url("https://fonts.googleapis.com/css?family=Oswald");
+
 form {
   padding: 25px;
   border-radius: 20px;
 }
 
-.collapsible-body{
+.collapsible-body {
   background-color: white;
   border-bottom-left-radius: 20px;
   border-bottom-right-radius: 20px;
 }
 
-.collapsible-header{
+.collapsible-header {
   padding: 13px;
 }
 
-.collapsible.popout>li{
+.collapsible.popout > li {
   box-shadow: none;
 }
 
-.collapsible.popout>li.active {
+.collapsible.popout > li.active {
   box-shadow: none;
 }
 
-.collapsible-header.entrar{
+.collapsible-header.entrar {
   border-top-left-radius: 20px;
   border-top-right-radius: 20px;
 }
 
-.collapsible-header.cadastrar{
+.collapsible-header.cadastrar {
   border-bottom-left-radius: 20px;
   border-bottom-right-radius: 20px;
   transition: 0.1s;
 }
 
-li.active>.collapsible-header.cadastrar{
+li.active > .collapsible-header.cadastrar {
   border-top-left-radius: 20px;
   border-top-right-radius: 20px;
   border-bottom-left-radius: 0px;
@@ -50,6 +52,10 @@ label {
   border-radius: 20px;
 }
 
-body{
+body {
   background-color: rgb(233, 233, 233);
+}
+
+.brand-logo {
+  font-family: "Oswald", sans-serif;
 }
