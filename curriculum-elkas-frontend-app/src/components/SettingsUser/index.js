@@ -62,14 +62,16 @@ class SettingsUser extends Component {
     return (
       <div className="container">
         <div className="row titleForm">
-          <h5 className="titleConfigs">Configurações da conta</h5>
+          <div className="titleConfigs">
+            <h5 className="valign-wrapper left-align">
+              {" "}
+              Configurações da conta{" "}
+            </h5>
+            <h6 className="right-align">Informações da conta</h6>
+          </div>
           <div className="container">
             <form className="col s12 formSettings">
               <div className="row">
-                <h5 className="subtitle center-align">
-                  Informações da conta
-                  <hr />
-                </h5>
                 <div className="input-field col s6">
                   <p>Nome de usuário</p>
                   <input
@@ -142,13 +144,16 @@ class SettingsUser extends Component {
                 </button>
               </div>
             </form>
+          </div>
+        </div>
 
+        <div className="row titleForm">
+          <div className="titleConfigs">
+            <h6 className="right-align">Informações pessoais</h6>
+          </div>
+          <div className="container">
             <form className="col s12 formSettings">
               <div className="row">
-                <h5 className="subtitle center-align">
-                  Informações pessoais
-                  <hr />
-                </h5>
                 <form
                   ref={input => {
                     this.addForm = input;

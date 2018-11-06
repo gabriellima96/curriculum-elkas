@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css?family=Oswald:200");
+
 .titleForm {
   margin-top: 60px;
 }
@@ -8,6 +10,7 @@
   border-radius: 10px;
   color: rgb(29, 29, 29);
   box-shadow: 1px 1px 14px #00000010;
+  font-family: "Oswald", sans-serif;
 }
 
 .subtitle {
