@@ -62,7 +62,7 @@ class SettingsUser extends Component {
     return (
       <div className="container">
         <div className="row titleForm">
-          <h4>Configurações da conta</h4>
+          <h5 className="titleConfigs">Configurações da conta</h5>
           <div className="container">
             <form className="col s12 formSettings">
               <div className="row">

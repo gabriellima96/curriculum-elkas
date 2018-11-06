@@ -2,10 +2,18 @@
   margin-top: 60px;
 }
 
+.titleConfigs {
+  background-color: white;
+  padding: 20px;
+  border-radius: 10px;
+  color: rgb(29, 29, 29);
+  box-shadow: 1px 1px 14px #00000010;
+}
+
 .subtitle {
   color: rgb(88, 88, 88);
   margin-bottom: 30px;
-  margin-top: 40px;
+  margin-top: 10px;
 }
 
 .formSettings {
