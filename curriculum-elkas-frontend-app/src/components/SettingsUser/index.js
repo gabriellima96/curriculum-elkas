@@ -20,16 +20,36 @@ class SettingsUser extends Component {
         const {addEmail} = this.state;
         const newEmail = this.newEmail.value;
 
-        this.setState({
-            addEmail: [...this.state.addEmail, newEmail]
-        })
+        const isOnTheList = addEmail.includes(newEmail);
+
+        if(isOnTheList){
+            this.setState({
+                message: 'Esse email já foi adicionado.'
+            })
+        }
+        else{
+            newEmail !== '' && this.setState({
+                addEmail: [...this.state.addEmail, newEmail],
+                message: ''
+            })
+        }        
 
         this.addForm.reset();
+    }
+
+    deleteEmail(email){
+        const newaddEmail = this.state.addEmail.filter(individualEmail => {
+            return individualEmail !== email;
+        })
+
+        this.setState({
+            addEmail:[...newaddEmail]
+        })
     }
    
 
     render() {
-        const {addEmail} = this.state;
+        const {addEmail, message} = this.state;
 
         return(
             <div className="container">  
@@ -90,6 +110,10 @@ class SettingsUser extends Component {
                                             <label for="email">Email</label>            
                                         </div>
 
+                                        {
+                                            message !== '' && <p className="red-text">{message}</p>
+                                        }
+
                                         <table>
                                             <thead>
                                                 <tr>
@@ -103,12 +127,17 @@ class SettingsUser extends Component {
                                                         return (
                                                             <tr key={email}>
                                                                 <td>{email}</td>
-                                                                <td>Deletar</td>
+                                                                <td className="right-align">
+                                                                    <button onClick={(e) => this.deleteEmail(email)} className="waves-effect waves-light btn red darken-3" type="button">
+                                                                        Excluir                   
+                                                                    </button>
+                                                                </td>
                                                             </tr>
                                                         );
                                                     })
                                                 }
                                             </tbody>
+                                            
                                         </table>
                                     </div> 
                                     <div className="col s1">            
