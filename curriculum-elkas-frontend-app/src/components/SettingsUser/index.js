@@ -1,13 +1,14 @@
-import React, { Component } from 'react';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import './styles.css';
+import React, { Component } from "react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { Button, Card, Row, Col, Input } from "react-materialize";
+import "./styles.css";
 
 class SettingsUser extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      addEmail: [],
+      addEmail: []
     };
   }
 
@@ -20,12 +21,12 @@ class SettingsUser extends Component {
 
     if (isOnTheList) {
       this.setState({
-        message: 'Esse email já foi adicionado.',
+        message: "Esse email já foi adicionado."
       });
-    } else if (newEmail !== '') {
+    } else if (newEmail !== "") {
       this.setState({
         addEmail: [...addEmail, newEmail],
-        message: '',
+        message: ""
       });
     }
 
@@ -34,10 +35,12 @@ class SettingsUser extends Component {
 
   deleteEmail(email) {
     const { addEmail } = this.state;
-    const newaddEmail = addEmail.filter(individualEmail => individualEmail !== email);
+    const newaddEmail = addEmail.filter(
+      individualEmail => individualEmail !== email
+    );
 
     this.setState({
-      addEmail: [...newaddEmail],
+      addEmail: [...newaddEmail]
     });
   }
 
@@ -61,7 +64,7 @@ class SettingsUser extends Component {
                 </div>
                 <div className="input-field col s6">
                   <input id="first_name" type="text" className="validate" />
-                  <label htmlFor="first_name">Nome completo</label>
+                  <label>Nome completo</label>
                 </div>
               </div>
               <div className="row">
@@ -73,25 +76,27 @@ class SettingsUser extends Component {
                     type="text"
                     className="validate"
                   />
-                  <label htmlFor="disabled">Email</label>
+                  <label or="disabled">Email</label>
                 </div>
               </div>
               <div className="row">
                 <div className="input-field col s6">
-                  <input id="password" type="password" className="validate" />
-                  <label htmlFor="password">Senha atual</label>
+                  <input type="password" className="validate" />
+                  <label>Senha atual</label>
                 </div>
                 <div className="input-field col s6">
-                  <input id="password" type="password" className="validate" />
-                  <label htmlFor="password">Nova senha</label>
+                  <input type="password" className="validate" />
+                  <label>Nova senha</label>
                 </div>
               </div>
 
               <div className=" center-align">
-                <button className="waves-effect waves-light btn indigo" type="submit" name="action">
-                  Salvar mudanças
-                  {' '}
-                  <FontAwesomeIcon icon="sign-in-alt" />
+                <button
+                  className="waves-effect waves-light btn indigo"
+                  type="submit"
+                  name="action"
+                >
+                  Salvar mudanças <FontAwesomeIcon icon="sign-in-alt" />
                 </button>
               </div>
             </form>
@@ -104,7 +109,7 @@ class SettingsUser extends Component {
                 </h5>
                 <form
                   ref={input => (this.addForm = input)}
-                  onSubmit={(e) => {
+                  onSubmit={e => {
                     this.addEmails(e);
                   }}
                 >
@@ -116,10 +121,10 @@ class SettingsUser extends Component {
                         type="email"
                         className="validate email"
                       />
-                      <label htmlFor="email">Email</label>
+                      <label>Email</label>
                     </div>
 
-                    {message !== '' && <p className="red-text">{message}</p>}
+                    {message !== "" && <p className="red-text">{message}</p>}
 
                     {addEmail.length > 0 && (
                       <div>
@@ -131,20 +136,22 @@ class SettingsUser extends Component {
                           </thead>
 
                           <tbody>
-                            {addEmail.map(email => (
-                              <tr key={email}>
-                                <td>{email}</td>
-                                <td className="right-align">
-                                  <button
-                                    onClick={e => this.deleteEmail(email)}
-                                    className="waves-effect waves-light btn red darken-3"
-                                    type="button"
-                                  >
-                                    Excluir
-                                  </button>
-                                </td>
-                              </tr>
-                            ))}
+                            {addEmail.map(email => {
+                              return (
+                                <tr key={email}>
+                                  <td>{email}</td>
+                                  <td className="right-align">
+                                    <button
+                                      onClick={e => this.deleteEmail(email)}
+                                      className="waves-effect waves-light btn btn-small red darken-3"
+                                      type="button"
+                                    >
+                                      Excluir
+                                    </button>
+                                  </td>
+                                </tr>
+                              );
+                            })}
                           </tbody>
                         </table>
                       </div>
@@ -155,14 +162,55 @@ class SettingsUser extends Component {
                       <i className="material-icons">add</i>
                     </button>
                   </div>
+                  <div className="row">
+                    <div className="input-field col s6">
+                      <input
+                        type="tel"
+                        className="validate"
+                        pattern="^\d{2}\d{4}\d{4}$"
+                        placeholder="ddxxxxxxxxx"
+                      />
+                      <label>Telefone 1</label>
+                    </div>
+                    <div className="input-field col s6">
+                      <input
+                        type="tel"
+                        className="validate"
+                        pattern="^\d{2}\d{4}\d{4}$"
+                        placeholder="ddxxxxxxxxx"
+                      />
+                      <label>Telefone 2</label>
+                    </div>
+                  </div>
+                  <div className="row">
+                    <div className="col s6">
+                      <label>Data de nascimento</label>
+                      <input type="date" name="bday" className="datapicker" />
+                    </div>
+                    <div className="col s6">
+                      <Input
+                        s={12}
+                        type="select"
+                        label="Estado Civil"
+                        defaultValue="1"
+                      >
+                        <option value="1">Solteiro</option>
+                        <option value="2">Casado</option>
+                        <option value="3">Separado</option>
+                        <option value="3">Divorciado</option>
+                        <option value="3">Viúvo</option>
+                      </Input>
+                    </div>
+                  </div>
                 </form>
               </div>
-
               <div className=" center-align">
-                <button className="waves-effect waves-light btn indigo" type="submit" name="action">
-                  Salvar mudanças
-                  {' '}
-                  <FontAwesomeIcon icon="sign-in-alt" />
+                <button
+                  className="waves-effect waves-light btn indigo"
+                  type="submit"
+                  name="action"
+                >
+                  Salvar mudanças <FontAwesomeIcon icon="sign-in-alt" />
                 </button>
               </div>
             </form>

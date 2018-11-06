@@ -39,11 +39,11 @@ class SignIn extends Component {
 
     return (
       <form onSubmit={this.handleSignIn}>
-        <h4>
+        <h5>
           <i className="material-icons">input</i>
           {' '}
 Entrar
-        </h4>
+        </h5>
         <div className="row">
           <div className="input-field col s12">
             <input

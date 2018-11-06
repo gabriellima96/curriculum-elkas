@@ -51,10 +51,10 @@ class SignUp extends Component {
 
     return (
       <form onSubmit={this.handleSignUp}>
-        <h4>
+        <h5>
           <i className="material-icons">view_agenda</i>
           Cadastrar
-        </h4>
+        </h5>
         <div className="row">
           <div className="input-field col s12">
             <input

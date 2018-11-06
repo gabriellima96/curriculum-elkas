@@ -8,12 +8,13 @@ import './styles.css';
 const Main = () => (
   <Fragment>
     <Header />
+
     <div className="container">
       <div className="row">
-        <div className="col m7 push-m3 collap">
+        <div className="col m7 push-m3 collap">        
           <ul className="collapsible popout">
             <li>
-              <div className="collapsible-header">
+              <div className="collapsible-header entrar">
                 <i className="material-icons">input</i>
                 Entrar
               </div>
@@ -22,7 +23,7 @@ const Main = () => (
               </div>
             </li>
             <li>
-              <div className="collapsible-header">
+              <div className="collapsible-header cadastrar">
                 <i className="material-icons">view_agenda</i>
                 Cadastrar
               </div>

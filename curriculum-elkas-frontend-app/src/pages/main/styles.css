@@ -5,6 +5,39 @@ form {
 
 .collapsible-body{
   background-color: white;
+  border-bottom-left-radius: 20px;
+  border-bottom-right-radius: 20px;
+}
+
+.collapsible-header{
+  padding: 13px;
+}
+
+.collapsible.popout>li{
+  box-shadow: none;
+}
+
+.collapsible.popout>li.active {
+  box-shadow: none;
+}
+
+.collapsible-header.entrar{
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
+}
+
+.collapsible-header.cadastrar{
+  border-bottom-left-radius: 20px;
+  border-bottom-right-radius: 20px;
+  transition: 0.1s;
+}
+
+li.active>.collapsible-header.cadastrar{
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
+  border-bottom-left-radius: 0px;
+  border-bottom-right-radius: 0px;
+  transition: 0.1s;
 }
 
 label {
@@ -14,9 +47,9 @@ label {
 
 .collap {
   margin-top: 100px;
+  border-radius: 20px;
 }
 
 body{
   background-color: rgb(233, 233, 233);
 }
-
