@@ -1,17 +1,17 @@
 /* eslint-disable react/button-has-type */
-import React, { Component } from 'react';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { Input } from 'react-materialize';
-import api from '../../services/api';
-import { getUsername } from '../../services/auth';
+import React, { Component } from "react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { Input } from "react-materialize";
+import api from "../../services/api";
+import { getUsername } from "../../services/auth";
 
-import './styles.css';
+import "./styles.css";
 
 class SettingsUser extends Component {
   state = {
     addEmail: [],
-    message: '',
-    user: '',
+    message: "",
+    user: ""
   };
 
   async componentDidMount() {
@@ -33,12 +33,12 @@ class SettingsUser extends Component {
 
     if (isOnTheList) {
       this.setState({
-        message: 'Esse email já foi adicionado.',
+        message: "Esse email já foi adicionado."
       });
-    } else if (newEmail !== '') {
+    } else if (newEmail !== "") {
       this.setState({
         addEmail: [...addEmail, newEmail],
-        message: '',
+        message: ""
       });
     }
 
@@ -47,10 +47,12 @@ class SettingsUser extends Component {
 
   deleteEmail(email) {
     const { addEmail } = this.state;
-    const newaddEmail = addEmail.filter(individualEmail => individualEmail !== email);
+    const newaddEmail = addEmail.filter(
+      individualEmail => individualEmail !== email
+    );
 
     this.setState({
-      addEmail: [...newaddEmail],
+      addEmail: [...newaddEmail]
     });
   }
 
@@ -69,64 +71,74 @@ class SettingsUser extends Component {
                   <hr />
                 </h5>
                 <div className="input-field col s6">
+                  <p>Nome de usuário</p>
                   <input
                     id="user_name"
                     type="text"
                     className="validate"
                     value={user.username}
-                    onChange={(e) => {
+                    onChange={e => {
                       user.username = e.target.value;
                       return this.setState({ user });
                     }}
                   />
-                  <label htmlFor="user_name">Nome de usuário</label>
                 </div>
                 <div className="input-field col s6">
+                  <p>Nome completo</p>
                   <input
                     id="first_name"
                     type="text"
                     className="validate"
                     value={user.name}
-                    onChange={(e) => {
+                    onChange={e => {
                       user.name = e.target.value;
                       return this.setState({ user });
                     }}
                   />
-                  <label htmlFor="first_name">Nome completo</label>
                 </div>
               </div>
               <div className="row">
                 <div className="input-field col s12">
+                  <p htmlFor="disabled">Email</p>
                   <input
                     disabled
                     id="disabled"
                     type="text"
                     className="validate"
                     value={user.email}
-                    onChange={(e) => {
+                    onChange={e => {
                       user.email = e.target.value;
                       return this.setState({ user });
                     }}
                   />
-                  <label htmlFor="disabled">Email</label>
                 </div>
               </div>
               <div className="row">
                 <div className="input-field col s6">
-                  <input id="oldpassword" type="password" className="validate" />
+                  <input
+                    id="oldpassword"
+                    type="password"
+                    className="validate"
+                  />
                   <label htmlFor="oldpassword'">Senha atual</label>
                 </div>
                 <div className="input-field col s6">
-                  <input id="newPassword" type="password" className="validate" />
+                  <input
+                    id="newPassword"
+                    type="password"
+                    className="validate"
+                  />
                   <label htmlFor="newPassword">Nova senha</label>
                 </div>
               </div>
 
               <div className=" center-align">
-                <button className="waves-effect waves-light btn indigo" type="submit" name="action">
-                  Salvar mudanças
-                  {' '}
-                  <FontAwesomeIcon icon="sign-in-alt" />
+                <button
+                  className="waves-effect waves-light btn indigo"
+                  type="submit"
+                  name="action"
+                >
+                  Salvar mudanças <FontAwesomeIcon icon="sign-in-alt" />
                 </button>
               </div>
             </form>
@@ -138,17 +150,17 @@ class SettingsUser extends Component {
                   <hr />
                 </h5>
                 <form
-                  ref={(input) => {
+                  ref={input => {
                     this.addForm = input;
                   }}
-                  onSubmit={(e) => {
+                  onSubmit={e => {
                     this.addEmails(e);
                   }}
                 >
                   <div className="input-field col s11">
                     <div className="row">
                       <input
-                        ref={(input) => {
+                        ref={input => {
                           this.newEmail = input;
                         }}
                         id="email"
@@ -158,7 +170,7 @@ class SettingsUser extends Component {
                       <label htmlFor="email">Email</label>
                     </div>
 
-                    {message !== '' && <p className="red-text">{message}</p>}
+                    {message !== "" && <p className="red-text">{message}</p>}
 
                     {addEmail.length > 0 && (
                       <div>
@@ -199,7 +211,7 @@ class SettingsUser extends Component {
                       <input
                         type="tel"
                         className="validate"
-                        pattern="^\d{2}\d{4}\d{4}$"
+                        pattern="^\d{2}\d{5}\d{4}$"
                         placeholder="ddxxxxxxxxx"
                         id="tel"
                       />
@@ -210,7 +222,7 @@ class SettingsUser extends Component {
                         id="tel2"
                         type="tel"
                         className="validate"
-                        pattern="^\d{2}\d{4}\d{4}$"
+                        pattern="^\d{2}\d{5}\d{4}$"
                         placeholder="ddxxxxxxxxx"
                       />
                       <label htmlFor="tel2">Telefone 2</label>
@@ -219,10 +231,20 @@ class SettingsUser extends Component {
                   <div className="row">
                     <div className="col s6">
                       <label htmlFor="dataofbirth">Data de nascimento</label>
-                      <input id="dataofbirth" type="date" name="bday" className="datapicker" />
+                      <input
+                        id="dataofbirth"
+                        type="date"
+                        name="bday"
+                        className="datapicker"
+                      />
                     </div>
                     <div className="col s6">
-                      <Input s={12} type="select" label="Estado Civil" defaultValue="1">
+                      <Input
+                        s={12}
+                        type="select"
+                        label="Estado Civil"
+                        defaultValue="1"
+                      >
                         <option value="1">Solteiro</option>
                         <option value="2">Casado</option>
                         <option value="3">Separado</option>
@@ -234,10 +256,12 @@ class SettingsUser extends Component {
                 </form>
               </div>
               <div className=" center-align">
-                <button className="waves-effect waves-light btn indigo" type="submit" name="action">
-                  Salvar mudanças
-                  {' '}
-                  <FontAwesomeIcon icon="sign-in-alt" />
+                <button
+                  className="waves-effect waves-light btn indigo"
+                  type="submit"
+                  name="action"
+                >
+                  Salvar mudanças <FontAwesomeIcon icon="sign-in-alt" />
                 </button>
               </div>
             </form>
