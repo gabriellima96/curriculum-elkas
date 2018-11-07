@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import api from '../../services/api';
+import ListCurriculums from '../ListCurriculums';
 import './styles.css';
 
 class ContentDash extends Component {
@@ -29,9 +30,7 @@ class ContentDash extends Component {
   }
 
   render() {
-    const {
-      curriculums, page, loading, totalPages,
-    } = this.state;
+    const { curriculums, page, loading } = this.state;
     return (
       <div className="container">
         {loading ? <div>Carregando..</div> : ''}
@@ -50,13 +49,7 @@ class ContentDash extends Component {
             </div>
           </div>
         ) : (
-          <div>
-            <h2>Possui curriculums</h2>
-            <h2>
-Total de páginas:
-              {totalPages}
-            </h2>
-          </div>
+          <ListCurriculums curriculums={curriculums} />
         )}
       </div>
     );
