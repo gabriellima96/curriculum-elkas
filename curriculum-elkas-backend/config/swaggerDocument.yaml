@@ -55,60 +55,6 @@ paths:
           description: Usuário não encontrado!
           schema:
             $ref: '#/definitions/ApiResponse'
-  /users/signin:
-    post:
-      tags:
-        - Users
-      summary: Entrar no sistema
-      description: Entrar no sistema para receber um Token de acesso para as demais áreas
-      operationId: signin
-      consumes:
-        - application/json
-      produces:
-        - application/json
-      parameters:
-        - in: body
-          name: body
-          description: >-
-            Um JSON contendo o e-mail e senha do usuário. Obs: também pode
-            enviar o usuário no atributo e-mail.
-          required: true
-          schema:
-            $ref: '#/definitions/Credentials'
-      responses:
-        '200':
-          description: Sucesso!
-        '400':
-          description: Senha inválida
-        '404':
-          description: E-mail/Usuário não encontrado
-  /users:
-    post:
-      tags:
-        - Users
-      summary: Cadastro no sistema
-      description: Cadastro no sistema
-      operationId: signup
-      consumes:
-        - application/json
-      produces:
-        - application/json
-      parameters:
-        - in: body
-          name: body
-          description: Um JSON contendo o e-mail   username   name e password do usuário.
-          required: true
-          schema:
-            $ref: '#/definitions/Signup'
-      responses:
-        '200':
-          description: Sucesso! Será retornado um objeto user e um token!
-        '400':
-          description: Já existe um usuário com o e-mail cadastrado!
-        '405':
-          description: 'O campo é [nome] obrigatório!'
-        '409':
-          description: Já existe um usuário com o username cadastrado!
     put:
       tags:
         - Users
@@ -216,6 +162,60 @@ paths:
           description: Já existe um usuário com o username cadastrado!
           schema:
             $ref: '#/definitions/ApiResponse'
+  /users/signin:
+    post:
+      tags:
+        - Users
+      summary: Entrar no sistema
+      description: Entrar no sistema para receber um Token de acesso para as demais áreas
+      operationId: signin
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - in: body
+          name: body
+          description: >-
+            Um JSON contendo o e-mail e senha do usuário. Obs: também pode
+            enviar o usuário no atributo e-mail.
+          required: true
+          schema:
+            $ref: '#/definitions/Credentials'
+      responses:
+        '200':
+          description: Sucesso!
+        '400':
+          description: Senha inválida
+        '404':
+          description: E-mail/Usuário não encontrado
+  /users:
+    post:
+      tags:
+        - Users
+      summary: Cadastro no sistema
+      description: Cadastro no sistema
+      operationId: signup
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - in: body
+          name: body
+          description: Um JSON contendo o e-mail   username   name e password do usuário.
+          required: true
+          schema:
+            $ref: '#/definitions/Signup'
+      responses:
+        '200':
+          description: Sucesso! Será retornado um objeto user e um token!
+        '400':
+          description: Já existe um usuário com o e-mail cadastrado!
+        '405':
+          description: 'O campo é [nome] obrigatório!'
+        '409':
+          description: Já existe um usuário com o username cadastrado!
   /curriculums:
     get:
       tags:
