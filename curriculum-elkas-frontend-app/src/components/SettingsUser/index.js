@@ -10,7 +10,11 @@ class SettingsUser extends Component {
   state = {
     addEmail: [],
     message: "",
-    user: ""
+    user: "",
+    currentPassword: '',
+    newPassword: '',
+    error: '',
+    loading: false,
   };
 
   async componentDidMount() {
@@ -55,8 +59,27 @@ class SettingsUser extends Component {
     });
   }
 
+  handleAccount = async (e) => {
+    e.preventDefault();
+    try {
+      const { user, currentPassword, newPassword } = this.state;
+      this.setState({ loading: true });
+      const username = getUsername();
+      user.currentPassword = currentPassword;
+      user.newPassword = newPassword;
+      const response = await api.put(`/users/${username}`, user);
+      this.setState({ error: '' });
+      console.log(response);
+    } catch (error) {
+      this.setState({ error: error.response.data.error });
+    } finally {
+      this.setState({ loading: false });
+    }
+  }
+
   render() {
-    const { addEmail, message, user } = this.state;
+    const { addEmail, message, user, error, loading } = this.state;
+    let { currentPassword, newPassword } = this.state;
 
     return (
       <div className="container">
@@ -69,7 +92,7 @@ class SettingsUser extends Component {
             <h6 className="right-align">Informações da conta</h6>
           </div>
           <div className="container">
-            <form className="col s12 formSettings">
+            <form onSubmit={this.handleAccount} className="col s12 formSettings">
               <div className="row">
                 <div className="input-field col s6">
                   <p>Nome de usuário</p>
@@ -120,6 +143,11 @@ class SettingsUser extends Component {
                     id="oldpassword"
                     type="password"
                     className="validate"
+                    onChange={e => {
+                      currentPassword = e.target.value;
+                      return this.setState({ currentPassword });
+                    }}
+                    value={currentPassword}
                   />
                   <label htmlFor="oldpassword'">Senha atual</label>
                 </div>
@@ -128,6 +156,11 @@ class SettingsUser extends Component {
                     id="newPassword"
                     type="password"
                     className="validate"
+                    onChange={e => {
+                      newPassword = e.target.value;
+                      return this.setState({ newPassword });
+                    }}
+                    value={newPassword}
                   />
                   <label htmlFor="newPassword">Nova senha</label>
                 </div>
@@ -139,9 +172,14 @@ class SettingsUser extends Component {
                   type="submit"
                   name="action"
                 >
-                  Salvar mudanças <FontAwesomeIcon icon="sign-in-alt" />
+                  Salvar mudanças {!loading ? 
+                  (<FontAwesomeIcon icon="sign-in-alt" />) : 
+                  (
+                    <i className="fa fa-spinner fa-pulse" />
+                  )}
                 </button>
               </div>
+              {error && <p className="center-align red-text">{error}</p>}
             </form>
           </div>
         </div>
