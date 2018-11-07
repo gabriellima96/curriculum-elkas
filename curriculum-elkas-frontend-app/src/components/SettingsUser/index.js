@@ -22,7 +22,15 @@ class SettingsUser extends Component {
     try {
       const username = getUsername();
       const { data } = await api.get(`/users/${username}`);
-      this.setState({ user: data });
+      const { emails, phones } = data.personalInformation;
+      console.log(data);
+
+      if (!phones || (phones && phones.length === 0)) {
+        data.personalInformation.phones = ['', ''];
+      } else if (phones === 1) {
+        data.personalInformation.phones[1] = '';
+      }
+      this.setState({ user: data, addEmail: emails });
     } catch (error) {
       console.log(error);
     }
@@ -177,8 +185,8 @@ class SettingsUser extends Component {
                   type="submit"
                   name="action"
                 >
-                  Salvar mudanças {!loading ? 
-                  (<FontAwesomeIcon icon="sign-in-alt" />) : 
+                  Salvar mudanças {!loading ?
+                  (<FontAwesomeIcon icon="sign-in-alt" />) :
                   (
                     <i className="fa fa-spinner fa-pulse" />
                   )}
