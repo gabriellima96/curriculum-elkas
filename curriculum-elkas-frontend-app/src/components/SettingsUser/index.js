@@ -4,7 +4,6 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Input } from "react-materialize";
 import api from "../../services/api";
 import { getUsername } from "../../services/auth";
-
 import "./styles.css";
 
 class SettingsUser extends Component {
@@ -149,7 +148,7 @@ class SettingsUser extends Component {
 
         <div className="row titleForm">
           <div className="titleConfigs">
-            <h6 className="right-align">Informações pessoais</h6>
+            <h6 className="right-align">Informações pessoais e acadêmicas</h6>
           </div>
           <div className="container">
             <form className="col s12 formSettings">
@@ -162,6 +161,7 @@ class SettingsUser extends Component {
                     this.addEmails(e);
                   }}
                 >
+                  <h5>Informações pessoais</h5>
                   <div className="input-field col s11">
                     <div className="row">
                       <input
@@ -187,20 +187,22 @@ class SettingsUser extends Component {
                           </thead>
 
                           <tbody>
-                            {addEmail.map(email => (
-                              <tr key={email}>
-                                <td>{email}</td>
-                                <td className="right-align">
-                                  <button
-                                    onClick={this.deleteEmail(email)}
-                                    className="waves-effect waves-light btn red darken-3"
-                                    type="button"
-                                  >
-                                    Excluir
-                                  </button>
-                                </td>
-                              </tr>
-                            ))}
+                            {addEmail.map(email => {
+                              return (
+                                <tr key={email}>
+                                  <td>{email}</td>
+                                  <td className="right-align">
+                                    <button
+                                      onClick={e => this.deleteEmail(email)}
+                                      className="waves-effect waves-light btn red darken-3"
+                                      type="button"
+                                    >
+                                      Excluir
+                                    </button>
+                                  </td>
+                                </tr>
+                              );
+                            })}
                           </tbody>
                         </table>
                       </div>
@@ -253,13 +255,216 @@ class SettingsUser extends Component {
                         <option value="1">Solteiro</option>
                         <option value="2">Casado</option>
                         <option value="3">Separado</option>
-                        <option value="3">Divorciado</option>
-                        <option value="3">Viúvo</option>
+                        <option value="4">Divorciado</option>
+                        <option value="5">Viúvo</option>
                       </Input>
+                    </div>
+                  </div>
+
+                  <div className="row">
+                    <div className="input-field col s4">
+                      <input type="text" class="validate" />
+                      <label>Logradouro</label>
+                    </div>
+                    <div className="input-field col s4">
+                      <input type="text" class="validate" />
+                      <label>Bairro</label>
+                    </div>
+                    <div className="input-field col s4">
+                      <input type="text" class="validate" />
+                      <label>Cidade</label>
+                    </div>
+                  </div>
+
+                  <div className="row">
+                    <div className="input-field col s4">
+                      <input
+                        id="tel2"
+                        type="text"
+                        className="validate"
+                        pattern="^\d{5}-\d{3}$"
+                        placeholder="xxxxx-xxx"
+                      />
+                      <label>C.E.P.</label>
+                    </div>
+                    <div className="input-field col s4">
+                      <input type="text" class="validate" />
+                      <label>Estado</label>
+                    </div>
+                    <div className="input-field col s4">
+                      <input type="text" class="validate" />
+                      <label>País</label>
+                    </div>
+                  </div>
+
+                  <div className="row">
+                    <div className="col s12">
+                      <h5>Formação acadêmica 1</h5>
+                      <div className="row">
+                        <div class="input-field col s12">
+                          <input type="text" class="validate" />
+                          <label>Instituição acadêmica</label>
+                        </div>
+                      </div>
+                      <div className="row">
+                        <div class="input-field col s4">
+                          <input type="text" class="validate" />
+                          <label>Curso</label>
+                        </div>
+                        <div className="col s4">
+                          <Input
+                            s={12}
+                            type="select"
+                            label="Grau acadêmico"
+                            defaultValue="1"
+                          >
+                            <option value="1" />
+                            <option value="2">Graduação</option>
+                            <option value="3">Bacharelado</option>
+                            <option value="4">Licenciatura</option>
+                            <option value="5">Pós-graduação</option>
+                            <option value="6">Mestrado</option>
+                            <option value="7">Doutorado</option>
+                          </Input>
+                        </div>
+                        <div className="input-field col s2">
+                          <input
+                            placeholder="Ano"
+                            type="number"
+                            class="validate"
+                            min="1800"
+                            max="2050"
+                            value="2014"
+                          />
+                          <label for="first_name">Ano de início</label>
+                        </div>
+                        <div className="input-field col s2">
+                          <input
+                            placeholder="Ano"
+                            type="number"
+                            class="validate"
+                            min="1800"
+                            max="2050"
+                            value="2018"
+                          />
+                          <label for="first_name">Ano de término</label>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div className="row">
+                    <div className="col s12">
+                      <h5>Formação acadêmica 2</h5>
+                      <div className="row">
+                        <div class="input-field col s12">
+                          <input type="text" class="validate" />
+                          <label>Instituição acadêmica</label>
+                        </div>
+                      </div>
+                      <div className="row">
+                        <div class="input-field col s4">
+                          <input type="text" class="validate" />
+                          <label>Curso</label>
+                        </div>
+                        <div className="col s4">
+                          <Input
+                            s={12}
+                            type="select"
+                            label="Grau acadêmico"
+                            defaultValue="1"
+                          >
+                            <option value="1" />
+                            <option value="2">Graduação</option>
+                            <option value="3">Bacharelado</option>
+                            <option value="4">Licenciatura</option>
+                            <option value="5">Pós-graduação</option>
+                            <option value="6">Mestrado</option>
+                            <option value="7">Doutorado</option>
+                          </Input>
+                        </div>
+                        <div className="input-field col s2">
+                          <input
+                            placeholder="Ano"
+                            type="number"
+                            class="validate"
+                            min="1800"
+                            max="2050"
+                            value="2014"
+                          />
+                          <label for="first_name">Ano de início</label>
+                        </div>
+                        <div className="input-field col s2">
+                          <input
+                            placeholder="Ano"
+                            type="number"
+                            class="validate"
+                            min="1800"
+                            max="2050"
+                            value="2018"
+                          />
+                          <label for="first_name">Ano de término</label>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div className="row">
+                    <div className="col s12">
+                      <h5>Formação acadêmica 3</h5>
+                      <div className="row">
+                        <div class="input-field col s12">
+                          <input type="text" class="validate" />
+                          <label>Instituição acadêmica</label>
+                        </div>
+                      </div>
+                      <div className="row">
+                        <div class="input-field col s4">
+                          <input type="text" class="validate" />
+                          <label>Curso</label>
+                        </div>
+                        <div className="col s4">
+                          <Input
+                            s={12}
+                            type="select"
+                            label="Grau acadêmico"
+                            defaultValue="1"
+                          >
+                            <option value="1" />
+                            <option value="2">Graduação</option>
+                            <option value="3">Bacharelado</option>
+                            <option value="4">Licenciatura</option>
+                            <option value="5">Pós-graduação</option>
+                            <option value="6">Mestrado</option>
+                            <option value="7">Doutorado</option>
+                          </Input>
+                        </div>
+                        <div className="input-field col s2">
+                          <input
+                            placeholder="Ano"
+                            type="number"
+                            class="validate"
+                            min="1800"
+                            max="2050"
+                            value="2014"
+                          />
+                          <label for="first_name">Ano de início</label>
+                        </div>
+                        <div className="input-field col s2">
+                          <input
+                            placeholder="Ano"
+                            type="number"
+                            class="validate"
+                            min="1800"
+                            max="2050"
+                            value="2018"
+                          />
+                          <label for="first_name">Ano de término</label>
+                        </div>
+                      </div>
                     </div>
                   </div>
                 </form>
               </div>
+
               <div className=" center-align">
                 <button
                   className="waves-effect waves-light btn indigo"
