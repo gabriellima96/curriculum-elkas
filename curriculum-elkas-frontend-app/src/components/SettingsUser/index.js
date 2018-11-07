@@ -220,13 +220,11 @@ class SettingsUser extends Component {
                         className="validate"
                         pattern="^\d{2}\d{5}\d{4}$"
                         placeholder="ddxxxxxxxxx"
-                        id="tel"
                       />
                       <label htmlFor="tel">Telefone 1</label>
                     </div>
                     <div className="input-field col s6">
                       <input
-                        id="tel2"
                         type="tel"
                         className="validate"
                         pattern="^\d{2}\d{5}\d{4}$"
@@ -263,15 +261,15 @@ class SettingsUser extends Component {
 
                   <div className="row">
                     <div className="input-field col s4">
-                      <input type="text" class="validate" />
+                      <input type="text" className="validate" />
                       <label>Logradouro</label>
                     </div>
                     <div className="input-field col s4">
-                      <input type="text" class="validate" />
+                      <input type="text" className="validate" />
                       <label>Bairro</label>
                     </div>
                     <div className="input-field col s4">
-                      <input type="text" class="validate" />
+                      <input type="text" className="validate" />
                       <label>Cidade</label>
                     </div>
                   </div>
@@ -288,11 +286,11 @@ class SettingsUser extends Component {
                       <label>C.E.P.</label>
                     </div>
                     <div className="input-field col s4">
-                      <input type="text" class="validate" />
+                      <input type="text" className="validate" />
                       <label>Estado</label>
                     </div>
                     <div className="input-field col s4">
-                      <input type="text" class="validate" />
+                      <input type="text" className="validate" />
                       <label>País</label>
                     </div>
                   </div>
@@ -301,14 +299,14 @@ class SettingsUser extends Component {
                     <div className="col s12">
                       <h5 className="title">Formação acadêmica 1</h5>
                       <div className="row">
-                        <div class="input-field col s12">
-                          <input type="text" class="validate" />
+                        <div className="input-field col s12">
+                          <input type="text" className="validate" />
                           <label>Instituição acadêmica</label>
                         </div>
                       </div>
                       <div className="row">
-                        <div class="input-field col s4">
-                          <input type="text" class="validate" />
+                        <div className="input-field col s4">
+                          <input type="text" className="validate" />
                           <label>Curso</label>
                         </div>
                         <div className="col s4">
@@ -331,23 +329,23 @@ class SettingsUser extends Component {
                           <input
                             placeholder="Ano"
                             type="number"
-                            class="validate"
+                            className="validate"
                             min="1800"
                             max="2050"
                             value="2014"
                           />
-                          <label for="first_name">Ano de início</label>
+                          <label>Ano de início</label>
                         </div>
                         <div className="input-field col s2">
                           <input
                             placeholder="Ano"
                             type="number"
-                            class="validate"
+                            className="validate"
                             min="1800"
                             max="2050"
                             value="2018"
                           />
-                          <label for="first_name">Ano de término</label>
+                          <label>Ano de término</label>
                         </div>
                       </div>
                     </div>
@@ -356,14 +354,14 @@ class SettingsUser extends Component {
                     <div className="col s12">
                       <h5 className="title">Formação acadêmica 2</h5>
                       <div className="row">
-                        <div class="input-field col s12">
-                          <input type="text" class="validate" />
+                        <div className="input-field col s12">
+                          <input type="text" className="validate" />
                           <label>Instituição acadêmica</label>
                         </div>
                       </div>
                       <div className="row">
-                        <div class="input-field col s4">
-                          <input type="text" class="validate" />
+                        <div className="input-field col s4">
+                          <input type="text" className="validate" />
                           <label>Curso</label>
                         </div>
                         <div className="col s4">
@@ -386,23 +384,23 @@ class SettingsUser extends Component {
                           <input
                             placeholder="Ano"
                             type="number"
-                            class="validate"
+                            className="validate"
                             min="1800"
                             max="2050"
                             value="2014"
                           />
-                          <label for="first_name">Ano de início</label>
+                          <label>Ano de início</label>
                         </div>
                         <div className="input-field col s2">
                           <input
                             placeholder="Ano"
                             type="number"
-                            class="validate"
+                            className="validate"
                             min="1800"
                             max="2050"
                             value="2018"
                           />
-                          <label for="first_name">Ano de término</label>
+                          <label>Ano de término</label>
                         </div>
                       </div>
                     </div>
@@ -411,14 +409,14 @@ class SettingsUser extends Component {
                     <div className="col s12">
                       <h5 className="title">Formação acadêmica 3</h5>
                       <div className="row">
-                        <div class="input-field col s12">
-                          <input type="text" class="validate" />
+                        <div className="input-field col s12">
+                          <input type="text" className="validate" />
                           <label>Instituição acadêmica</label>
                         </div>
                       </div>
                       <div className="row">
-                        <div class="input-field col s4">
-                          <input type="text" class="validate" />
+                        <div className="input-field col s4">
+                          <input type="text" className="validate" />
                           <label>Curso</label>
                         </div>
                         <div className="col s4">
@@ -441,23 +439,23 @@ class SettingsUser extends Component {
                           <input
                             placeholder="Ano"
                             type="number"
-                            class="validate"
+                            className="validate"
                             min="1800"
                             max="2050"
                             value="2014"
                           />
-                          <label for="first_name">Ano de início</label>
+                          <label>Ano de início</label>
                         </div>
                         <div className="input-field col s2">
                           <input
                             placeholder="Ano"
                             type="number"
-                            class="validate"
+                            className="validate"
                             min="1800"
                             max="2050"
                             value="2018"
                           />
-                          <label for="first_name">Ano de término</label>
+                          <label>Ano de término</label>
                         </div>
                       </div>
                     </div>

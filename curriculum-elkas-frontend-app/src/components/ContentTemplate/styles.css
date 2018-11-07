@@ -1,11 +1,15 @@
-.templateCard{
-    background-color: rgb(145, 145, 145);
+.templateCard {
+  background-color: rgb(145, 145, 145);
 }
 
-.templates{
-    margin-top: 90px;
+.templates {
+  margin-top: 90px;
 }
 
-.shadowImg{
-    background-color: black;
+.shadowImg {
+  background-color: black;
+}
+
+.descCard {
+  font-weight: normal;
 }
