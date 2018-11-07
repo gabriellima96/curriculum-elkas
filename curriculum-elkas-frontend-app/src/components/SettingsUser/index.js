@@ -62,7 +62,7 @@ class SettingsUser extends Component {
       <div className="container">
         <div className="row titleForm">
           <div className="titleConfigs">
-            <h5 className="valign-wrapper left-align">
+            <h5 className="valign-wrapper left-align title">
               {" "}
               Configurações da conta{" "}
             </h5>
@@ -161,7 +161,7 @@ class SettingsUser extends Component {
                     this.addEmails(e);
                   }}
                 >
-                  <h5>Informações pessoais</h5>
+                  <h5 className="title">Informações pessoais</h5>
                   <div className="input-field col s11">
                     <div className="row">
                       <input
@@ -299,7 +299,7 @@ class SettingsUser extends Component {
 
                   <div className="row">
                     <div className="col s12">
-                      <h5>Formação acadêmica 1</h5>
+                      <h5 className="title">Formação acadêmica 1</h5>
                       <div className="row">
                         <div class="input-field col s12">
                           <input type="text" class="validate" />
@@ -354,7 +354,7 @@ class SettingsUser extends Component {
                   </div>
                   <div className="row">
                     <div className="col s12">
-                      <h5>Formação acadêmica 2</h5>
+                      <h5 className="title">Formação acadêmica 2</h5>
                       <div className="row">
                         <div class="input-field col s12">
                           <input type="text" class="validate" />
@@ -409,7 +409,7 @@ class SettingsUser extends Component {
                   </div>
                   <div className="row">
                     <div className="col s12">
-                      <h5>Formação acadêmica 3</h5>
+                      <h5 className="title">Formação acadêmica 3</h5>
                       <div className="row">
                         <div class="input-field col s12">
                           <input type="text" class="validate" />
