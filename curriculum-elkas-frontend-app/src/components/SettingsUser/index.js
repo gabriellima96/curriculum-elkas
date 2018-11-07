@@ -15,6 +15,7 @@ class SettingsUser extends Component {
     newPassword: '',
     error: '',
     loading: false,
+    sucessAccount: '',
   };
 
   async componentDidMount() {
@@ -68,8 +69,12 @@ class SettingsUser extends Component {
       user.currentPassword = currentPassword;
       user.newPassword = newPassword;
       const response = await api.put(`/users/${username}`, user);
-      this.setState({ error: '' });
-      console.log(response);
+      this.setState({ user: response.data });
+      this.setState({ sucess: 'Atualização da conta realizada com sucesso.' });
+      setInterval(() => {
+        this.setState({ sucess: '' });
+      }, 10000);
+      this.setState({ error: '', newPassword: '', currentPassword: '' });
     } catch (error) {
       this.setState({ error: error.response.data.error });
     } finally {
@@ -78,7 +83,7 @@ class SettingsUser extends Component {
   }
 
   render() {
-    const { addEmail, message, user, error, loading } = this.state;
+    const { addEmail, message, user, error, loading, sucess } = this.state;
     let { currentPassword, newPassword } = this.state;
 
     return (
@@ -180,6 +185,7 @@ class SettingsUser extends Component {
                 </button>
               </div>
               {error && <p className="center-align red-text">{error}</p>}
+              {sucess && <p className="center-align green-text">{sucess}</p>}
             </form>
           </div>
         </div>
