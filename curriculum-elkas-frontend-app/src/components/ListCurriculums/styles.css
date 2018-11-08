@@ -4,6 +4,7 @@ p a {
 
 a {
   font-size: 12px;
+  color: white;
 }
 
 .card {
@@ -13,4 +14,20 @@ a {
 .card-image {
   border-top-left-radius: 15px;
   border-top-right-radius: 15px;
+}
+
+.curriculumTitle {
+  margin-bottom: 50px;
+}
+
+.acessarCurriculo {
+  margin-top: 20px;
+}
+
+.pagination {
+  margin-top: 25px;
+}
+
+.pagination li.active {
+  background-color: #9c27b0;
 }
