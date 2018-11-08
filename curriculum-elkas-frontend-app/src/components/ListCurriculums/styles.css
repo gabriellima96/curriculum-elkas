@@ -1,0 +1,16 @@
+p a {
+  font-weight: normal;
+}
+
+a {
+  font-size: 12px;
+}
+
+.card {
+  border-radius: 15px;
+}
+
+.card-image {
+  border-top-left-radius: 15px;
+  border-top-right-radius: 15px;
+}
