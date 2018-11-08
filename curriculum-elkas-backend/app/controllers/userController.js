@@ -43,7 +43,7 @@ module.exports = {
       }
 
       if (email && email !== user.email) {
-        if (await user.findOne(email)) {
+        if (await User.findOne(email)) {
           return res
             .status(400)
             .json({ status: 400, error: 'Já existe um usuário com o e-mail cadastrado' });
