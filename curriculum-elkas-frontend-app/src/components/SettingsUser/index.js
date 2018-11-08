@@ -314,7 +314,6 @@ class SettingsUser extends Component {
                       </Input>
                     </div>
                   </div>
-
                   <div className="row">
                     <div className="input-field col s4">
                       <input type="text" className="validate" />
