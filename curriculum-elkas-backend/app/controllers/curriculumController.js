@@ -33,11 +33,11 @@ module.exports = {
       }
 
       let totalPages = 0;
-      if (!Number.isInteger(totalDocuments / 5)) {
+      if (!Number.isInteger(totalDocuments / 3)) {
         // eslint-disable-next-line radix
-        totalPages = parseInt(totalDocuments / 5) + 1;
+        totalPages = parseInt(totalDocuments / 3) + 1;
       } else {
-        totalPages = totalDocuments / 5;
+        totalPages = totalDocuments / 3;
       }
 
       if (page - 1 > totalPages) {
@@ -45,8 +45,8 @@ module.exports = {
       }
 
       const curriculums = await Curriculum.find({ user: userId }, null, {
-        skip: (page - 1) * 5,
-        limit: 5,
+        skip: (page - 1) * 3,
+        limit: 3,
         sort: 'createdAt',
       });
 
