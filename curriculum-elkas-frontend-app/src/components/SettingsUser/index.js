@@ -11,11 +11,11 @@ class SettingsUser extends Component {
     addEmail: [],
     message: "",
     user: "",
-    currentPassword: '',
-    newPassword: '',
-    error: '',
+    currentPassword: "",
+    newPassword: "",
+    error: "",
     loading: false,
-    sucessAccount: '',
+    sucessAccount: ""
   };
 
   async componentDidMount() {
@@ -26,9 +26,9 @@ class SettingsUser extends Component {
       console.log(data);
 
       if (!phones || (phones && phones.length === 0)) {
-        data.personalInformation.phones = ['', ''];
+        data.personalInformation.phones = ["", ""];
       } else if (phones === 1) {
-        data.personalInformation.phones[1] = '';
+        data.personalInformation.phones[1] = "";
       }
       this.setState({ user: data, addEmail: emails });
     } catch (error) {
@@ -68,7 +68,7 @@ class SettingsUser extends Component {
     });
   }
 
-  handleAccount = async (e) => {
+  handleAccount = async e => {
     e.preventDefault();
     try {
       const { user, currentPassword, newPassword } = this.state;
@@ -78,17 +78,17 @@ class SettingsUser extends Component {
       user.newPassword = newPassword;
       const response = await api.put(`/users/${username}`, user);
       this.setState({ user: response.data });
-      this.setState({ sucess: 'Atualização da conta realizada com sucesso.' });
+      this.setState({ sucess: "Atualização da conta realizada com sucesso." });
       setInterval(() => {
-        this.setState({ sucess: '' });
+        this.setState({ sucess: "" });
       }, 10000);
-      this.setState({ error: '', newPassword: '', currentPassword: '' });
+      this.setState({ error: "", newPassword: "", currentPassword: "" });
     } catch (error) {
       this.setState({ error: error.response.data.error });
     } finally {
       this.setState({ loading: false });
     }
-  }
+  };
 
   render() {
     const { addEmail, message, user, error, loading, sucess } = this.state;
@@ -105,7 +105,10 @@ class SettingsUser extends Component {
             <h6 className="right-align">Informações da conta</h6>
           </div>
           <div className="container">
-            <form onSubmit={this.handleAccount} className="col s12 formSettings">
+            <form
+              onSubmit={this.handleAccount}
+              className="col s12 formSettings"
+            >
               <div className="row">
                 <div className="input-field col s6">
                   <p>Nome de usuário</p>
@@ -185,9 +188,10 @@ class SettingsUser extends Component {
                   type="submit"
                   name="action"
                 >
-                  Salvar mudanças {!loading ?
-                  (<FontAwesomeIcon icon="sign-in-alt" />) :
-                  (
+                  Salvar mudanças{" "}
+                  {!loading ? (
+                    <FontAwesomeIcon icon="sign-in-alt" />
+                  ) : (
                     <i className="fa fa-spinner fa-pulse" />
                   )}
                 </button>
@@ -384,7 +388,6 @@ class SettingsUser extends Component {
                             className="validate"
                             min="1800"
                             max="2050"
-                            value="2014"
                           />
                           <label>Ano de início</label>
                         </div>
@@ -395,7 +398,6 @@ class SettingsUser extends Component {
                             className="validate"
                             min="1800"
                             max="2050"
-                            value="2018"
                           />
                           <label>Ano de término</label>
                         </div>
@@ -439,7 +441,6 @@ class SettingsUser extends Component {
                             className="validate"
                             min="1800"
                             max="2050"
-                            value="2014"
                           />
                           <label>Ano de início</label>
                         </div>
@@ -450,7 +451,6 @@ class SettingsUser extends Component {
                             className="validate"
                             min="1800"
                             max="2050"
-                            value="2018"
                           />
                           <label>Ano de término</label>
                         </div>
@@ -494,7 +494,6 @@ class SettingsUser extends Component {
                             className="validate"
                             min="1800"
                             max="2050"
-                            value="2014"
                           />
                           <label>Ano de início</label>
                         </div>
@@ -505,7 +504,6 @@ class SettingsUser extends Component {
                             className="validate"
                             min="1800"
                             max="2050"
-                            value="2018"
                           />
                           <label>Ano de término</label>
                         </div>
