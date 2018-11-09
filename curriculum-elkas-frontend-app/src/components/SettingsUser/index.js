@@ -442,10 +442,10 @@ class SettingsUser extends Component {
                     />
                   </div>
                   <div className="col s6">
+                    <p>Estado civil</p>
                     <Input
                       s={12}
                       type="select"
-                      label="Estado Civil"
                       defaultValue="1"
                       value={user.personalInformation.maritalStatus}
                       onChange={e => {
