@@ -1,88 +1,99 @@
-/* eslint-disable react/button-has-type */
-import React, { Component } from "react";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { Input } from "react-materialize";
-import api from "../../services/api";
-import { getUsername } from "../../services/auth";
-import "./styles.css";
+import React, { Component } from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { Input } from 'react-materialize';
+import api from '../../services/api';
+import { getUsername } from '../../services/auth';
+import './styles.css';
 
 class SettingsUser extends Component {
   state = {
-    addEmail: [],
-    message: "",
-    user: "",
-    currentPassword: "",
-    newPassword: "",
-    error: "",
+    user: {
+      personalInformation: {
+        dataOfBirth: '',
+        maritalStatus: '',
+        address: {
+          publicArea: '',
+          district: '',
+          city: '',
+          postalCode: '',
+          country: '',
+          state: '',
+        },
+      },
+    },
+    currentPassword: '',
+    newPassword: '',
+    error: '',
     loading: false,
-    sucessAccount: ""
+    sucess: '',
+    message: '',
+    emails: [],
+    newEmail: '',
+    phones: ['', ''],
   };
 
   async componentDidMount() {
     try {
+      const { phones } = this.state;
       const username = getUsername();
       const { data } = await api.get(`/users/${username}`);
-      const { emails, phones } = data.personalInformation;
       console.log(data);
-
-      if (!phones || (phones && phones.length === 0)) {
-        data.personalInformation.phones = ["", ""];
-      } else if (phones === 1) {
-        data.personalInformation.phones[1] = "";
+      if (data.personalInformation.phones) {
+        data.personalInformation.phones.forEach((phone) => {
+          if (phone) {
+            phones.push(phone);
+          }
+        });
       }
-      this.setState({ user: data, addEmail: emails });
+
+      if (!data.personalInformation.dataOfBirth) {
+        data.personalInformation.dateOfBirth = '';
+      }
+
+      if (!data.personalInformation.maritalStatus) {
+        data.personalInformation.maritalStatus = '';
+      }
+
+      this.setState({
+        user: data,
+        emails: data.personalInformation.emails,
+        phones,
+      });
     } catch (error) {
       console.log(error);
     }
   }
 
-  addEmails(e) {
+  handleAccount = async (e) => {
     e.preventDefault();
-    const { addEmail } = this.state;
-    const newEmail = this.newEmail.value;
 
-    const isOnTheList = addEmail.includes(newEmail);
-
-    if (isOnTheList) {
-      this.setState({
-        message: "Esse email já foi adicionado."
-      });
-    } else if (newEmail !== "") {
-      this.setState({
-        addEmail: [...addEmail, newEmail],
-        message: ""
-      });
-    }
-
-    this.addForm.reset();
-  }
-
-  deleteEmail(email) {
-    const { addEmail } = this.state;
-    const newaddEmail = addEmail.filter(
-      individualEmail => individualEmail !== email
-    );
-
-    this.setState({
-      addEmail: [...newaddEmail]
-    });
-  }
-
-  handleAccount = async e => {
-    e.preventDefault();
+    this.setState({ loading: true });
     try {
       const { user, currentPassword, newPassword } = this.state;
-      this.setState({ loading: true });
-      const username = getUsername();
-      user.currentPassword = currentPassword;
-      user.newPassword = newPassword;
-      const response = await api.put(`/users/${username}`, user);
-      this.setState({ user: response.data });
-      this.setState({ sucess: "Atualização da conta realizada com sucesso." });
+
+      if (currentPassword && newPassword) {
+        user.currentPassword = currentPassword;
+        user.newPassword = newPassword;
+      } else if (currentPassword) {
+        this.setState({
+          error: "Atualize a senha digitando uma nova no Campo 'Nova senha'",
+        });
+        return;
+      } else if (newPassword) {
+        this.setState({
+          error: "Atualize a senha digitando a atual no Campo 'Senha atual'",
+        });
+        return;
+      }
+
+      const response = await api.put(`/users/${user.username}`, user);
+
+      this.setState({ user: response.data, sucess: 'Atualização da conta realizada com sucesso.' });
+
       setInterval(() => {
-        this.setState({ sucess: "" });
+        this.setState({ sucess: '' });
       }, 10000);
-      this.setState({ error: "", newPassword: "", currentPassword: "" });
+      this.setState({ error: '', newPassword: '', currentPassword: '' });
     } catch (error) {
       this.setState({ error: error.response.data.error });
     } finally {
@@ -90,25 +101,50 @@ class SettingsUser extends Component {
     }
   };
 
+  deleteEmail = (email, e) => {
+    e.preventDefault();
+    const { emails } = this.state;
+    emails.splice(emails.indexOf(email), 1);
+    this.setState({ emails });
+  };
+
+  addEmail = (e) => {
+    e.preventDefault();
+    const { emails, newEmail } = this.state;
+
+    if (!newEmail || !newEmail.includes('@')) {
+      this.setState({ message: 'E-mail ínvalido' });
+    } else {
+      const isOnTheList = emails.includes(newEmail);
+      if (isOnTheList) {
+        this.setState({
+          message: 'Esse e-mail já foi adicionado.',
+        });
+      } else {
+        emails.push(newEmail);
+        this.setState({
+          emails,
+          message: '',
+        });
+      }
+    }
+  };
+
   render() {
-    const { addEmail, message, user, error, loading, sucess } = this.state;
+    const {
+      user, error, loading, sucess, message, emails, phones,
+    } = this.state;
     let { currentPassword, newPassword } = this.state;
 
     return (
       <div className="container">
-        <div className="row titleForm">
+            <div className="row titleForm">
           <div className="titleConfigs">
-            <h5 className="valign-wrapper left-align title">
-              {" "}
-              Configurações da conta{" "}
-            </h5>
+            <h5 className="valign-wrapper left-align title"> Configurações da conta </h5>
             <h6 className="right-align">Informações da conta</h6>
           </div>
           <div className="container">
-            <form
-              onSubmit={this.handleAccount}
-              className="col s12 formSettings"
-            >
+            <form onSubmit={this.handleAccount} className="col s12 formSettings">
               <div className="row">
                 <div className="input-field col s6">
                   <p>Nome de usuário</p>
@@ -117,7 +153,7 @@ class SettingsUser extends Component {
                     type="text"
                     className="validate"
                     value={user.username}
-                    onChange={e => {
+                    onChange={(e) => {
                       user.username = e.target.value;
                       return this.setState({ user });
                     }}
@@ -130,7 +166,7 @@ class SettingsUser extends Component {
                     type="text"
                     className="validate"
                     value={user.name}
-                    onChange={e => {
+                    onChange={(e) => {
                       user.name = e.target.value;
                       return this.setState({ user });
                     }}
@@ -139,14 +175,13 @@ class SettingsUser extends Component {
               </div>
               <div className="row">
                 <div className="input-field col s12">
-                  <p htmlFor="disabled">Email</p>
+                  <p htmlFor="emailAccount">Email</p>
                   <input
-                    disabled
-                    id="disabled"
-                    type="text"
+                    id="emailAccount"
+                    type="email"
                     className="validate"
                     value={user.email}
-                    onChange={e => {
+                    onChange={(e) => {
                       user.email = e.target.value;
                       return this.setState({ user });
                     }}
@@ -159,8 +194,13 @@ class SettingsUser extends Component {
                     id="oldpassword"
                     type="password"
                     className="validate"
-                    onChange={e => {
+                    onChange={(e) => {
                       currentPassword = e.target.value;
+                      if (!newPassword) {
+                        this.setState({
+                          error: "Atualize a senha digitando uma nova no Campo 'Nova senha'",
+                        });
+                      }
                       return this.setState({ currentPassword });
                     }}
                     value={currentPassword}
@@ -172,8 +212,13 @@ class SettingsUser extends Component {
                     id="newPassword"
                     type="password"
                     className="validate"
-                    onChange={e => {
+                    onChange={(e) => {
                       newPassword = e.target.value;
+                      if (!currentPassword) {
+                        this.setState({
+                          error: "Atualize a senha digitando a atual no Campo 'Senha atual'",
+                        });
+                      }
                       return this.setState({ newPassword });
                     }}
                     value={newPassword}
@@ -183,12 +228,9 @@ class SettingsUser extends Component {
               </div>
 
               <div className=" center-align">
-                <button
-                  className="waves-effect waves-light btn indigo"
-                  type="submit"
-                  name="action"
-                >
-                  Salvar mudanças{" "}
+                <button className="waves-effect waves-light btn indigo" type="submit" name="action">
+                  Salvar mudanças
+                  {' '}
                   {!loading ? (
                     <FontAwesomeIcon icon="sign-in-alt" />
                   ) : (
@@ -201,325 +243,186 @@ class SettingsUser extends Component {
             </form>
           </div>
         </div>
-
         <div className="row titleForm">
           <div className="titleConfigs">
+            <h5 className="title">Informações pessoais</h5>
             <h6 className="right-align">Informações pessoais e acadêmicas</h6>
           </div>
           <div className="container">
             <form className="col s12 formSettings">
               <div className="row">
-                <form
-                  ref={input => {
-                    this.addForm = input;
-                  }}
-                  onSubmit={e => {
-                    this.addEmails(e);
-                  }}
-                >
-                  <h5 className="title">Informações pessoais</h5>
-                  <div className="input-field col s11">
-                    <div className="row">
-                      <input
-                        ref={input => {
-                          this.newEmail = input;
-                        }}
-                        id="email"
-                        type="email"
-                        className="validate email"
-                      />
-                      <label htmlFor="email">Email</label>
-                    </div>
+                <div className="input-field col s11">
+                  <div className="row">
+                    <input
+                      onChange={e => this.setState({ newEmail: e.target.value })}
+                      id="email"
+                      type="email"
+                      className="validate email"
+                    />
+                    <label htmlFor="email">Email</label>
+                  </div>
+                  {message !== '' && <p className="red-text">{message}</p>}
+                  {emails && emails.length > 0 && (
+                    <div>
+                      <table>
+                        <thead>
+                          <tr>
+                            <th>Seus emails</th>
+                          </tr>
+                        </thead>
 
-                    {message !== "" && <p className="red-text">{message}</p>}
-
-                    {addEmail.length > 0 && (
-                      <div>
-                        <table>
-                          <thead>
-                            <tr>
-                              <th>Seus emails</th>
+                        <tbody>
+                          {user.personalInformation.emails.map(email => (
+                            <tr key={email}>
+                              <td>{email}</td>
+                              <td className="right-align">
+                                <button
+                                  onClick={e => this.deleteEmail(email, e)}
+                                  className="waves-effect waves-light btn red darken-3"
+                                  type="button"
+                                >
+                                  Excluir
+                                </button>
+                              </td>
                             </tr>
-                          </thead>
-
-                          <tbody>
-                            {addEmail.map(email => {
-                              return (
-                                <tr key={email}>
-                                  <td>{email}</td>
-                                  <td className="right-align">
-                                    <button
-                                      onClick={e => this.deleteEmail(email)}
-                                      className="waves-effect waves-light btn red darken-3"
-                                      type="button"
-                                    >
-                                      Excluir
-                                    </button>
-                                  </td>
-                                </tr>
-                              );
-                            })}
-                          </tbody>
-                        </table>
+                          ))}
+                        </tbody>
+                      </table>
+                    </div>
+                  )}
+                </div>
+                <div className="col s1">
+                  <button
+                    type="button"
+                    onClick={e => this.addEmail(e)}
+                    className="btn-floating btn-small waves-effect waves-light purple"
+                  >
+                    <i className="material-icons">add</i>
+                  </button>
+                </div>
+                <div className="row">
+                  {phones
+                    && phones.map((phone, index) => (
+                      <div className="input-field col s6">
+                        <input
+                          type="tel"
+                          className="validate"
+                          pattern="^\d{2}\d{5}\d{4}$"
+                          placeholder="ddxxxxxxxxx"
+                          value={phone}
+                          onChange={(e) => {
+                            phones.splice(index, 1, e.target.value);
+                            this.setState({ phones });
+                          }}
+                        />
+                        <label htmlFor="tel">
+                          Telefone
+                          {` ${index + 1}`}
+                        </label>
                       </div>
-                    )}
+                    ))}
+                </div>
+                <div className="row">
+                  <div className="col s6">
+                    <label htmlFor="dataofbirth">Data de nascimento</label>
+                    <input
+                      id="dataofbirth"
+                      type="date"
+                      name="bday"
+                      className="datapicker"
+                      value={user.personalInformation.dataOfBirth}
+                      onChange={e => {
+                        user.personalInformation.dataOfBirth = e.target.value;
+                        this.setState({ user });
+                      }}
+                    />
                   </div>
-                  <div className="col s1">
-                    <button className="btn-floating btn-small waves-effect waves-light purple">
-                      <i className="material-icons">add</i>
-                    </button>
-                  </div>
-                  <div className="row">
-                    <div className="input-field col s6">
-                      <input
-                        type="tel"
-                        className="validate"
-                        pattern="^\d{2}\d{5}\d{4}$"
-                        placeholder="ddxxxxxxxxx"
-                      />
-                      <label htmlFor="tel">Telefone 1</label>
-                    </div>
-                    <div className="input-field col s6">
-                      <input
-                        type="tel"
-                        className="validate"
-                        pattern="^\d{2}\d{5}\d{4}$"
-                        placeholder="ddxxxxxxxxx"
-                      />
-                      <label htmlFor="tel2">Telefone 2</label>
-                    </div>
-                  </div>
-                  <div className="row">
-                    <div className="col s6">
-                      <label htmlFor="dataofbirth">Data de nascimento</label>
-                      <input
-                        id="dataofbirth"
-                        type="date"
-                        name="bday"
-                        className="datapicker"
-                      />
-                    </div>
-                    <div className="col s6">
-                      <Input
-                        s={12}
-                        type="select"
-                        label="Estado Civil"
-                        defaultValue="1"
+                  <div className="col s6">
+                    <Input
+                      s={12}
+                      type="select"
+                      label="Estado Civil"
+                      defaultValue="1"
+                      value={user.personalInformation.maritalStatus}
+                      onChange={e => {
+                          user.personalInformation.maritalStatus = e.target.value;
+                          this.setState({ user });
+                        }}
                       >
-                        <option value="1">Solteiro</option>
-                        <option value="2">Casado</option>
-                        <option value="3">Separado</option>
-                        <option value="4">Divorciado</option>
-                        <option value="5">Viúvo</option>
-                      </Input>
-                    </div>
+                      <option value="1">Solteiro</option>
+                      <option value="2">Casado</option>
+                      <option value="3">Separado</option>
+                      <option value="4">Divorciado</option>
+                      <option value="5">Viúvo</option>
+                    </Input>
                   </div>
-                  <div className="row">
-                    <div className="input-field col s4">
-                      <input type="text" className="validate" />
-                      <label>Logradouro</label>
-                    </div>
-                    <div className="input-field col s4">
-                      <input type="text" className="validate" />
-                      <label>Bairro</label>
-                    </div>
-                    <div className="input-field col s4">
-                      <input type="text" className="validate" />
-                      <label>Cidade</label>
-                    </div>
+                </div>
+                <div className="row">
+                  <div id="logradouro" className="input-field col s4">
+                    <input type="text" className="validate"
+                      value={user.personalInformation.address.publicArea}
+                      onChange={e => {
+                          user.personalInformation.address.publicArea = e.target.value;
+                          this.setState({ user });
+                        }} />
+                    <label htmlFor="logradouro">Logradouro</label>
                   </div>
-
-                  <div className="row">
-                    <div className="input-field col s4">
-                      <input
-                        id="tel2"
-                        type="text"
-                        className="validate"
-                        pattern="^\d{5}-\d{3}$"
-                        placeholder="xxxxx-xxx"
+                  <div id="bairro" className="input-field col s4">
+                    <input type="text" className="validate"
+                    value={user.personalInformation.address.district}
+                    onChange={e => {
+                        user.personalInformation.address.district= e.target.value;
+                        this.setState({ user });
+                    }} />
+                    <label htmlFor="bairro">Bairro</label>
+                  </div>
+                  <div id="cidade" className="input-field col s4">
+                    <input type="text" className="validate"
+                    value={user.personalInformation.address.city}
+                    onChange={e => {
+                        user.personalInformation.address.city= e.target.value;
+                        this.setState({ user });
+                    }} />
+                    <label htmlFor="cidade">Cidade</label>
+                  </div>
+                </div>
+                <div className="row">
+                  <div className="input-field col s4">
+                    <input
+                      id="cep"
+                      type="text"
+                      className="validate"
+                      pattern="^\d{5}-\d{3}$"
+                      placeholder="xxxxx-xxx"
+                      value={user.personalInformation.address.postalCode}
+                      onChange={e => {
+                        user.personalInformation.address.postalCode = e.target.value;
+                        this.setState({ user });
+                    }}
+                    />
+                    <label htmlFor="cep">C.E.P.</label>
+                  </div>
+                  <div className="input-field col s4">
+                    <input id="estado" type="text" className="validate"
+                    value={user.personalInformation.address.state}
+                    onChange={e => {
+                      user.personalInformation.address.state = e.target.value;
+                      this.setState({ user });
+                    }}
+                    />
+                    <label htmlFor="estado">Estado</label>
+                  </div>
+                  <div className="input-field col s4">
+                    <input type="text" className="validate" 
+                      value={user.personalInformation.address.country}
+                      onChange={e => {
+                        user.personalInformation.address.country = e.target.value;
+                        this.setState({ user });
+                      }}
                       />
-                      <label>C.E.P.</label>
-                    </div>
-                    <div className="input-field col s4">
-                      <input type="text" className="validate" />
-                      <label>Estado</label>
-                    </div>
-                    <div className="input-field col s4">
-                      <input type="text" className="validate" />
-                      <label>País</label>
-                    </div>
+                    <label>País</label>
                   </div>
-
-                  <div className="row">
-                    <div className="col s12">
-                      <h5 className="title">Formação acadêmica 1</h5>
-                      <div className="row">
-                        <div className="input-field col s12">
-                          <input type="text" className="validate" />
-                          <label>Instituição acadêmica</label>
-                        </div>
-                      </div>
-                      <div className="row">
-                        <div className="input-field col s4">
-                          <input type="text" className="validate" />
-                          <label>Curso</label>
-                        </div>
-                        <div className="col s4">
-                          <Input
-                            s={12}
-                            type="select"
-                            label="Grau acadêmico"
-                            defaultValue="1"
-                          >
-                            <option value="1" />
-                            <option value="2">Graduação</option>
-                            <option value="3">Bacharelado</option>
-                            <option value="4">Licenciatura</option>
-                            <option value="5">Pós-graduação</option>
-                            <option value="6">Mestrado</option>
-                            <option value="7">Doutorado</option>
-                          </Input>
-                        </div>
-                        <div className="input-field col s2">
-                          <input
-                            placeholder="Ano"
-                            type="number"
-                            className="validate"
-                            min="1800"
-                            max="2050"
-                          />
-                          <label>Ano de início</label>
-                        </div>
-                        <div className="input-field col s2">
-                          <input
-                            placeholder="Ano"
-                            type="number"
-                            className="validate"
-                            min="1800"
-                            max="2050"
-                          />
-                          <label>Ano de término</label>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="row">
-                    <div className="col s12">
-                      <h5 className="title">Formação acadêmica 2</h5>
-                      <div className="row">
-                        <div className="input-field col s12">
-                          <input type="text" className="validate" />
-                          <label>Instituição acadêmica</label>
-                        </div>
-                      </div>
-                      <div className="row">
-                        <div className="input-field col s4">
-                          <input type="text" className="validate" />
-                          <label>Curso</label>
-                        </div>
-                        <div className="col s4">
-                          <Input
-                            s={12}
-                            type="select"
-                            label="Grau acadêmico"
-                            defaultValue="1"
-                          >
-                            <option value="1" />
-                            <option value="2">Graduação</option>
-                            <option value="3">Bacharelado</option>
-                            <option value="4">Licenciatura</option>
-                            <option value="5">Pós-graduação</option>
-                            <option value="6">Mestrado</option>
-                            <option value="7">Doutorado</option>
-                          </Input>
-                        </div>
-                        <div className="input-field col s2">
-                          <input
-                            placeholder="Ano"
-                            type="number"
-                            className="validate"
-                            min="1800"
-                            max="2050"
-                          />
-                          <label>Ano de início</label>
-                        </div>
-                        <div className="input-field col s2">
-                          <input
-                            placeholder="Ano"
-                            type="number"
-                            className="validate"
-                            min="1800"
-                            max="2050"
-                          />
-                          <label>Ano de término</label>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="row">
-                    <div className="col s12">
-                      <h5 className="title">Formação acadêmica 3</h5>
-                      <div className="row">
-                        <div className="input-field col s12">
-                          <input type="text" className="validate" />
-                          <label>Instituição acadêmica</label>
-                        </div>
-                      </div>
-                      <div className="row">
-                        <div className="input-field col s4">
-                          <input type="text" className="validate" />
-                          <label>Curso</label>
-                        </div>
-                        <div className="col s4">
-                          <Input
-                            s={12}
-                            type="select"
-                            label="Grau acadêmico"
-                            defaultValue="1"
-                          >
-                            <option value="1" />
-                            <option value="2">Graduação</option>
-                            <option value="3">Bacharelado</option>
-                            <option value="4">Licenciatura</option>
-                            <option value="5">Pós-graduação</option>
-                            <option value="6">Mestrado</option>
-                            <option value="7">Doutorado</option>
-                          </Input>
-                        </div>
-                        <div className="input-field col s2">
-                          <input
-                            placeholder="Ano"
-                            type="number"
-                            className="validate"
-                            min="1800"
-                            max="2050"
-                          />
-                          <label>Ano de início</label>
-                        </div>
-                        <div className="input-field col s2">
-                          <input
-                            placeholder="Ano"
-                            type="number"
-                            className="validate"
-                            min="1800"
-                            max="2050"
-                          />
-                          <label>Ano de término</label>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </form>
-              </div>
-
-              <div className=" center-align">
-                <button
-                  className="waves-effect waves-light btn indigo"
-                  type="submit"
-                  name="action"
-                >
-                  Salvar mudanças <FontAwesomeIcon icon="sign-in-alt" />
-                </button>
+                </div>
               </div>
             </form>
           </div>
