@@ -1,35 +1,35 @@
-import React, { Component } from 'react';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { Input } from 'react-materialize';
-import api from '../../services/api';
-import { getUsername } from '../../services/auth';
-import './styles.css';
+import React, { Component } from "react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { Input } from "react-materialize";
+import api from "../../services/api";
+import { getUsername } from "../../services/auth";
+import "./styles.css";
 
 class SettingsUser extends Component {
   state = {
     user: {
       personalInformation: {
-        dataOfBirth: '',
-        maritalStatus: '',
+        dataOfBirth: "",
+        maritalStatus: "",
         address: {
-          publicArea: '',
-          district: '',
-          city: '',
-          postalCode: '',
-          country: '',
-          state: '',
-        },
-      },
+          publicArea: "",
+          district: "",
+          city: "",
+          postalCode: "",
+          country: "",
+          state: ""
+        }
+      }
     },
-    currentPassword: '',
-    newPassword: '',
-    error: '',
+    currentPassword: "",
+    newPassword: "",
+    error: "",
     loading: false,
-    sucess: '',
-    message: '',
+    sucess: "",
+    message: "",
     emails: [],
-    newEmail: '',
-    phones: ['', ''],
+    newEmail: "",
+    phones: ["", ""]
   };
 
   async componentDidMount() {
@@ -39,7 +39,7 @@ class SettingsUser extends Component {
       const { data } = await api.get(`/users/${username}`);
       console.log(data);
       if (data.personalInformation.phones) {
-        data.personalInformation.phones.forEach((phone) => {
+        data.personalInformation.phones.forEach(phone => {
           if (phone) {
             phones.push(phone);
           }
@@ -47,24 +47,24 @@ class SettingsUser extends Component {
       }
 
       if (!data.personalInformation.dataOfBirth) {
-        data.personalInformation.dateOfBirth = '';
+        data.personalInformation.dateOfBirth = "";
       }
 
       if (!data.personalInformation.maritalStatus) {
-        data.personalInformation.maritalStatus = '';
+        data.personalInformation.maritalStatus = "";
       }
 
       this.setState({
         user: data,
         emails: data.personalInformation.emails,
-        phones,
+        phones
       });
     } catch (error) {
       console.log(error);
     }
   }
 
-  handleAccount = async (e) => {
+  handleAccount = async e => {
     e.preventDefault();
 
     this.setState({ loading: true });
@@ -76,24 +76,27 @@ class SettingsUser extends Component {
         user.newPassword = newPassword;
       } else if (currentPassword) {
         this.setState({
-          error: "Atualize a senha digitando uma nova no Campo 'Nova senha'",
+          error: "Atualize a senha digitando uma nova no Campo 'Nova senha'"
         });
         return;
       } else if (newPassword) {
         this.setState({
-          error: "Atualize a senha digitando a atual no Campo 'Senha atual'",
+          error: "Atualize a senha digitando a atual no Campo 'Senha atual'"
         });
         return;
       }
 
       const response = await api.put(`/users/${user.username}`, user);
 
-      this.setState({ user: response.data, sucess: 'Atualização da conta realizada com sucesso.' });
+      this.setState({
+        user: response.data,
+        sucess: "Atualização da conta realizada com sucesso."
+      });
 
       setInterval(() => {
-        this.setState({ sucess: '' });
+        this.setState({ sucess: "" });
       }, 10000);
-      this.setState({ error: '', newPassword: '', currentPassword: '' });
+      this.setState({ error: "", newPassword: "", currentPassword: "" });
     } catch (error) {
       this.setState({ error: error.response.data.error });
     } finally {
@@ -108,23 +111,23 @@ class SettingsUser extends Component {
     this.setState({ emails });
   };
 
-  addEmail = (e) => {
+  addEmail = e => {
     e.preventDefault();
     const { emails, newEmail } = this.state;
 
-    if (!newEmail || !newEmail.includes('@')) {
-      this.setState({ message: 'E-mail ínvalido' });
+    if (!newEmail || !newEmail.includes("@")) {
+      this.setState({ message: "E-mail ínvalido" });
     } else {
       const isOnTheList = emails.includes(newEmail);
       if (isOnTheList) {
         this.setState({
-          message: 'Esse e-mail já foi adicionado.',
+          message: "Esse e-mail já foi adicionado."
         });
       } else {
         emails.push(newEmail);
         this.setState({
           emails,
-          message: '',
+          message: ""
         });
       }
     }
@@ -132,19 +135,31 @@ class SettingsUser extends Component {
 
   render() {
     const {
-      user, error, loading, sucess, message, emails, phones,
+      user,
+      error,
+      loading,
+      sucess,
+      message,
+      emails,
+      phones
     } = this.state;
     let { currentPassword, newPassword } = this.state;
 
     return (
       <div className="container">
-            <div className="row titleForm">
+        <div className="row titleForm">
           <div className="titleConfigs">
-            <h5 className="valign-wrapper left-align title"> Configurações da conta </h5>
+            <h5 className="valign-wrapper left-align title">
+              {" "}
+              Configurações da conta{" "}
+            </h5>
             <h6 className="right-align">Informações da conta</h6>
           </div>
           <div className="container">
-            <form onSubmit={this.handleAccount} className="col s12 formSettings">
+            <form
+              onSubmit={this.handleAccount}
+              className="col s12 formSettings"
+            >
               <div className="row">
                 <div className="input-field col s6">
                   <p>Nome de usuário</p>
@@ -153,7 +168,7 @@ class SettingsUser extends Component {
                     type="text"
                     className="validate"
                     value={user.username}
-                    onChange={(e) => {
+                    onChange={e => {
                       user.username = e.target.value;
                       return this.setState({ user });
                     }}
@@ -166,7 +181,7 @@ class SettingsUser extends Component {
                     type="text"
                     className="validate"
                     value={user.name}
-                    onChange={(e) => {
+                    onChange={e => {
                       user.name = e.target.value;
                       return this.setState({ user });
                     }}
@@ -181,7 +196,7 @@ class SettingsUser extends Component {
                     type="email"
                     className="validate"
                     value={user.email}
-                    onChange={(e) => {
+                    onChange={e => {
                       user.email = e.target.value;
                       return this.setState({ user });
                     }}
@@ -194,11 +209,12 @@ class SettingsUser extends Component {
                     id="oldpassword"
                     type="password"
                     className="validate"
-                    onChange={(e) => {
+                    onChange={e => {
                       currentPassword = e.target.value;
                       if (!newPassword) {
                         this.setState({
-                          error: "Atualize a senha digitando uma nova no Campo 'Nova senha'",
+                          error:
+                            "Atualize a senha digitando uma nova no Campo 'Nova senha'"
                         });
                       }
                       return this.setState({ currentPassword });
@@ -212,11 +228,12 @@ class SettingsUser extends Component {
                     id="newPassword"
                     type="password"
                     className="validate"
-                    onChange={(e) => {
+                    onChange={e => {
                       newPassword = e.target.value;
                       if (!currentPassword) {
                         this.setState({
-                          error: "Atualize a senha digitando a atual no Campo 'Senha atual'",
+                          error:
+                            "Atualize a senha digitando a atual no Campo 'Senha atual'"
                         });
                       }
                       return this.setState({ newPassword });
@@ -228,9 +245,12 @@ class SettingsUser extends Component {
               </div>
 
               <div className=" center-align">
-                <button className="waves-effect waves-light btn indigo" type="submit" name="action">
-                  Salvar mudanças
-                  {' '}
+                <button
+                  className="waves-effect waves-light btn indigo"
+                  type="submit"
+                  name="action"
+                >
+                  Salvar mudanças{" "}
                   {!loading ? (
                     <FontAwesomeIcon icon="sign-in-alt" />
                   ) : (
@@ -254,14 +274,16 @@ class SettingsUser extends Component {
                 <div className="input-field col s11">
                   <div className="row">
                     <input
-                      onChange={e => this.setState({ newEmail: e.target.value })}
+                      onChange={e =>
+                        this.setState({ newEmail: e.target.value })
+                      }
                       id="email"
                       type="email"
                       className="validate email"
                     />
                     <label htmlFor="email">Email</label>
                   </div>
-                  {message !== '' && <p className="red-text">{message}</p>}
+                  {message !== "" && <p className="red-text">{message}</p>}
                   {emails && emails.length > 0 && (
                     <div>
                       <table>
@@ -301,8 +323,8 @@ class SettingsUser extends Component {
                   </button>
                 </div>
                 <div className="row">
-                  {phones
-                    && phones.map((phone, index) => (
+                  {phones &&
+                    phones.map((phone, index) => (
                       <div className="input-field col s6">
                         <input
                           type="tel"
@@ -310,7 +332,7 @@ class SettingsUser extends Component {
                           pattern="^\d{2}\d{5}\d{4}$"
                           placeholder="ddxxxxxxxxx"
                           value={phone}
-                          onChange={(e) => {
+                          onChange={e => {
                             phones.splice(index, 1, e.target.value);
                             this.setState({ phones });
                           }}
@@ -345,10 +367,10 @@ class SettingsUser extends Component {
                       defaultValue="1"
                       value={user.personalInformation.maritalStatus}
                       onChange={e => {
-                          user.personalInformation.maritalStatus = e.target.value;
-                          this.setState({ user });
-                        }}
-                      >
+                        user.personalInformation.maritalStatus = e.target.value;
+                        this.setState({ user });
+                      }}
+                    >
                       <option value="1">Solteiro</option>
                       <option value="2">Casado</option>
                       <option value="3">Separado</option>
@@ -359,35 +381,47 @@ class SettingsUser extends Component {
                 </div>
                 <div className="row">
                   <div id="logradouro" className="input-field col s4">
-                    <input type="text" className="validate"
+                    <input
+                      type="text"
+                      className="validate"
                       value={user.personalInformation.address.publicArea}
                       onChange={e => {
-                          user.personalInformation.address.publicArea = e.target.value;
-                          this.setState({ user });
-                        }} />
+                        user.personalInformation.address.publicArea =
+                          e.target.value;
+                        this.setState({ user });
+                      }}
+                    />
                     <label htmlFor="logradouro">Logradouro</label>
                   </div>
                   <div id="bairro" className="input-field col s4">
-                    <input type="text" className="validate"
-                    value={user.personalInformation.address.district}
-                    onChange={e => {
-                        user.personalInformation.address.district= e.target.value;
+                    <input
+                      type="text"
+                      className="validate"
+                      value={user.personalInformation.address.district}
+                      onChange={e => {
+                        user.personalInformation.address.district =
+                          e.target.value;
                         this.setState({ user });
-                    }} />
+                      }}
+                    />
                     <label htmlFor="bairro">Bairro</label>
                   </div>
                   <div id="cidade" className="input-field col s4">
-                    <input type="text" className="validate"
-                    value={user.personalInformation.address.city}
-                    onChange={e => {
-                        user.personalInformation.address.city= e.target.value;
+                    <input
+                      type="text"
+                      className="validate"
+                      value={user.personalInformation.address.city}
+                      onChange={e => {
+                        user.personalInformation.address.city = e.target.value;
                         this.setState({ user });
-                    }} />
+                      }}
+                    />
                     <label htmlFor="cidade">Cidade</label>
                   </div>
                 </div>
                 <div className="row">
                   <div className="input-field col s4">
+                    <p htmlFor="cep">C.E.P.</p>
                     <input
                       id="cep"
                       type="text"
@@ -396,31 +430,38 @@ class SettingsUser extends Component {
                       placeholder="xxxxx-xxx"
                       value={user.personalInformation.address.postalCode}
                       onChange={e => {
-                        user.personalInformation.address.postalCode = e.target.value;
-                        this.setState({ user });
-                    }}
-                    />
-                    <label htmlFor="cep">C.E.P.</label>
-                  </div>
-                  <div className="input-field col s4">
-                    <input id="estado" type="text" className="validate"
-                    value={user.personalInformation.address.state}
-                    onChange={e => {
-                      user.personalInformation.address.state = e.target.value;
-                      this.setState({ user });
-                    }}
-                    />
-                    <label htmlFor="estado">Estado</label>
-                  </div>
-                  <div className="input-field col s4">
-                    <input type="text" className="validate" 
-                      value={user.personalInformation.address.country}
-                      onChange={e => {
-                        user.personalInformation.address.country = e.target.value;
+                        user.personalInformation.address.postalCode =
+                          e.target.value;
                         this.setState({ user });
                       }}
-                      />
-                    <label>País</label>
+                    />
+                  </div>
+                  <div className="input-field col s4">
+                    <p htmlFor="estado">Estado</p>
+                    <input
+                      id="estado"
+                      type="text"
+                      className="validate"
+                      value={user.personalInformation.address.state}
+                      onChange={e => {
+                        user.personalInformation.address.state = e.target.value;
+                        this.setState({ user });
+                      }}
+                    />
+                  </div>
+
+                  <div className="input-field col s4">
+                    <p>País</p>
+                    <input
+                      type="text"
+                      className="validate"
+                      value={user.personalInformation.address.country}
+                      onChange={e => {
+                        user.personalInformation.address.country =
+                          e.target.value;
+                        this.setState({ user });
+                      }}
+                    />
                   </div>
                 </div>
               </div>
