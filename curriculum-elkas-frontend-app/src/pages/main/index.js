@@ -1,4 +1,5 @@
 import React, { Fragment } from "react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import SignUp from "../../components/SignUp";
 import SignIn from "../../components/SignIn";
 import Header from "../../components/Header";
@@ -39,11 +40,11 @@ const Main = () => (
           <h6>
             Instituto Federal de Alagoas - Sistema de geração de currículo
           </h6>
-          <p>Bacharelado em Sistemas de Informação</p>
-          <h6>Desenvolvido por:</h6>
-          <p>Gabriel Lima Silva</p>
-          <p>Mayara Rysia de Assis Lima</p>
-          <p>Filipe Esteves do Rego</p>
+          <h6>Bacharelado em Sistemas de Informação</h6>
+          <p>Desenvolvido por:</p>
+          <h6>Gabriel Lima Silva</h6>
+          <h6>Mayara Rysia de Assis Lima</h6>
+          <h6>Filipe Esteves do Rego</h6>
         </div>
       </div>
     </div>
