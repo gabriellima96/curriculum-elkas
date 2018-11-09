@@ -40,10 +40,14 @@ const ListCurriculums = ({ curriculums }) => (
             </span>
             <div className="row">
               <div className="col m12 s12 left-align waves-effect waves-light btn  yellow darken-4">
-                <a href="#">Editar</a>
+                <a href="#" className="buttonCards">
+                  Editar <i className="material-icons center">edit</i>
+                </a>
               </div>
               <div className="col m12 s12 right-align waves-effect waves-light btn red darken-3">
-                <a href="#">Excluir</a>
+                <a href="#" className="buttonCards">
+                  Excluir <i className="material-icons center">delete</i>
+                </a>
               </div>
             </div>
           </div>

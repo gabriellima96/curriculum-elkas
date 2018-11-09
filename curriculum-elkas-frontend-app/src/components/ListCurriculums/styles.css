@@ -31,3 +31,8 @@ p a {
 .pagination li.active {
   background-color: #9c27b0;
 }
+
+.buttonCards {
+  color: white;
+  font-size: 14px;
+}
