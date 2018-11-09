@@ -2,12 +2,12 @@ import React, { Component } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { withRouter } from 'react-router-dom';
 import api from '../../services/api';
-import { login } from '../../services/auth';
+import { login, username } from '../../services/auth';
 
 class SignUp extends Component {
   state = {
     name: '',
-    username: '',
+    usernameAccount: '',
     email: '',
     password: '',
     confirmPassword: '',
@@ -17,10 +17,12 @@ class SignUp extends Component {
 
   handleSignUp = async (e) => {
     e.preventDefault();
+
     const {
-      name, email, password, username, confirmPassword,
+      name, email, password, usernameAccount, confirmPassword,
     } = this.state;
-    if (!name || !email || !password || !username || !confirmPassword) {
+    console.log(this.state);
+    if (!name || !email || !password || !usernameAccount || !confirmPassword) {
       this.setState({ error: 'Preencha todos os dados para se cadastrar' });
     } else if (password !== confirmPassword) {
       this.setState({ error: 'As senhas não conferem' });
@@ -29,7 +31,7 @@ class SignUp extends Component {
         this.setState({ loading: true });
         const response = await api.post('/users', {
           name,
-          username,
+          username: usernameAccount,
           email,
           password,
         });
@@ -72,7 +74,7 @@ class SignUp extends Component {
               id="username_inline"
               type="text"
               className="validate"
-              onChange={e => this.setState({ username: e.target.value })}
+              onChange={e => this.setState({ usernameAccount: e.target.value })}
             />
             <label htmlFor="username_inline">Nome de usuário</label>
           </div>
