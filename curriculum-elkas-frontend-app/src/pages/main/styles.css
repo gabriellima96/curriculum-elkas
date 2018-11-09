@@ -53,7 +53,7 @@ label {
 }
 
 body {
-  background-color: rgb(233, 233, 233);
+  background-image: url("../../images/bg.jpg");
 }
 
 .brand-logo {
