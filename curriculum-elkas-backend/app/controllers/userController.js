@@ -33,7 +33,7 @@ module.exports = {
       }
 
       if (username && user.username !== username) {
-        if (await user.findOne(username)) {
+        if (await User.findOne({ username })) {
           return res
             .status(409)
             .json({ status: 409, error: 'Já existe um usuário com o username cadastrado' });
@@ -43,7 +43,7 @@ module.exports = {
       }
 
       if (email && email !== user.email) {
-        if (await user.findOne(email)) {
+        if (await User.findOne({ email })) {
           return res
             .status(400)
             .json({ status: 400, error: 'Já existe um usuário com o e-mail cadastrado' });
