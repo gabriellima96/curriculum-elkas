@@ -1,31 +1,31 @@
-import React, { Component } from 'react';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { withRouter } from 'react-router-dom';
-import api from '../../services/api';
-import { login, username } from '../../services/auth';
+import React, { Component } from "react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { withRouter } from "react-router-dom";
+import api from "../../services/api";
+import { login, username } from "../../services/auth";
 
 class SignIn extends Component {
   state = {
-    email: '',
-    password: '',
-    loading: '',
-    error: '',
+    email: "",
+    password: "",
+    loading: "",
+    error: ""
   };
 
-  handleSignIn = async (e) => {
+  handleSignIn = async e => {
     e.preventDefault();
     const { email, password } = this.state;
 
     if (!email || !password) {
-      this.setState({ error: 'Preencha todos os dados para entrar' });
+      this.setState({ error: "Preencha todos os dados para entrar" });
     } else {
       try {
         this.setState({ loading: true });
-        const response = await api.post('/users/signin', { email, password });
+        const response = await api.post("/users/signin", { email, password });
         login(response.data.token);
         username(response.data.user.username);
         const { history } = this.props;
-        history.push('/app');
+        history.push("/app");
       } catch (error) {
         this.setState({ error: error.response.data.error });
       } finally {
@@ -39,11 +39,6 @@ class SignIn extends Component {
 
     return (
       <form onSubmit={this.handleSignIn}>
-        <h5>
-          <i className="material-icons">input</i>
-          {' '}
-Entrar
-        </h5>
         <div className="row">
           <div className="input-field col s12">
             <input
@@ -53,7 +48,11 @@ Entrar
               onChange={e => this.setState({ email: e.target.value })}
             />
             <label htmlFor="email_inline_input">Email</label>
-            <span className="helper-text" data-error="Algo está errado!" data-success="Ok." />
+            <span
+              className="helper-text"
+              data-error="Algo está errado!"
+              data-success="Ok."
+            />
           </div>
         </div>
         <div className="row">
@@ -68,9 +67,12 @@ Entrar
           </div>
         </div>
         <div className=" center-align">
-          <button className="waves-effect waves-light btn indigo" type="submit" name="action">
-            Entrar
-            {' '}
+          <button
+            className="waves-effect waves-light btn indigo"
+            type="submit"
+            name="action"
+          >
+            Entrar{" "}
             {!loading ? (
               <FontAwesomeIcon icon="sign-in-alt" />
             ) : (
