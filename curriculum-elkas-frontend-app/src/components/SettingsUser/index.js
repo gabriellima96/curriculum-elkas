@@ -1,49 +1,70 @@
-import React, { Component } from "react";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { Input } from "react-materialize";
-import api from "../../services/api";
-import { getUsername } from "../../services/auth";
-import "./styles.css";
+import React, { Component } from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { Input } from 'react-materialize';
+import api from '../../services/api';
+import { getUsername, username } from '../../services/auth';
+import './styles.css';
 
 class SettingsUser extends Component {
   state = {
     user: {
       personalInformation: {
-        dataOfBirth: "",
-        maritalStatus: "",
+        phones: ['', ''],
+        dataOfBirth: '',
+        maritalStatus: '',
         address: {
-          publicArea: "",
-          district: "",
-          city: "",
-          postalCode: "",
-          country: "",
-          state: ""
-        }
-      }
+          publicArea: '',
+          district: '',
+          city: '',
+          postalCode: '',
+          country: '',
+          state: '',
+        },
+        academicDegree: [{
+          institution: '',
+          degree: '',
+          course: '',
+          initialization: '',
+          conclusion: '',
+        },
+        {
+          institution: '',
+          degree: '',
+          course: '',
+          initialization: '',
+          conclusion: '',
+        },
+        {
+          institution: '',
+          degree: '',
+          course: '',
+          initialization: '',
+          conclusion: '',
+        },
+        ],
+      },
     },
-    currentPassword: "",
-    newPassword: "",
-    error: "",
+    currentPassword: '',
+    newPassword: '',
+    errorAccount: '',
     loading: false,
-    sucess: "",
-    message: "",
+    sucessAccount: '',
+    errorInformation: '',
+    sucessInformation: '',
+    message: '',
     emails: [],
-    newEmail: "",
-    phones: ["", ""]
+    usernameAccount: '',
   };
 
   async componentDidMount() {
     try {
       const { phones } = this.state;
-      const username = getUsername();
-      const { data } = await api.get(`/users/${username}`);
+      const usernameAccount = getUsername();
+      const { data } = await api.get(`/users/${usernameAccount}`);
       console.log(data);
-      if (data.personalInformation.phones) {
-        data.personalInformation.phones.forEach(phone => {
-          if (phone) {
-            phones.push(phone);
-          }
-        });
+
+      if (!data.personalInformation.phones) {
+        data.personalInformation.phones = this.state.user.personalInformation.phones;
       }
 
       if (!data.personalInformation.dataOfBirth) {
@@ -54,10 +75,15 @@ class SettingsUser extends Component {
         data.personalInformation.maritalStatus = "";
       }
 
+      if (!data.personalInformation.academicDegree || data.personalInformation.academicDegree.length === 0) {
+        data.personalInformation.academicDegree = this.state.user.personalInformation.academicDegree;
+      }
+
       this.setState({
         user: data,
         emails: data.personalInformation.emails,
-        phones
+        phones,
+        usernameAccount,
       });
     } catch (error) {
       console.log(error);
@@ -69,40 +95,69 @@ class SettingsUser extends Component {
 
     this.setState({ loading: true });
     try {
-      const { user, currentPassword, newPassword } = this.state;
+      const { user, currentPassword, newPassword, usernameAccount } = this.state;
 
       if (currentPassword && newPassword) {
         user.currentPassword = currentPassword;
         user.newPassword = newPassword;
       } else if (currentPassword) {
         this.setState({
-          error: "Atualize a senha digitando uma nova no Campo 'Nova senha'"
+          errorAccount: "Atualize a senha digitando uma nova no Campo 'Nova senha'",
         });
         return;
       } else if (newPassword) {
         this.setState({
-          error: "Atualize a senha digitando a atual no Campo 'Senha atual'"
+          errorAccount: "Atualize a senha digitando a atual no Campo 'Senha atual'",
         });
         return;
       }
 
-      const response = await api.put(`/users/${user.username}`, user);
+      const response = await api.put(`/users/${usernameAccount}`, user);
 
-      this.setState({
-        user: response.data,
-        sucess: "Atualização da conta realizada com sucesso."
-      });
+      if (response.data.username !== usernameAccount) {
+        username(response.data.username);
+      }
+
+      this.setState({ user: response.data, sucessAccount: 'Atualização da conta realizada com sucesso.', usernameAccount: response.data.username });
 
       setInterval(() => {
-        this.setState({ sucess: "" });
+        this.setState({ sucessAccount: '' });
       }, 10000);
-      this.setState({ error: "", newPassword: "", currentPassword: "" });
+      this.setState({ errorAccount: '', newPassword: '', currentPassword: '' });
     } catch (error) {
-      this.setState({ error: error.response.data.error });
+      this.setState({ errorAccount: error.response.data.error });
     } finally {
       this.setState({ loading: false });
     }
   };
+
+  handlePersonalInformation = async (e) => {
+    e.preventDefault();
+
+    this.setState({ loading: true });
+    try {
+      const { user, usernameAccount, emails } = this.state;
+
+      if (user.username !== usernameAccount) {
+        user.username = usernameAccount;
+      }
+
+      user.personalInformation.emails = emails;
+      
+      const response = await api.put(`/users/${usernameAccount}`, user);
+
+      this.setState({ user: response.data, sucessInformation: 'Atualização das informações realizada com sucesso.' });
+
+      setInterval(() => {
+        this.setState({ sucessInformation: '' });
+      }, 10000);
+      this.setState({ errorInformation: '' });
+    } catch (error) {
+      this.setState({ errorInformation: error.response.data.error });
+    } finally {
+      this.setState({ loading: false });
+    }
+  }
 
   deleteEmail = (email, e) => {
     e.preventDefault();
@@ -135,13 +190,7 @@ class SettingsUser extends Component {
 
   render() {
     const {
-      user,
-      error,
-      loading,
-      sucess,
-      message,
-      emails,
-      phones
+      user, errorAccount, loading, sucessAccount, message, emails, errorInformation, sucessInformation
     } = this.state;
     let { currentPassword, newPassword } = this.state;
 
@@ -213,8 +262,7 @@ class SettingsUser extends Component {
                       currentPassword = e.target.value;
                       if (!newPassword) {
                         this.setState({
-                          error:
-                            "Atualize a senha digitando uma nova no Campo 'Nova senha'"
+                          errorAccount: "Atualize a senha digitando uma nova no Campo 'Nova senha'",
                         });
                       }
                       return this.setState({ currentPassword });
@@ -232,8 +280,7 @@ class SettingsUser extends Component {
                       newPassword = e.target.value;
                       if (!currentPassword) {
                         this.setState({
-                          error:
-                            "Atualize a senha digitando a atual no Campo 'Senha atual'"
+                          errorAccount: "Atualize a senha digitando a atual no Campo 'Senha atual'",
                         });
                       }
                       return this.setState({ newPassword });
@@ -258,8 +305,8 @@ class SettingsUser extends Component {
                   )}
                 </button>
               </div>
-              {error && <p className="center-align red-text">{error}</p>}
-              {sucess && <p className="center-align green-text">{sucess}</p>}
+              {errorAccount && <p className="center-align red-text">{errorAccount}</p>}
+              {sucessAccount && <p className="center-align green-text">{sucessAccount}</p>}
             </form>
           </div>
         </div>
@@ -269,7 +316,7 @@ class SettingsUser extends Component {
             <h6 className="right-align">Informações pessoais e acadêmicas</h6>
           </div>
           <div className="container">
-            <form className="col s12 formSettings">
+            <form onSubmit={this.handlePersonalInformation} className="col s12 formSettings">
               <div className="row">
                 <div className="input-field col s11">
                   <div className="row">
@@ -323,8 +370,8 @@ class SettingsUser extends Component {
                   </button>
                 </div>
                 <div className="row">
-                  {phones &&
-                    phones.map((phone, index) => (
+                  {user.personalInformation.phones
+                    && user.personalInformation.phones.map((phone, index) => (
                       <div className="input-field col s6">
                         <input
                           type="tel"
@@ -332,9 +379,9 @@ class SettingsUser extends Component {
                           pattern="^\d{2}\d{5}\d{4}$"
                           placeholder="ddxxxxxxxxx"
                           value={phone}
-                          onChange={e => {
-                            phones.splice(index, 1, e.target.value);
-                            this.setState({ phones });
+                          onChange={(e) => {
+                            user.personalInformation.phones[index] = e.target.value
+                            this.setState({ user });
                           }}
                         />
                         <label htmlFor="tel">
@@ -452,19 +499,116 @@ class SettingsUser extends Component {
 
                   <div className="input-field col s4">
                     <p>País</p>
-                    <input
-                      type="text"
-                      className="validate"
+                    <input type="text" className="validate"
                       value={user.personalInformation.address.country}
                       onChange={e => {
                         user.personalInformation.address.country =
                           e.target.value;
                         this.setState({ user });
                       }}
-                    />
+                      />
                   </div>
+                  {user.personalInformation.academicDegree
+                    && user.personalInformation.academicDegree.map((academicDegree, index) => (
+                    <div className="row">
+                      <div className="col s12">
+                        <h5 className="title">{`Formação acadêmica ${index + 1}`}</h5>
+                        <div className="row">
+                          <div className="input-field col s12">
+                            <input type="text" className="validate"
+                            value={academicDegree.institution}
+                            onChange={e => {
+                              user.personalInformation.academicDegree[index].institution = e.target.value;
+                              this.setState({ user });
+                            }}/>
+                            <label>Instituição acadêmica</label>
+                          </div>
+                        </div>
+                      <div className="row">
+                        <div className="input-field col s4">
+                          <input type="text" className="validate"
+                            value={academicDegree.course}
+                            onChange={e => {
+                              user.personalInformation.academicDegree[index].course = e.target.value;
+                              this.setState({ user });
+                            }}
+                          />
+                          <label>Curso</label>
+                        </div>
+                        <div className="col s4">
+                          <Input
+                            s={12}
+                            type="select"
+                            label="Grau acadêmico"
+                            defaultValue="1"
+                            value={academicDegree.degree}
+                            onChange={e => {
+                              user.personalInformation.academicDegree[index].degree = e.target.value;
+                              this.setState({ user });
+                            }}
+                          >
+                            <option value="1" />
+                            <option value="2">Graduação</option>
+                            <option value="3">Bacharelado</option>
+                            <option value="4">Licenciatura</option>
+                            <option value="5">Pós-graduação</option>
+                            <option value="6">Mestrado</option>
+                            <option value="7">Doutorado</option>
+                          </Input>
+                        </div>
+                        <div className="input-field col s2">
+                          <input
+                            placeholder="Ano"
+                            type="number"
+                            className="validate"
+                            min="1800"
+                            max="2050"
+                            value={academicDegree.initialization}
+                            onChange={e => {
+                              user.personalInformation.academicDegree[index].initialization = e.target.value;
+                              this.setState({ user });
+                            }}
+                          />
+                          <label>Ano de início</label>
+                        </div>
+                        <div className="input-field col s2">
+                          <input
+                            placeholder="Ano"
+                            type="number"
+                            className="validate"
+                            min="1800"
+                            max="2050"
+                            value={academicDegree.conclusion}
+                            onChange={e => {
+                              user.personalInformation.academicDegree[index].conclusion = e.target.value;
+                              this.setState({ user });
+                            }}
+                          />
+                          <label>Ano de término</label>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  ))}
                 </div>
               </div>
+              <div className=" center-align">
+                <button
+                  className="waves-effect waves-light btn indigo"
+                  type="submit"
+                  name="action"
+                >
+                  Salvar mudanças
+                  {' '}
+                  {!loading ? (
+                    <FontAwesomeIcon icon="sign-in-alt" />
+                  ) : (
+                    <i className="fa fa-spinner fa-pulse" />
+                  )}
+                </button>
+              </div>
+              {errorInformation && <p className="center-align red-text">{errorInformation}</p>}
+              {sucessInformation && <p className="center-align green-text">{sucessInformation}</p>}
             </form>
           </div>
         </div>
