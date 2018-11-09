@@ -6,7 +6,7 @@ const ListCurriculums = ({ curriculums }) => (
   <div className="row">
     {curriculums.map(curriculum => (
       <div className="col m4 s6" key={curriculum.id}>
-        <div className="card">
+        <div className="card hoverable">
           <div className="card-image waves-effect waves-block waves-light">
             <img
               className="activator"

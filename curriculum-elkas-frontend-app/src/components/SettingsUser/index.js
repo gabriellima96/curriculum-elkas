@@ -394,7 +394,7 @@ class SettingsUser extends Component {
                     </div>
                   )}
                 </div>
-                <div className="col s1">
+                <div className="col s1 ">
                   <button
                     type="button"
                     onClick={e => this.addEmail(e)}
