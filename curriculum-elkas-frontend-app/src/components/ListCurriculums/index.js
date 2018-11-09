@@ -23,6 +23,7 @@ const ListCurriculums = ({ curriculums }) => (
             <div className="row acessarCurriculo">
               <div className="col s12 waves-effect waves-light btn btn-small indigo">
                 <a
+                  className="curriculumAccess"
                   href="/curriculum/${curriculum.template}+${
           curriculum.id
         }"

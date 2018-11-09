@@ -1,5 +1,6 @@
 import React, { Fragment } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faGithubAlt } from "@fortawesome/free-brands-svg-icons";
 import SignUp from "../../components/SignUp";
 import SignIn from "../../components/SignIn";
 import Header from "../../components/Header";
@@ -35,17 +36,28 @@ const Main = () => (
           </ul>
         </div>
       </div>
-      <div className="row">
-        <div className="col s12 center-align footer">
+      <div className="row footer">
+        <div className="col s6 right-align">
+          <img src={require("../../images/logo-horizontal.png")} width="140" />
           <h6>
             Instituto Federal de Alagoas - Sistema de geração de currículo
           </h6>
           <h6>Bacharelado em Sistemas de Informação</h6>
+        </div>
+        <div className="col s6 left-align">
           <p>Desenvolvido por:</p>
           <h6>Gabriel Lima Silva</h6>
           <h6>Mayara Rysia de Assis Lima</h6>
           <h6>Filipe Esteves do Rego</h6>
         </div>
+      </div>
+      <div className="githubIcon center-align">
+        <a
+          href="https://github.com/gabriellima96/curriculum-elkas"
+          target="_blank"
+        >
+          <FontAwesomeIcon icon={faGithubAlt} size="3x" />
+        </a>
       </div>
     </div>
   </Fragment>
