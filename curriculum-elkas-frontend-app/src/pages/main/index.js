@@ -1,9 +1,9 @@
-import React, { Fragment } from 'react';
-import SignUp from '../../components/SignUp';
-import SignIn from '../../components/SignIn';
-import Header from '../../components/Header';
+import React, { Fragment } from "react";
+import SignUp from "../../components/SignUp";
+import SignIn from "../../components/SignIn";
+import Header from "../../components/Header";
 
-import './styles.css';
+import "./styles.css";
 
 const Main = () => (
   <Fragment>
@@ -11,7 +11,7 @@ const Main = () => (
 
     <div className="container">
       <div className="row">
-        <div className="col m7 push-m3 collap">        
+        <div className="col m8 push-m2 s12 collap">
           <ul className="collapsible popout">
             <li>
               <div className="collapsible-header entrar">
@@ -32,6 +32,18 @@ const Main = () => (
               </div>
             </li>
           </ul>
+        </div>
+      </div>
+      <div className="row">
+        <div className="col s12 center-align footer">
+          <h6>
+            Instituto Federal de Alagoas - Sistema de geração de currículo
+          </h6>
+          <p>Bacharelado em Sistemas de Informação</p>
+          <h6>Desenvolvido por:</h6>
+          <p>Gabriel Lima Silva</p>
+          <p>Mayara Rysia de Assis Lima</p>
+          <p>Filipe Esteves do Rego</p>
         </div>
       </div>
     </div>

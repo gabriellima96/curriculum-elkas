@@ -1,4 +1,6 @@
 @import url("https://fonts.googleapis.com/css?family=Oswald");
+@import url("https://fonts.googleapis.com/css?family=Roboto");
+@import url("https://fonts.googleapis.com/css?family=Open+Sans");
 
 form {
   padding: 25px;
@@ -58,4 +60,11 @@ body {
 
 .brand-logo {
   font-family: "Oswald", sans-serif;
+}
+
+h6,
+p {
+  font-family: "Open Sans", sans-serif;
+  font-weight: 200;
+  font-size: 13px;
 }
