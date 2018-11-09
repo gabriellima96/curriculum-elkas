@@ -308,6 +308,7 @@ class SettingsUser extends Component {
               {errorAccount && <p className="center-align red-text">{errorAccount}</p>}
               {sucessAccount && <p className="center-align green-text">{sucessAccount}</p>}
             </form>
+            
           </div>
         </div>
         <div className="row titleForm">
