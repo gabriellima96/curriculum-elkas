@@ -37,27 +37,20 @@ class Form extends Component {
     }
   }
 
-   /**
-   * Adiciona E-mail
+  /**
+   * Adiciona E-mails
    */
   addEmails(e) {
     e.preventDefault();
     const { addEmail } = this.state;
     const newEmail = this.newEmail.value;
-
     const isOnTheList = addEmail.includes(newEmail);
 
     if (isOnTheList) {
-      this.setState({
-        message: "Esse email já foi adicionado."
-      });
+      this.setState({ message: "Esse email já foi adicionado." });
     } else if (newEmail !== "") {
-      this.setState({
-        addEmail: [...addEmail, newEmail],
-        message: ""
-      });
+      this.setState({ addEmail: [...addEmail, newEmail], message: "" });
     }
-
     this.addForm.reset();
   }
   /**
@@ -68,31 +61,22 @@ class Form extends Component {
     const newaddEmail = addEmail.filter(
       individualEmail => individualEmail !== email
     );
-
-    this.setState({
-      addEmail: [...newaddEmail]
-    });
+    this.setState({ addEmail: [...newaddEmail] });
   }
 
   /**
-   * Adiciona Skill
+   * Adiciona Skills
    */
-  addSkill(e) {
-    e.preventDefault();
-    const { addSkill } = this.state;
+  addSkills(e) {
+    //e.preventDefault();
+    const { addSkill } = e.data;
     const newSkill = this.newSkill.value;
-
     const isOnTheList = addSkill.includes(newSkill);
 
     if (isOnTheList) {
-      this.setState({
-        message: "Essa competência já foi adicionada!"
-      });
+      this.setState({ message: "Essa competência já foi adicionada!" });
     } else if (newSkill !== "") {
-      this.setState({
-        addSkill: [...addSkill, newSkill],
-        message: ""
-      });
+      this.setState({ addSkill: [...addSkill, newSkill], message: "" });
     }
     this.addForm.reset();
   }
@@ -104,10 +88,7 @@ class Form extends Component {
     const newaddSkill = addSkill.filter(
       individualSkill => individualSkill !== skill
     );
-
-    this.setState({
-      addSkill: [...newaddSkill]
-    });
+    this.setState({ addSkill: [...newaddSkill] });
   }
 
   handleAccount = async e => {
@@ -133,8 +114,19 @@ class Form extends Component {
   };
 
   render() {
-    const { addEmail, addSkill, message, user, error, loading, sucess } = this.state;
+    const {
+      addEmail,
+      addSkill,
+      message,
+      user,
+      error,
+      loading,
+      sucess
+    } = this.state;
     let { currentPassword, newPassword } = this.state;
+
+    console.log("addEmail: " + addEmail);
+    console.log("addSkill" + addSkill);
 
     return (
       <div className="container">
@@ -144,7 +136,9 @@ class Form extends Component {
               {" "}
               Preencha o formulário para montarmos o seu currículo{" "}
             </h5>
-            <h6 className="right-align">Informações pessoais e acadêmicas/experiências</h6>
+            <h6 className="right-align">
+              Informações pessoais e acadêmicas/experiências
+            </h6>
           </div>
           <div className="container">
             <form className="col s12 formSettings">
@@ -158,21 +152,28 @@ class Form extends Component {
                   }}
                 >
                   <h5 className="title">Informações pessoais</h5>
+
                   <div className="row">
-                  <div className="input-field col s6">
-                    <p>Nome completo</p>
-                    <input
-                      id="first_name"
-                      type="text"
-                      className="validate"
-                      value={user.name}
-                      onChange={e => {
-                        user.name = e.target.value;
-                        return this.setState({ user });
-                      }}
-                    />
+                    <div className="input-field col s6">
+                      <p>Título do Currículo</p>
+                      <input id="title" type="text" className="validate" />
+                    </div>
+
+                    <div className="row" />
+                    <div className="input-field col s6">
+                      <p>Nome completo</p>
+                      <input
+                        id="first_name"
+                        type="text"
+                        className="validate"
+                        value={user.name}
+                        onChange={e => {
+                          user.name = e.target.value;
+                          return this.setState({ user });
+                        }}
+                      />
+                    </div>
                   </div>
-              </div>
                   <div className="input-field col s11">
                     <div className="row">
                       <input
@@ -185,9 +186,7 @@ class Form extends Component {
                       />
                       <label htmlFor="email">E-mail</label>
                     </div>
-
                     {message !== "" && <p className="red-text">{message}</p>}
-
                     {addEmail.length > 0 && (
                       <div>
                         <table>
@@ -196,7 +195,6 @@ class Form extends Component {
                               <th>Seus emails</th>
                             </tr>
                           </thead>
-
                           <tbody>
                             {addEmail.map(email => {
                               return (
@@ -205,8 +203,8 @@ class Form extends Component {
                                   <td className="right-align">
                                     <button
                                       onClick={e => this.deleteEmail(email)}
-                                      className="waves-effect waves-light btn red darken-3"
                                       type="button"
+                                      className="waves-effect waves-light btn red darken-3"
                                     >
                                       Excluir
                                     </button>
@@ -244,6 +242,7 @@ class Form extends Component {
                       <label htmlFor="tel2">Telefone 2</label>
                     </div>
                   </div>
+
                   <div className="row">
                     <div className="col s6">
                       <label htmlFor="dataofbirth">Data de nascimento</label>
@@ -254,6 +253,7 @@ class Form extends Component {
                         className="datapicker"
                       />
                     </div>
+
                     <div className="col s6">
                       <Input
                         s={12}
@@ -261,11 +261,11 @@ class Form extends Component {
                         label="Estado Civil"
                         defaultValue="1"
                       >
-                        <option value="1">Solteiro</option>
-                        <option value="2">Casado</option>
-                        <option value="3">Separado</option>
-                        <option value="4">Divorciado</option>
-                        <option value="5">Viúvo</option>
+                        <option value="1">Solteiro(a)</option>
+                        <option value="2">Casado(a)</option>
+                        <option value="3">Separado(a)</option>
+                        <option value="4">Divorciado(a)</option>
+                        <option value="5">Viúvo(a)</option>
                       </Input>
                     </div>
                   </div>
@@ -358,11 +358,11 @@ class Form extends Component {
                       </div>
                     </div>
                   </div>
-                  
+
                   <div className="row">
                     <div className="col s12">
                       <h5 className="title">Experiência Profissional</h5>
-                      
+
                       <div className="row">
                         <div className="input-field col s4">
                           <input type="text" className="validate" />
@@ -410,93 +410,102 @@ class Form extends Component {
                     </div>
                   </div>
 
-                  <div className="row">
-                    <div className="col s12">
-                      <h5 className="title">Idiomas</h5>                      
-                      <div className="col s4">
-                        <Input
-                          s={12}
-                          type="select"
-                          label="Idiomas"
-                          defaultValue="1">
-                          <option value="1" />
-                          <option value="2">Inglês</option>
-                          <option value="3">Português</option>
-                          <option value="4">Espanhol</option>
-                          <option value="5">Francês</option>
-                          <option value="6">Alemão</option>
-                          <option value="7">Mandarim</option>
-                          <option value="8">Japonês</option>
-                          <option value="7">Coreano</option>
-                          <option value="7">Árabe</option>
-                        </Input>
-                      </div>
-                      <div className="col s4">
-                        <Input
-                          s={12}
-                          type="select"
-                          label="Nível"
-                          defaultValue="1">
-                          <option value="1" />
-                          <option value="2">Básico</option>
-                          <option value="3">Intermediário</option>
-                          <option value="4">Avançado</option>
-                          <option value="5">Nativo</option>
-                        </Input>
-                      </div>
-                    </div>
-                  </div>
-
-                  <div className="row">
-                    <div className="col s12">
-                      <h5 className="title">Habilidades</h5>                      
-                    </div>
-
-                    <div className="input-field col s11">
+                  <div className="input-field col s11">
                     <div className="row">
-                      <input
-                        ref={input => {
-                          this.newSkill = input;
-                        }}
-                        id="skill"
-                        type="text"
-                        className="validate skill"
-                      />
-                      <label htmlFor="skill">Competência (ex.: Análises)</label>
-                    </div>
-                    {message !== "" && <p className="red-text">{message}</p>}
-                    {addSkill.length > 0 && (
-                      <div>
-                        <table>
-                          <thead>
-                            <tr><th>Suas competências</th></tr>
-                          </thead>
-                          <tbody>
-                            {addEmail.map(skill => {
-                              return (
-                                <tr key={skill}>
-                                  <td>{skill}</td>
-                                  <td className="right-align">
-                                    <button
-                                      onClick={e => this.deleteSkill(skill)}
-                                      className="waves-effect waves-light btn red darken-3"
-                                      type="button">
-                                      Excluir
-                                    </button>
-                                  </td>
-                                </tr>
-                              );
-                            })}
-                          </tbody>
-                        </table>
+                      <div className="col s12">
+                        <h5 className="title">Idiomas</h5>
+                        <div className="col s4">
+                          <Input
+                            s={12}
+                            type="select"
+                            label="Idiomas"
+                            defaultValue="1"
+                          >
+                            <option value="1" />
+                            <option value="2">Inglês</option>
+                            <option value="3">Português</option>
+                            <option value="4">Espanhol</option>
+                            <option value="5">Francês</option>
+                            <option value="6">Alemão</option>
+                            <option value="7">Mandarim</option>
+                            <option value="8">Japonês</option>
+                            <option value="7">Coreano</option>
+                            <option value="7">Árabe</option>
+                          </Input>
+                        </div>
+                        <div className="col s4">
+                          <Input
+                            s={12}
+                            type="select"
+                            label="Nível"
+                            defaultValue="1"
+                          >
+                            <option value="1" />
+                            <option value="2">Básico</option>
+                            <option value="3">Intermediário</option>
+                            <option value="4">Avançado</option>
+                            <option value="5">Nativo</option>
+                          </Input>
+                        </div>
                       </div>
-                    )}
-                  </div>
-                  <div className="col s1">
-                    <button className="btn-floating btn-small waves-effect waves-light purple">
-                      <i className="material-icons">add</i>
-                    </button>
-                  </div>
+                    </div>
+
+                    <div className="row">
+                      <div className="col s12">
+                        <h5 className="title">Habilidades</h5>
+                      </div>
+
+                      <div className="input-field col s11">
+                        <div className="row">
+                          <input
+                            ref={input => {
+                              this.newSkill = input;
+                            }}
+                            id="skill"
+                            type="text"
+                            className="validate"
+                          />
+                          <label>Competência (ex.: Análises)</label>
+                        </div>
+                        {message !== "" && (
+                          <p className="red-text">{message}</p>
+                        )}
+                        {addSkill.length > 0 && (
+                          <div>
+                            <table>
+                              <thead>
+                                <tr>
+                                  <th>Suas competências</th>
+                                </tr>
+                              </thead>
+                              <tbody>
+                                {addSkill.map(skill => {
+                                  return (
+                                    <tr key={skill}>
+                                      <td>{skill}</td>
+                                      <td className="right-align">
+                                        <button
+                                          onClick={e => this.deleteSkill(skill)}
+                                          type="button"
+                                          className="waves-effect waves-light btn red darken-3"
+                                        >
+                                          Excluir
+                                        </button>
+                                      </td>
+                                    </tr>
+                                  );
+                                })}
+                              </tbody>
+                            </table>
+                          </div>
+                        )}
+                      </div>
+                    </div>
+                    <div className="col s1">
+                      <button className="btn-floating btn-small waves-effect waves-light purple">
+                        <i className="material-icons">add</i>
+                      </button>
+                    </div>
                   </div>
                 </form>
               </div>
@@ -504,7 +513,8 @@ class Form extends Component {
                 <button
                   className="waves-effect waves-light btn indigo"
                   type="submit"
-                  name="action">
+                  name="action"
+                >
                   Gerar Currículo <FontAwesomeIcon icon="sign-in-alt" />
                 </button>
               </div>
@@ -515,5 +525,4 @@ class Form extends Component {
     );
   }
 }
-
 export default Form;
