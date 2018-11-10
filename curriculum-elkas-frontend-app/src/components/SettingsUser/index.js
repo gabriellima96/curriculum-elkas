@@ -10,7 +10,7 @@ class SettingsUser extends Component {
     user: {
       personalInformation: {
         phones: ["", ""],
-        dataOfBirth: "",
+        dateOfBirth: "",
         maritalStatus: "",
         address: {
           publicArea: "",
@@ -54,22 +54,28 @@ class SettingsUser extends Component {
     sucessInformation: "",
     message: "",
     emails: [],
-    usernameAccount: ""
+    usernameAccount: "",
+    dateOfBirth: '',
   };
 
   async componentDidMount() {
     try {
       const { phones } = this.state;
+      let { dateOfBirth } = this.state;
       const usernameAccount = getUsername();
       const { data } = await api.get(`/users/${usernameAccount}`);
       console.log(data);
+      console.log('Data: ', data.personalInformation.dateOfBirth);
 
-      if (!data.personalInformation.phones) {
+      if (!data.personalInformation.phones ||
+        data.personalInformation.phones.length === 0) {
         data.personalInformation.phones = this.state.user.personalInformation.phones;
       }
 
-      if (!data.personalInformation.dataOfBirth) {
-        data.personalInformation.dateOfBirth = "";
+      if (!data.personalInformation.dateOfBirth) {
+        data.personalInformation.dateOfBirth = '';
+      } else {
+        dateOfBirth = data.personalInformation.dateOfBirth.split('T')[0];
       }
 
       if (!data.personalInformation.maritalStatus) {
@@ -87,7 +93,8 @@ class SettingsUser extends Component {
         user: data,
         emails: data.personalInformation.emails,
         phones,
-        usernameAccount
+        usernameAccount,
+        dateOfBirth,
       });
     } catch (error) {
       console.log(error);
@@ -171,7 +178,9 @@ class SettingsUser extends Component {
       }, 10000);
       this.setState({ errorInformation: "" });
     } catch (error) {
-      this.setState({ errorInformation: error.response.data.error });
+      console.log(error.response);
+      console.log(error);
+      //this.setState({ errorInformation: error.response.data.error });
     } finally {
       this.setState({ loading: false });
     }
@@ -215,17 +224,16 @@ class SettingsUser extends Component {
       message,
       emails,
       errorInformation,
-      sucessInformation
+      sucessInformation,
     } = this.state;
-    let { currentPassword, newPassword } = this.state;
+    let { currentPassword, newPassword, dateOfBirth } = this.state;
 
     return (
       <div className="container">
         <div className="row titleForm">
           <div className="titleConfigs">
             <h5 className="valign-wrapper left-align title">
-              {" "}
-              Configurações da conta{" "}
+              {` Configurações da conta `}
             </h5>
             <h6 className="right-align">Informações da conta</h6>
           </div>
@@ -434,10 +442,13 @@ class SettingsUser extends Component {
                       type="date"
                       name="bday"
                       className="datapicker"
-                      value={user.personalInformation.dataOfBirth}
+                      value={dateOfBirth}
                       onChange={e => {
-                        user.personalInformation.dataOfBirth = e.target.value;
-                        this.setState({ user });
+                        dateOfBirth = e.target.value;
+                      
+                        user.personalInformation.dateOfBirth = e.target.valueAsNumber;
+                      
+                        this.setState({ dateOfBirth, user });
                       }}
                     />
                   </div>

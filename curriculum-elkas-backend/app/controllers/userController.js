@@ -14,7 +14,6 @@ module.exports = {
 
       const user = await User.findOne({ $and: [{ _id: id }, { username: usernamePath }] });
 
-      console.log(user);
       if (!user) {
         return res.status(404).json({ status: 404, error: 'Usuário não encontrado' });
       }
