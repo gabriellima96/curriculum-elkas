@@ -12,20 +12,10 @@ module.exports = {
         currentPassword, newPassword, name, username, email, personalInformation,
       } = req.body;
 
-      const user = await User.findOneAndUpdate(
-        usernamePath,
-        { name, personalInformation },
-        { new: true },
-      );
+      const user = await User.findOne({ $and: [{ id }, { username: usernamePath }] });
 
       if (!user) {
         return res.status(404).json({ status: 404, error: 'Usuário não encontrado' });
-      }
-
-      if (user.id !== id) {
-        return res
-          .status(403)
-          .json({ status: 403, error: 'Permissão negada para acessar esse usuário' });
       }
 
       if (currentPassword && newPassword && !(await user.compareHash(currentPassword))) {
@@ -55,6 +45,9 @@ module.exports = {
       if (newPassword) {
         user.password = newPassword;
       }
+
+      user.name = name;
+      user.personalInformation = personalInformation;
 
       await user.save();
       return res.json(user);
