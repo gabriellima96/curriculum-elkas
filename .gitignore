@@ -39,7 +39,7 @@ yarn.lock
 /curriculum-elkas-backend/yarn-debug.log*
 /curriculum-elkas-backend/yarn-error.log*
 /curriculum-elkas-backend/package-lock.json
-
+/curriculum-elkas-backend/yarn.lock
 
 # curriculum-elkas-frontend-app
 
@@ -57,3 +57,4 @@ yarn.lock
 /curriculum-elkas-frontend-app/yarn-debug.log*
 /curriculum-elkas-frontend-app/yarn-error.log*
 /curriculum-elkas-frontend-app/package-lock.json
+/curriculum-elkas-frontend-app/yarn.lock
