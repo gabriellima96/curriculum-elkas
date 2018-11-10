@@ -57,10 +57,10 @@ const UserSchema = new mongoose.Schema({
           type: String,
         },
         initialization: {
-          type: Date,
+          type: Number,
         },
         conclusion: {
-          type: Date,
+          type: Number,
         },
       },
     ],
