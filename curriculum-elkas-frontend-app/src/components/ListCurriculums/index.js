@@ -1,11 +1,11 @@
-import React from "react";
-import { Link } from "react-router-dom";
-import "./styles.css";
+import React from 'react';
+import { Link } from 'react-router-dom';
+import './styles.css';
 
 const ListCurriculums = ({ curriculums }) => (
   <div className="row">
     {curriculums.map(curriculum => (
-      <div className="col m4 s6" key={curriculum.id}>
+      <div className="col m4 s6" key={curriculum._id}>
         <div className="card hoverable">
           <div className="card-image waves-effect waves-block waves-light">
             <img
@@ -19,15 +19,10 @@ const ListCurriculums = ({ curriculums }) => (
               Título do currículo
               <i className="material-icons right">more_vert</i>
             </span>
-            <h6>{`Criado em: ${new Date(
-              curriculum.createdAt
-            ).toLocaleString()}`}</h6>
+            <h6>{`Criado em: ${new Date(curriculum.createdAt).toLocaleString()}`}</h6>
             <div className="row acessarCurriculo">
               <div className="col s12 waves-effect waves-light btn btn-small indigo">
-                <Link
-                  className="curriculumAccess"
-                  to={`/curriculum/${curriculum.template}+${curriculum.id}`}
-                >
+                <Link className="curriculumAccess" to={`/${curriculum.template}.${curriculum._id}`}>
                   Acessar currículo
                 </Link>
               </div>
@@ -41,12 +36,16 @@ const ListCurriculums = ({ curriculums }) => (
             <div className="row">
               <div className="col m12 s12 left-align waves-effect waves-light btn  yellow darken-4">
                 <Link to="/" className="buttonCards">
-                  Editar <i className="material-icons center">edit</i>
+                  Editar
+                  {' '}
+                  <i className="material-icons center">edit</i>
                 </Link>
               </div>
               <div className="col m12 s12 right-align waves-effect waves-light btn red darken-3">
                 <a href="/" className="buttonCards">
-                  Excluir <i className="material-icons center">delete</i>
+                  Excluir
+                  {' '}
+                  <i className="material-icons center">delete</i>
                 </a>
               </div>
             </div>

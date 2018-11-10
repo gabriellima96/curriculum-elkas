@@ -9,7 +9,7 @@ import Main from './pages/main';
 import Dashboard from './pages/dashboard';
 import Templates from './pages/templates';
 import Settings from './pages/settings';
-import Form from './components/Form';
+import ModernForm from './pages/modernForm';
 
 const PrivateRoute = ({ component: Component, ...rest }) => (
   <Route
@@ -46,7 +46,7 @@ const Routes = () => (
       <PrivateRoute exact path="/app" component={Dashboard} />
       <PrivateRoute exact path="/app/settings" component={Settings} />
       <PrivateRoute exact path="/app/templates" component={Templates} />
-      <PrivateRoute exact path="/app/templates/modern" component={Form} />
+      <PrivateRoute exact path="/app/templates/modern" component={ModernForm} />
       <PrivateRoute
         exact
         path="/app/templates/classic"
