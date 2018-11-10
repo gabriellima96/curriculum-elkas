@@ -1,6 +1,6 @@
-import React from "react";
-import "./styles.css";
-import { Input, Pagination } from "react-materialize";
+import React from 'react';
+import './styles.css';
+import { Input, Pagination } from 'react-materialize';
 
 const ListCurriculums = ({ curriculums }) => (
   <div className="row">
@@ -19,7 +19,7 @@ const ListCurriculums = ({ curriculums }) => (
               Título do currículo
               <i className="material-icons right">more_vert</i>
             </span>
-            <h6>Criado em: {curriculum.createdAt}</h6>
+            <h6>{`Criado em: ${new Date(curriculum.createdAt).toLocaleString()}`}</h6>
             <div className="row acessarCurriculo">
               <div className="col s12 waves-effect waves-light btn btn-small indigo">
                 <a
@@ -41,12 +41,16 @@ const ListCurriculums = ({ curriculums }) => (
             <div className="row">
               <div className="col m12 s12 left-align waves-effect waves-light btn  yellow darken-4">
                 <a href="#" className="buttonCards">
-                  Editar <i className="material-icons center">edit</i>
+                  Editar
+                  {' '}
+                  <i className="material-icons center">edit</i>
                 </a>
               </div>
               <div className="col m12 s12 right-align waves-effect waves-light btn red darken-3">
                 <a href="#" className="buttonCards">
-                  Excluir <i className="material-icons center">delete</i>
+                  Excluir
+                  {' '}
+                  <i className="material-icons center">delete</i>
                 </a>
               </div>
             </div>
@@ -88,10 +92,7 @@ const ListCurriculums = ({ curriculums }) => (
       </div>
 
       <div className="fixed-action-btn">
-        <a
-          href="#"
-          className="btn-floating btn-large purple waves-effect waves-light"
-        >
+        <a href="#" className="btn-floating btn-large purple waves-effect waves-light">
           <i className="large material-icons">add</i>
         </a>
       </div>
