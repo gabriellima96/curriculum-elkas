@@ -4,10 +4,12 @@ import {
 } from 'react-router-dom';
 
 import { isAuthenticated } from './services/auth';
+import { verifyCurriculum } from './services/verifyCurriculum';
 import Main from './pages/main';
 import Dashboard from './pages/dashboard';
 import Templates from './pages/templates';
 import Settings from './pages/settings';
+import Form from './components/Form';
 
 const PrivateRoute = ({ component: Component, ...rest }) => (
   <Route
@@ -33,6 +35,10 @@ const RouteDefaults = ({ component: Component, ...rest }) => (
   />
 );
 
+const RouteVerifyCurriculum = ({ ...rest }) => (
+  <Route {...rest} component={props => verifyCurriculum(props)} />
+);
+
 const Routes = () => (
   <BrowserRouter>
     <Switch>
@@ -40,6 +46,13 @@ const Routes = () => (
       <PrivateRoute exact path="/app" component={Dashboard} />
       <PrivateRoute exact path="/app/settings" component={Settings} />
       <PrivateRoute exact path="/app/templates" component={Templates} />
+      <PrivateRoute exact path="/app/templates/modern" component={Form} />
+      <PrivateRoute
+        exact
+        path="/app/templates/classic"
+        component={() => <h1>Currículo clássic</h1>}
+      />
+      <RouteVerifyCurriculum exact path="/:id" />
       <Route path="*" component={() => <h1>Page not found</h1>} />
     </Switch>
   </BrowserRouter>
