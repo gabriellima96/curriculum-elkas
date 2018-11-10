@@ -1,6 +1,6 @@
-import React from 'react';
-import './styles.css';
-import { Input, Pagination } from 'react-materialize';
+import React from "react";
+import { Link } from "react-router-dom";
+import "./styles.css";
 
 const ListCurriculums = ({ curriculums }) => (
   <div className="row">
@@ -19,17 +19,17 @@ const ListCurriculums = ({ curriculums }) => (
               Título do currículo
               <i className="material-icons right">more_vert</i>
             </span>
-            <h6>{`Criado em: ${new Date(curriculum.createdAt).toLocaleString()}`}</h6>
+            <h6>{`Criado em: ${new Date(
+              curriculum.createdAt
+            ).toLocaleString()}`}</h6>
             <div className="row acessarCurriculo">
               <div className="col s12 waves-effect waves-light btn btn-small indigo">
-                <a
+                <Link
                   className="curriculumAccess"
-                  href="/curriculum/${curriculum.template}+${
-          curriculum.id
-        }"
+                  to={`/curriculum/${curriculum.template}+${curriculum.id}`}
                 >
                   Acessar currículo
-                </a>
+                </Link>
               </div>
             </div>
           </div>
@@ -40,17 +40,13 @@ const ListCurriculums = ({ curriculums }) => (
             </span>
             <div className="row">
               <div className="col m12 s12 left-align waves-effect waves-light btn  yellow darken-4">
-                <a href="#" className="buttonCards">
-                  Editar
-                  {' '}
-                  <i className="material-icons center">edit</i>
-                </a>
+                <Link to="/" className="buttonCards">
+                  Editar <i className="material-icons center">edit</i>
+                </Link>
               </div>
               <div className="col m12 s12 right-align waves-effect waves-light btn red darken-3">
-                <a href="#" className="buttonCards">
-                  Excluir
-                  {' '}
-                  <i className="material-icons center">delete</i>
+                <a href="/" className="buttonCards">
+                  Excluir <i className="material-icons center">delete</i>
                 </a>
               </div>
             </div>
@@ -58,45 +54,6 @@ const ListCurriculums = ({ curriculums }) => (
         </div>
       </div>
     ))}
-    <div className="row">
-      <div className="col s12">
-        <div className="center-align">
-          <ul className="pagination">
-            <li className="disabled">
-              <a href="#!">
-                <i className="material-icons">chevron_left</i>
-              </a>
-            </li>
-            <li className="active">
-              <a href="#!">1</a>
-            </li>
-            <li className="waves-effect">
-              <a href="#!">2</a>
-            </li>
-            <li className="waves-effect">
-              <a href="#!">3</a>
-            </li>
-            <li className="waves-effect">
-              <a href="#!">4</a>
-            </li>
-            <li className="waves-effect">
-              <a href="#!">5</a>
-            </li>
-            <li className="waves-effect">
-              <a href="#!">
-                <i className="material-icons">chevron_right</i>
-              </a>
-            </li>
-          </ul>
-        </div>
-      </div>
-
-      <div className="fixed-action-btn">
-        <a href="#" className="btn-floating btn-large purple waves-effect waves-light">
-          <i className="large material-icons">add</i>
-        </a>
-      </div>
-    </div>
   </div>
 );
 

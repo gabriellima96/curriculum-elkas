@@ -1,5 +1,6 @@
 import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { Link } from "react-router-dom";
 import "./styles.css";
 
 const ContentTemplate = () => (
@@ -24,10 +25,16 @@ const ContentTemplate = () => (
             </p>
           </div>
           <div className="card-action grey darken-4">
-            <a className="white-text" href="/">
-              Ecolher este tema{" "}
+            <Link
+              className="white-text"
+              to={{
+                pathname: "/app/templates/form",
+                state: { template: "1M" }
+              }}
+            >
+              Escolher este tema{" "}
               <FontAwesomeIcon icon="arrow-alt-circle-right" />
-            </a>
+            </Link>
           </div>
         </div>
       </div>
@@ -48,10 +55,16 @@ const ContentTemplate = () => (
             </p>
           </div>
           <div className="card-action grey darken-4">
-            <a className="white-text" href="/">
+            <Link
+              className="white-text"
+              to={{
+                pathname: "/app/templates/form",
+                state: { template: "1C" }
+              }}
+            >
               Ecolher este tema{" "}
               <FontAwesomeIcon icon="arrow-alt-circle-right" />
-            </a>
+            </Link>
           </div>
         </div>
       </div>
