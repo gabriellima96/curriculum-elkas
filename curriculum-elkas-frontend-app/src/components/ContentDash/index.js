@@ -1,28 +1,28 @@
-import React, { Component, Fragment } from 'react';
-import { Link } from 'react-router-dom';
-import api from '../../services/api';
-import ListCurriculums from '../ListCurriculums';
-import './styles.css';
+import React, { Component, Fragment } from "react";
+import { Link } from "react-router-dom";
+import api from "../../services/api";
+import ListCurriculums from "../ListCurriculums";
+import "./styles.css";
 
 class ContentDash extends Component {
   state = {
     curriculums: [],
     loading: false,
     pageActive: 1,
-    totalPagesArray: [],
+    totalPagesArray: []
   };
 
   async componentDidMount() {
     let { pageActive } = this.state;
     const {
-      location: { search },
+      location: { search }
     } = this.props;
 
     const totalPagesArray = [];
 
     if (search) {
-      const parts = search.split('=');
-      if (parts[0] === '?page') {
+      const parts = search.split("=");
+      if (parts[0] === "?page") {
         if (parts[1] && +parts[1]) {
           pageActive = +parts[1];
         }
@@ -52,15 +52,15 @@ class ContentDash extends Component {
   async componentDidUpdate() {
     let { pageActive } = this.state;
     const {
-      location: { search },
+      location: { search }
     } = this.props;
 
     if (search) {
-      const parts = search.split('=');
-      if (parts[0] === '?page') {
+      const parts = search.split("=");
+      if (parts[0] === "?page") {
         if (parts[1] && +parts[1] && pageActive !== +parts[1]) {
           pageActive = +parts[1];
-          console.log('Aqui');
+          console.log("Aqui");
           const response = await api.get(`/curriculums?page=${pageActive}`);
           if (response.status === 204) {
             this.setState({ curriculums: [] });
@@ -75,12 +75,10 @@ class ContentDash extends Component {
   }
 
   render() {
-    const {
-      curriculums, pageActive, loading, totalPagesArray,
-    } = this.state;
+    const { curriculums, pageActive, loading, totalPagesArray } = this.state;
     return (
       <div className="container">
-        {loading ? <div>Carregando..</div> : ''}
+        {loading ? <div>Carregando..</div> : ""}
         {curriculums.length === 0 && pageActive === 1 ? (
           <div className="row">
             <div className="center-align alert">
@@ -88,7 +86,7 @@ class ContentDash extends Component {
               <h5>Clique no botão para adicionar!</h5>
               <br />
               <a
-                className="btn-floating btn-large purple waves-effect waves-light red"
+                className="btn-floating btn-large purple waves-effect waves-light red hoverable"
                 href="/app/templates"
               >
                 <i className="material-icons">add</i>
@@ -107,10 +105,14 @@ class ContentDash extends Component {
                         <i className="material-icons">chevron_left</i>
                       </a>
                     </li>
-                    {totalPagesArray
-                      && totalPagesArray.length !== 0
-                      && totalPagesArray.map(page => (
-                        <li className={pageActive === page ? 'active' : 'waves-effect'}>
+                    {totalPagesArray &&
+                      totalPagesArray.length !== 0 &&
+                      totalPagesArray.map(page => (
+                        <li
+                          className={
+                            pageActive === page ? "active" : "waves-effect"
+                          }
+                        >
                           <Link to={`/app?page=${page}`}>{page}</Link>
                         </li>
                       ))}

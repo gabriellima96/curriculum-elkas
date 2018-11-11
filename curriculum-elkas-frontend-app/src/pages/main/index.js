@@ -38,7 +38,12 @@ const Main = () => (
       </div>
       <div className="row footer">
         <div className="col s6 right-align">
-          <img src={require("../../images/logo-horizontal.png")} width="140" />
+          <a href="http://ifal.edu.br" target="_blank">
+            <img
+              src={require("../../images/logo-horizontal.png")}
+              width="140"
+            />
+          </a>
           <h6>
             Instituto Federal de Alagoas - Sistema de geração de currículo
           </h6>
@@ -56,7 +61,7 @@ const Main = () => (
           href="https://github.com/gabriellima96/curriculum-elkas"
           target="_blank"
         >
-          <FontAwesomeIcon icon={faGithubAlt} size="3x" />
+          <FontAwesomeIcon icon={faGithubAlt} size="3x" spin />
         </a>
       </div>
     </div>
