@@ -55,7 +55,7 @@ class SettingsUser extends Component {
     message: "",
     emails: [],
     usernameAccount: "",
-    dateOfBirth: '',
+    dateOfBirth: ""
   };
 
   async componentDidMount() {
@@ -65,17 +65,19 @@ class SettingsUser extends Component {
       const usernameAccount = getUsername();
       const { data } = await api.get(`/users/${usernameAccount}`);
       console.log(data);
-      console.log('Data: ', data.personalInformation.dateOfBirth);
+      console.log("Data: ", data.personalInformation.dateOfBirth);
 
-      if (!data.personalInformation.phones ||
-        data.personalInformation.phones.length === 0) {
+      if (
+        !data.personalInformation.phones ||
+        data.personalInformation.phones.length === 0
+      ) {
         data.personalInformation.phones = this.state.user.personalInformation.phones;
       }
 
       if (!data.personalInformation.dateOfBirth) {
-        data.personalInformation.dateOfBirth = '';
+        data.personalInformation.dateOfBirth = "";
       } else {
-        dateOfBirth = data.personalInformation.dateOfBirth.split('T')[0];
+        dateOfBirth = data.personalInformation.dateOfBirth.split("T")[0];
       }
 
       if (!data.personalInformation.maritalStatus) {
@@ -94,7 +96,7 @@ class SettingsUser extends Component {
         emails: data.personalInformation.emails,
         phones,
         usernameAccount,
-        dateOfBirth,
+        dateOfBirth
       });
     } catch (error) {
       console.log(error);
@@ -224,7 +226,7 @@ class SettingsUser extends Component {
       message,
       emails,
       errorInformation,
-      sucessInformation,
+      sucessInformation
     } = this.state;
     let { currentPassword, newPassword, dateOfBirth } = this.state;
 
@@ -445,9 +447,10 @@ class SettingsUser extends Component {
                       value={dateOfBirth}
                       onChange={e => {
                         dateOfBirth = e.target.value;
-                      
-                        user.personalInformation.dateOfBirth = e.target.valueAsNumber;
-                      
+
+                        user.personalInformation.dateOfBirth =
+                          e.target.valueAsNumber;
+
                         this.setState({ dateOfBirth, user });
                       }}
                     />
@@ -650,6 +653,12 @@ class SettingsUser extends Component {
                                     this.setState({ user });
                                   }}
                                 />
+                              </div>
+                              <div className="s12">
+                                <h6 className="orange-text">
+                                  Deixe o campo de término vazio para ser
+                                  considerado como "atual"
+                                </h6>
                               </div>
                             </div>
                           </div>
