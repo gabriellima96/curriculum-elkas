@@ -4,7 +4,6 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Input } from "react-materialize";
 import api from "../../services/api";
 import { getUsername } from "../../services/auth";
-import "./styles.css";
 
 class Form extends Component {
   state = {
@@ -838,7 +837,7 @@ class Form extends Component {
                   </div>
                 </div>
               </div>
-              <div className="center-align generate">
+              <div className="center-align">
                 <button
                   className="waves-effect waves-light btn indigo"
                   type="submit"
