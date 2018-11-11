@@ -2,6 +2,7 @@
 @import url("https://fonts.googleapis.com/css?family=Roboto");
 @import url("https://fonts.googleapis.com/css?family=Open+Sans");
 @import url("https://fonts.googleapis.com/css?family=Ubuntu");
+@import url("https://fonts.googleapis.com/css?family=Nunito:400,600");
 
 form {
   padding: 25px;
@@ -59,7 +60,8 @@ body {
 }
 
 .brand-logo {
-  font-family: "Oswald", sans-serif;
+  font-family: "Nunito", sans-serif;
+  font-weight: 600;
 }
 
 h6,
