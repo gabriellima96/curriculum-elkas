@@ -16,7 +16,7 @@ mongoose.connect(
 requireDir(configDb.modelPath);
 
 app.use(bodyParser.json());
-app.use(cors());
+app.use(cors({ methods: ['GET', 'PUT', 'POST', 'DELETE', 'PATCH', 'OPTIONS', 'HEAD'] }));
 app.use('/api/docs', swaggerUI.serve, swaggerUI.setup(swaggerDocument.json));
 app.use('/api', require('./app/routes'));
 
