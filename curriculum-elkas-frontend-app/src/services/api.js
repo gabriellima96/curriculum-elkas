@@ -2,7 +2,7 @@ import axios from 'axios';
 import { getToken } from './auth';
 
 const api = axios.create({
-  baseURL: 'http://167.99.182.79/api',
+  baseURL: 'http://api.curriculumelkas.com/api',
 });
 
 api.interceptors.request.use(async (configObj) => {
