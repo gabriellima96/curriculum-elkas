@@ -308,6 +308,16 @@ class Form extends Component {
                 </div>
               </div>
               <div className="row">
+                <div className="input-field col m12 s12">
+                  <p>
+                    Objetivos (digite os objetivos que você pretende alcançar
+                    detalhadamente)
+                  </p>
+
+                  <textarea id="textarea1" className="materialize-textarea" />
+                </div>
+              </div>
+              <div className="row">
                 <div className="col s12">
                   <h5 className="title">Experiências Profissionais</h5>
                 </div>
