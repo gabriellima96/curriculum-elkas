@@ -5,11 +5,11 @@ export const verifyCurriculum = ({ match }) => {
     params: { id },
   } = match;
 
-  if (id.startsWith('1m')) {
+  if (id.startsWith('c1m')) {
     return <h1>Template moderno</h1>;
   }
 
-  if (id.startsWith('1c')) {
+  if (id.startsWith('c1c')) {
     return <h1>Template clássico</h1>;
   }
 

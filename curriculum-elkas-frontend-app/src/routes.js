@@ -52,7 +52,7 @@ const Routes = () => (
         path="/app/templates/classic"
         component={() => <h1>Currículo clássic</h1>}
       />
-      <RouteVerifyCurriculum exact path="/c/:id" />
+      <RouteVerifyCurriculum exact path="/:id" />
     </Switch>
   </BrowserRouter>
 );
