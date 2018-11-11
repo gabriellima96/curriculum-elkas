@@ -137,7 +137,7 @@ class Form extends Component {
           </div>
           <div className="container">
             <form
-              className="col s12 formSettings"
+              className="col m12 formSettings"
               ref={input => {
                 this.addForm = input;
               }}
@@ -148,6 +148,7 @@ class Form extends Component {
               <div className="row">
                 <div className="input-field col s12">
                   <p>Título do currículo</p>
+
                   <input id="title" type="text" className="validate" />
                 </div>
               </div>
@@ -225,7 +226,7 @@ class Form extends Component {
               </div>
 
               <div className="row">
-                <div className="input-field col s6">
+                <div className="input-field col m6 s12">
                   <p htmlFor="tel">Telefone 1</p>
                   <input
                     type="tel"
@@ -234,7 +235,7 @@ class Form extends Component {
                     placeholder="ddxxxxxxxxx"
                   />
                 </div>
-                <div className="input-field col s6">
+                <div className="input-field col m6 s12">
                   <p htmlFor="tel2">Telefone 2</p>
                   <input
                     type="tel"
@@ -246,7 +247,7 @@ class Form extends Component {
               </div>
 
               <div className="row">
-                <div className="col s6">
+                <div className="col m6 s12">
                   <label htmlFor="dataofbirth">Data de nascimento</label>
                   <input
                     id="dataofbirth"
@@ -256,7 +257,7 @@ class Form extends Component {
                   />
                 </div>
 
-                <div className="col s6">
+                <div className="col m6 s12">
                   <Input
                     s={12}
                     type="select"
@@ -272,22 +273,22 @@ class Form extends Component {
                 </div>
               </div>
               <div className="row">
-                <div className="input-field col s4">
+                <div className="input-field col m4 s12">
                   <p>Logradouro</p>
                   <input type="text" className="validate" />
                 </div>
-                <div className="input-field col s4">
+                <div className="input-field col m4 s12">
                   <p>Bairro</p>
                   <input type="text" className="validate" />
                 </div>
-                <div className="input-field col s4">
+                <div className="input-field col m4 s12">
                   <p>Cidade</p>
                   <input type="text" className="validate" />
                 </div>
               </div>
 
               <div className="row">
-                <div className="input-field col s4">
+                <div className="input-field col m4 s12">
                   <p>C.E.P.</p>
                   <input
                     id="tel2"
@@ -297,11 +298,11 @@ class Form extends Component {
                     placeholder="xxxxx-xxx"
                   />
                 </div>
-                <div className="input-field col s4">
+                <div className="input-field col m4 s12">
                   <p>Estado</p>
                   <input type="text" className="validate" />
                 </div>
-                <div className="input-field col s4">
+                <div className="input-field col m4 s12">
                   <p>País</p>
                   <input type="text" className="validate" />
                 </div>
@@ -323,11 +324,11 @@ class Form extends Component {
                 </div>
               </div>
               <div className="row">
-                <div className="input-field col s4">
+                <div className="input-field col m4 s12">
                   <p>Curso</p>
                   <input type="text" className="validate" />
                 </div>
-                <div className="col s4">
+                <div className="col m4 s12">
                   <p>Grau acadêmico</p>
                   <Input s={12} type="select" defaultValue="1">
                     <option value="1" />
@@ -339,7 +340,7 @@ class Form extends Component {
                     <option value="7">Doutorado</option>
                   </Input>
                 </div>
-                <div className="input-field col s2">
+                <div className="input-field col m2 s12">
                   <p>Início</p>
                   <input
                     placeholder="Ano"
@@ -349,7 +350,7 @@ class Form extends Component {
                     max="2050"
                   />
                 </div>
-                <div className="input-field col s2">
+                <div className="input-field col m2 s12">
                   <p>Término</p>
                   <input
                     placeholder="Ano"
@@ -377,12 +378,12 @@ class Form extends Component {
                     </div>
                   </div>
                   <div className="row">
-                    <div className="input-field col s4">
+                    <div className="input-field col m4 s12">
                       <p>Curso</p>
                       <input type="text" className="validate" />
                     </div>
 
-                    <div className="col s4">
+                    <div className="col m4 s12">
                       <p>Grau acadêmico</p>
                       <Input s={12} type="select" defaultValue="1">
                         <option value="1" />
@@ -394,7 +395,7 @@ class Form extends Component {
                         <option value="7">Doutorado</option>
                       </Input>
                     </div>
-                    <div className="input-field col s2">
+                    <div className="input-field col m2 s12">
                       <p>Início</p>
                       <input
                         placeholder="Ano"
@@ -404,7 +405,7 @@ class Form extends Component {
                         max="2050"
                       />
                     </div>
-                    <div className="input-field col s2">
+                    <div className="input-field col m2 s12">
                       <p>Término</p>
                       <input
                         placeholder="Ano"
@@ -433,7 +434,7 @@ class Form extends Component {
                     </div>
                   </div>
                   <div className="row">
-                    <div className="input-field col s4">
+                    <div className="input-field col m4 s12">
                       <p>Curso</p>
                       <input type="text" className="validate" />
                     </div>
@@ -449,7 +450,7 @@ class Form extends Component {
                         <option value="7">Doutorado</option>
                       </Input>
                     </div>
-                    <div className="input-field col s2">
+                    <div className="input-field col m2 s12">
                       <p>Início</p>
                       <input
                         placeholder="Ano"
@@ -459,7 +460,7 @@ class Form extends Component {
                         max="2050"
                       />
                     </div>
-                    <div className="input-field col s2">
+                    <div className="input-field col m2 s12">
                       <p>Término</p>
                       <input
                         placeholder="Ano"
@@ -482,27 +483,28 @@ class Form extends Component {
               <div className="row">
                 <h5 className="title right-align">Participação 1</h5>
                 <div className="row">
-                  <div className="input-field col s6">
+                  <div className="input-field col m6 s12">
                     <p>Empresa</p>
                     <input type="text" className="validate" />
                   </div>
-                  <div className="input-field col s6">
+                  <div className="input-field col m6 s12">
                     <p>Localização</p>
                     <input type="text" className="validate" />
                   </div>
                 </div>
                 <div className="row">
-                  <div className="input-field col s12">
+                  <div className="input-field col m12 s12">
                     <p>Descrição</p>
-                    <input type="text" className="validate" />
+
+                    <textarea id="textarea1" className="materialize-textarea" />
                   </div>
                 </div>
                 <div className="row">
-                  <div className="input-field col s4">
+                  <div className="input-field col m4 s12">
                     <p>Cargo</p>
                     <input type="text" className="validate" />
                   </div>
-                  <div className="input-field col s4">
+                  <div className="input-field col m4 s12">
                     <p>Ano de início</p>
                     <input
                       placeholder="Ano"
@@ -512,7 +514,7 @@ class Form extends Component {
                       max="2050"
                     />
                   </div>
-                  <div className="input-field col s4">
+                  <div className="input-field col m4 s12">
                     <p>Ano de término</p>
                     <input
                       placeholder="Ano"
@@ -533,11 +535,11 @@ class Form extends Component {
               <div className="row">
                 <h5 className="title right-align">Participação 2</h5>
                 <div className="row">
-                  <div className="input-field col s6">
+                  <div className="input-field col m6 s12">
                     <p>Empresa</p>
                     <input type="text" className="validate" />
                   </div>
-                  <div className="input-field col s6">
+                  <div className="input-field col m6 s12">
                     <p>Localização</p>
                     <input type="text" className="validate" />
                   </div>
@@ -545,15 +547,15 @@ class Form extends Component {
                 <div className="row">
                   <div className="input-field col s12">
                     <p>Descrição</p>
-                    <input type="text" className="validate" />
+                    <textarea id="textarea1" className="materialize-textarea" />
                   </div>
                 </div>
                 <div className="row">
-                  <div className="input-field col s4">
+                  <div className="input-field col m4 s12">
                     <p>Cargo</p>
                     <input type="text" className="validate" />
                   </div>
-                  <div className="input-field col s4">
+                  <div className="input-field col m4 s12">
                     <p>Ano de início</p>
                     <input
                       placeholder="Ano"
@@ -563,7 +565,7 @@ class Form extends Component {
                       max="2050"
                     />
                   </div>
-                  <div className="input-field col s4">
+                  <div className="input-field col m4 s12">
                     <p>Ano de término</p>
                     <input
                       placeholder="Ano"
@@ -584,11 +586,11 @@ class Form extends Component {
               <div className="row">
                 <h5 className="title right-align">Participação 3</h5>
                 <div className="row">
-                  <div className="input-field col s6">
+                  <div className="input-field col m6 s12">
                     <p>Empresa</p>
                     <input type="text" className="validate" />
                   </div>
-                  <div className="input-field col s6">
+                  <div className="input-field col m6 s12">
                     <p>Localização</p>
                     <input type="text" className="validate" />
                   </div>
@@ -596,15 +598,15 @@ class Form extends Component {
                 <div className="row">
                   <div className="input-field col s12">
                     <p>Descrição</p>
-                    <input type="text" className="validate" />
+                    <textarea id="textarea1" className="materialize-textarea" />
                   </div>
                 </div>
                 <div className="row">
-                  <div className="input-field col s4">
+                  <div className="input-field col m4 s12">
                     <p>Cargo</p>
                     <input type="text" className="validate" />
                   </div>
-                  <div className="input-field col s4">
+                  <div className="input-field col m4 s12">
                     <p>Ano de início</p>
                     <input
                       placeholder="Ano"
@@ -614,7 +616,7 @@ class Form extends Component {
                       max="2050"
                     />
                   </div>
-                  <div className="input-field col s4">
+                  <div className="input-field col m4 s12">
                     <p>Ano de término</p>
                     <input
                       placeholder="Ano"
@@ -636,7 +638,7 @@ class Form extends Component {
               <div className="row">
                 <h5 className="title">Idiomas</h5>
                 <div className="row">
-                  <div className="col s6">
+                  <div className="col m6 s12">
                     <p>Idiomas</p>
                     <Input s={12} type="select" defaultValue="1">
                       <option value="1" />
@@ -651,7 +653,7 @@ class Form extends Component {
                       <option value="10">Árabe</option>
                     </Input>
                   </div>
-                  <div className="col s6">
+                  <div className="col m6 s12">
                     <p>Nível</p>
                     <Input s={12} type="select" defaultValue="1">
                       <option value="1" />
@@ -663,7 +665,7 @@ class Form extends Component {
                   </div>
                 </div>
                 <div className="row">
-                  <div className="col s6">
+                  <div className="col m6 s12">
                     <p>Idiomas</p>
                     <Input s={12} type="select" defaultValue="1">
                       <option value="1" />
@@ -678,7 +680,7 @@ class Form extends Component {
                       <option value="10">Árabe</option>
                     </Input>
                   </div>
-                  <div className="col s6">
+                  <div className="col m6 s12">
                     <p>Nível</p>
                     <Input s={12} type="select" defaultValue="1">
                       <option value="1" />
@@ -690,7 +692,7 @@ class Form extends Component {
                   </div>
                 </div>
                 <div className="row">
-                  <div className="col s6">
+                  <div className="col m6 s12">
                     <p>Idiomas</p>
                     <Input s={12} type="select" defaultValue="1">
                       <option value="1" />
@@ -705,7 +707,7 @@ class Form extends Component {
                       <option value="10">Árabe</option>
                     </Input>
                   </div>
-                  <div className="col s6">
+                  <div className="col m6 s12">
                     <p>Nível</p>
                     <Input s={12} type="select" defaultValue="1">
                       <option value="1" />
@@ -717,7 +719,7 @@ class Form extends Component {
                   </div>
                 </div>
                 <div className="row">
-                  <div className="col s6">
+                  <div className="col m6 s12">
                     <p>Idiomas</p>
                     <Input s={12} type="select" defaultValue="1">
                       <option value="1" />
@@ -732,7 +734,7 @@ class Form extends Component {
                       <option value="10">Árabe</option>
                     </Input>
                   </div>
-                  <div className="col s6">
+                  <div className="col m6 s12">
                     <p>Nível</p>
                     <Input s={12} type="select" defaultValue="1">
                       <option value="1" />
@@ -744,7 +746,7 @@ class Form extends Component {
                   </div>
                 </div>
                 <div className="row">
-                  <div className="col s6">
+                  <div className="col m6 s12">
                     <p>Idiomas</p>
                     <Input s={12} type="select" defaultValue="1">
                       <option value="1" />
@@ -759,7 +761,7 @@ class Form extends Component {
                       <option value="10">Árabe</option>
                     </Input>
                   </div>
-                  <div className="col s6">
+                  <div className="col m6 s12">
                     <p>Nível</p>
                     <Input s={12} type="select" defaultValue="1">
                       <option value="1" />
