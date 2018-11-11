@@ -1,14 +1,14 @@
-swagger: '2.0'
+swagger: "2.0"
 info:
-  description: 'API do software: Curriculum-Elkas: Gerador de currículo online'
+  description: "API do software: Curriculum-Elkas: Gerador de currículo online"
   version: 1.0.0
   title: Curriculum-Elkas API
   contact:
     email: gabriellima.silva96@gmail.com
   license:
     name: MIT
-    url: 'https://opensource.org/licenses/MIT'
-host: 167.99.182.79
+    url: "https://opensource.org/licenses/MIT"
+host: api.curriculumelkas.com
 securityDefinitions:
   Bearer:
     type: apiKey
@@ -23,7 +23,7 @@ tags:
 schemes:
   - http
 paths:
-  '/users/{username}':
+  "/users/{username}":
     get:
       tags:
         - Users
@@ -43,18 +43,18 @@ paths:
           required: true
           type: string
       responses:
-        '200':
+        "200":
           description: Sucesso na operação!
           schema:
-            $ref: '#/definitions/User'
-        '403':
+            $ref: "#/definitions/User"
+        "403":
           description: Permissão negada para acessar esse usuário!
           schema:
-            $ref: '#/definitions/ApiResponse'
-        '404':
+            $ref: "#/definitions/ApiResponse"
+        "404":
           description: Usuário não encontrado!
           schema:
-            $ref: '#/definitions/ApiResponse'
+            $ref: "#/definitions/ApiResponse"
     put:
       tags:
         - Users
@@ -138,30 +138,30 @@ paths:
                       state:
                         type: string
       responses:
-        '200':
+        "200":
           description: Sucesso na operação!
           schema:
-            $ref: '#/definitions/User'
-        '400':
+            $ref: "#/definitions/User"
+        "400":
           description: Já existe um usuário com o e-mail cadastrado!
           schema:
-            $ref: '#/definitions/ApiResponse'
-        '401':
+            $ref: "#/definitions/ApiResponse"
+        "401":
           description: Senha atual inválida
           schema:
-            $ref: '#/definitions/ApiResponse'
-        '403':
+            $ref: "#/definitions/ApiResponse"
+        "403":
           description: Permissão negada para acessar esse usuário!
           schema:
-            $ref: '#/definitions/ApiResponse'
-        '404':
+            $ref: "#/definitions/ApiResponse"
+        "404":
           description: Usuário não encontrado!
           schema:
-            $ref: '#/definitions/ApiResponse'
-        '409':
+            $ref: "#/definitions/ApiResponse"
+        "409":
           description: Já existe um usuário com o username cadastrado!
           schema:
-            $ref: '#/definitions/ApiResponse'
+            $ref: "#/definitions/ApiResponse"
   /users/signin:
     post:
       tags:
@@ -181,13 +181,13 @@ paths:
             enviar o usuário no atributo e-mail.
           required: true
           schema:
-            $ref: '#/definitions/Credentials'
+            $ref: "#/definitions/Credentials"
       responses:
-        '200':
+        "200":
           description: Sucesso!
-        '400':
+        "400":
           description: Senha inválida
-        '404':
+        "404":
           description: E-mail/Usuário não encontrado
   /users:
     post:
@@ -206,15 +206,15 @@ paths:
           description: Um JSON contendo o e-mail   username   name e password do usuário.
           required: true
           schema:
-            $ref: '#/definitions/Signup'
+            $ref: "#/definitions/Signup"
       responses:
-        '200':
+        "200":
           description: Sucesso! Será retornado um objeto user e um token!
-        '400':
+        "400":
           description: Já existe um usuário com o e-mail cadastrado!
-        '405':
-          description: 'O campo é [nome] obrigatório!'
-        '409':
+        "405":
+          description: "O campo é [nome] obrigatório!"
+        "409":
           description: Já existe um usuário com o username cadastrado!
   /curriculums:
     get:
@@ -236,16 +236,16 @@ paths:
           required: true
           type: integer
       responses:
-        '200':
+        "200":
           description: Sucesso!
           schema:
             type: array
             items:
-              $ref: '#/definitions/Curriculum'
-        '400':
+              $ref: "#/definitions/Curriculum"
+        "400":
           description: Não é possível obter uma página menor ou igual a 0
           schema:
-            $ref: '#/definitions/ApiResponse'
+            $ref: "#/definitions/ApiResponse"
     post:
       tags:
         - Curriculums
@@ -264,17 +264,17 @@ paths:
           description: Um JSON contendo os dados do curriculum
           required: true
           schema:
-            $ref: '#/definitions/Curriculum'
+            $ref: "#/definitions/Curriculum"
       responses:
-        '200':
+        "200":
           description: Sucesso!
-        '401':
+        "401":
           description: Não autorizado!
-        '405':
+        "405":
           description: Error de validação!
-        '500':
+        "500":
           description: Error interno no servidor!
-  '/curriculums/:id':
+  "/curriculums/:id":
     get:
       tags:
         - Curriculums
@@ -292,13 +292,13 @@ paths:
           required: true
           type: string
       responses:
-        '200':
+        "200":
           description: Sucesso!
           schema:
-            $ref: '#/definitions/Curriculum'
-        '404':
+            $ref: "#/definitions/Curriculum"
+        "404":
           description: Currículo não encontrado!
-        '500':
+        "500":
           description: Error interno no servidor!
     put:
       tags:
@@ -319,13 +319,13 @@ paths:
           required: true
           type: string
       responses:
-        '200':
+        "200":
           description: Sucesso!
           schema:
-            $ref: '#/definitions/Curriculum'
-        '404':
+            $ref: "#/definitions/Curriculum"
+        "404":
           description: Currículo não encontrado!
-        '500':
+        "500":
           description: Erro interno no servidor!
     delete:
       tags:
@@ -346,7 +346,7 @@ paths:
           required: true
           type: string
       responses:
-        '200':
+        "200":
           description: Sucesso!
 definitions:
   Credentials:
