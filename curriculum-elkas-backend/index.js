@@ -13,7 +13,6 @@ mongoose.connect(
   configDb.url,
   configDb.config
 );
-
 requireDir(configDb.modelPath);
 
 app.use(bodyParser.json());
