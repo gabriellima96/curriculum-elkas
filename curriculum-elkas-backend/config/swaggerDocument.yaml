@@ -297,9 +297,36 @@ paths:
           schema:
             $ref: '#/definitions/Curriculum'
         '404':
-          description: Curriculum não encontrado!
+          description: Currículo não encontrado!
         '500':
           description: Error interno no servidor!
+    put:
+      tags:
+        - Curriculums
+      summary: Editar um curriculum por id
+      description: Editar um curriculum do usuário por id
+      operationId: curriculum.update
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      security:
+        - Bearer: []
+      parameters:
+        - name: id
+          in: path
+          description: ID do curriculum
+          required: true
+          type: string
+      responses:
+        '200':
+          description: Sucesso!
+          schema:
+            $ref: '#/definitions/Curriculum'
+        '404':
+          description: Currículo não encontrado!
+        '500':
+          description: Erro interno no servidor!
     delete:
       tags:
         - Curriculums
@@ -321,7 +348,6 @@ paths:
       responses:
         '200':
           description: Sucesso!
-    
 definitions:
   Credentials:
     type: object

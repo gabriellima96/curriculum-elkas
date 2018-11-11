@@ -20,6 +20,8 @@ o compartilhamento, atualização e manutenção dessas informações.
 
 **7.** :pushpin: [Documentação das Rotas](#Documentação-das-Rotas-para-os-Testes-de-Rotas).
 
+**8.** :pushpin: [Aplicação Online](#Aplicação-Online).
+
 
 ## **Requirement**
 
@@ -83,10 +85,15 @@ git pull
   npm start ou yarn start
 ```
 
-* Acesse pelo navegador : http://localhost:8080/
+* Acesse pelo navegador : http://localhost:3000/api/docs/
 
 ### **Documentação das Rotas para os Testes de Rotas**
 
-* [CLIQUE AQUI](http://167.99.182.79/api-docs/)
+* [CLIQUE AQUI](http://167.99.182.79/api/docs/)
+
+### **Aplicação Online**
+
+* [CLIQUE AQUI](http://167.99.182.79/)
+
 
 
