@@ -50,7 +50,6 @@ class Form extends Component {
     } else if (newEmail !== "") {
       this.setState({ addEmail: [...addEmail, newEmail], message: "" });
     }
-    this.addForm.reset();
   }
   /**
    * Deleta E-mail
@@ -77,7 +76,6 @@ class Form extends Component {
     } else if (newSkill !== "") {
       this.setState({ addSkill: [...addSkill, newSkill], message: "" });
     }
-    this.addForm.reset();
   }
   /**
    * Deleta Skill
