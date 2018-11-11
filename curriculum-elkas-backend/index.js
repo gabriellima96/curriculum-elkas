@@ -21,8 +21,4 @@ app.use(cors());
 app.use('/docs', swaggerUI.serve, swaggerUI.setup(swaggerDocument.json));
 app.use('/api', require('./app/routes'));
 
-app.use('/', (req, res) => {
-  res.redirect('/docs');
-});
-
 app.listen(8080);
