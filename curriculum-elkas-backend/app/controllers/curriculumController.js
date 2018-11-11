@@ -1,6 +1,6 @@
-const mongoose = require('mongoose');
+const mongoose = require("mongoose");
 
-const Curriculum = mongoose.model('Curriculum');
+const Curriculum = mongoose.model("Curriculum");
 
 module.exports = {
   async store(req, res, next) {
@@ -23,7 +23,10 @@ module.exports = {
       if (!page || page < 1) {
         return res
           .status(400)
-          .json({ stauts: 400, error: 'Não é possível obter uma página menor ou igual a 0' });
+          .json({
+            stauts: 400,
+            error: "Não é possível obter uma página menor ou igual a 0"
+          });
       }
 
       const totalDocuments = await Curriculum.countDocuments({ user: userId });
@@ -47,12 +50,12 @@ module.exports = {
       const curriculums = await Curriculum.find({ user: userId }, null, {
         skip: (page - 1) * 3,
         limit: 3,
-        sort: 'createdAt',
+        sort: "createdAt"
       });
 
       return res.json({
         curriculums,
-        totalPages,
+        totalPages
       });
     } catch (error) {
       return next(error);
@@ -63,10 +66,12 @@ module.exports = {
     try {
       const { id } = req.params;
 
-      const curriculum = await Curriculum.findById(id);
+      const curriculum = await Curriculum.findOne({ _id: id });
 
       if (!curriculum) {
-        return res.status(404).json({ status: 404, error: 'Curriculum não encontrado' });
+        return res
+          .status(404)
+          .json({ status: 404, error: "Curriculum não encontrado" });
       }
 
       return res.json(curriculum);
@@ -93,5 +98,5 @@ module.exports = {
     } catch (error) {
       return next(error);
     }
-  },
+  }
 };
