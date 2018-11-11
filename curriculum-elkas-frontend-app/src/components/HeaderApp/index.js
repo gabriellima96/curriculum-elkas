@@ -1,16 +1,17 @@
-import React, { Component } from "react";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { withRouter } from "react-router-dom";
-import { getUsername, logout } from "../../services/auth";
-import api from "../../services/api";
+import React, { Component } from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { withRouter } from 'react-router-dom';
+import { getUsername, logout } from '../../services/auth';
+import api from '../../services/api';
 
 class HeaderApp extends Component {
   state = {
     loading: false,
-    name: ""
+    name: '',
   };
 
   async componentDidMount() {
+    console.log('Testando CI');
     const username = getUsername();
     if (username) {
       try {
@@ -20,7 +21,7 @@ class HeaderApp extends Component {
       } catch (error) {
         logout();
         const { history } = this.props;
-        history.push("/app");
+        history.push('/app');
       } finally {
         this.setState({ loading: false });
       }
@@ -29,7 +30,7 @@ class HeaderApp extends Component {
 
   handleLogout = () => {
     logout();
-    this.props.history.push("/");
+    this.props.history.push('/');
   };
 
   render() {
@@ -44,8 +45,10 @@ class HeaderApp extends Component {
             <ul id="nav-mobile" className="right hide-on-med-and-down">
               <li>
                 <a href="/">
-                  Seja bem vindo,{" "}
-                  {loading ? <i className="fa fa-spinner fa-pulse" /> : name}!
+                  Seja bem vindo,
+                  {' '}
+                  {loading ? <i className="fa fa-spinner fa-pulse" /> : name}
+!
                 </a>
               </li>
               <li>
@@ -55,7 +58,9 @@ class HeaderApp extends Component {
               </li>
               <li>
                 <a href="/" onClick={this.handleLogout}>
-                  Sair <FontAwesomeIcon icon="sign-in-alt" />
+                  Sair
+                  {' '}
+                  <FontAwesomeIcon icon="sign-in-alt" />
                 </a>
               </li>
             </ul>
