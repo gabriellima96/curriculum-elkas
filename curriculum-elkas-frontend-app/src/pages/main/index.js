@@ -76,7 +76,11 @@ const Main = () => (
           href="https://github.com/gabriellima96/curriculum-elkas"
           target="_blank"
         >
+          <FontAwesomeIcon className="red-text" icon="spider" size="2x" spin />
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
           <FontAwesomeIcon icon={faGithubAlt} size="3x" spin />
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          <FontAwesomeIcon className="blue-text" icon="spider" size="2x" spin />
         </a>
       </div>
     </div>

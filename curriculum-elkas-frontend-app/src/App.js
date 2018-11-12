@@ -6,7 +6,8 @@ import {
   faUserPlus,
   faArrowAltCircleRight,
   faPlus,
-  faLink
+  faLink,
+  faSpider
 } from "@fortawesome/free-solid-svg-icons";
 import "./styles/styles.css";
 import Routes from "./routes";
@@ -18,7 +19,8 @@ library.add(
   faArrowAltCircleRight,
   faGithub,
   faPlus,
-  faLink
+  faLink,
+  faSpider
 );
 
 const App = () => <Routes />;
