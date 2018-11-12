@@ -1,5 +1,5 @@
-import React from 'react';
-import './styles.css';
+import React from "react";
+import "./styles.css";
 
 const CurriculumGenerated = curriculum => (
   <div className="container">
@@ -7,7 +7,7 @@ const CurriculumGenerated = curriculum => (
       <div className="col s12 backgroundCurriculo">
         <div className="col s5 painelPerfil z-depth-4">
           <div className="row perfil center-align ">
-            <img className="circulo" src={require('../../images/icon7.png')} />
+            <img className="circulo" src={require("../../images/icon7.png")} />
           </div>
           <div className="row center-align ">
             <h5 className="nameUser">Filipe Esteves do Rego</h5>
@@ -16,7 +16,7 @@ const CurriculumGenerated = curriculum => (
           <div className="row contactBar center-align">
             <div className="col s12">
               <h5 className="contactDiv">
-                <img src={require('../../images/icon4.png')} width="30" />
+                <img src={require("../../images/icon4.png")} width="30" />
                 &nbsp;&nbsp;CONTATOS
               </h5>
             </div>
@@ -25,7 +25,7 @@ const CurriculumGenerated = curriculum => (
             <div className="container">
               <div className="col s12 contactsBar">
                 <h5 className="emailUser">
-                  <img src={require('../../images/icon3.png')} width="22" />
+                  <img src={require("../../images/icon3.png")} width="22" />
                   &nbsp;&nbsp;filipe.esteves08@gmail.com
                 </h5>
               </div>
@@ -35,7 +35,7 @@ const CurriculumGenerated = curriculum => (
             <div className="container">
               <div className="col s12 contactsBar">
                 <h5 className="emailUser">
-                  <img src={require('../../images/icon3.png')} width="22" />
+                  <img src={require("../../images/icon3.png")} width="22" />
                   &nbsp;&nbsp;braz.lipe.15@hotmail.com
                 </h5>
               </div>
@@ -45,7 +45,7 @@ const CurriculumGenerated = curriculum => (
             <div className="container">
               <div className="col s12 contactsBar">
                 <h5 className="emailUser">
-                  <img src={require('../../images/icon5.png')} width="22" />
+                  <img src={require("../../images/icon5.png")} width="22" />
                   &nbsp;&nbsp;82999441387
                 </h5>
               </div>
@@ -55,9 +55,9 @@ const CurriculumGenerated = curriculum => (
             <div className="container">
               <div className="col s12 contactsBar">
                 <h5 className="emailUser">
-                  <img src={require('../../images/icon2.png')} width="22" />
-                  &nbsp;&nbsp;publicArea, district, &nbsp;&nbsp;postalCode, city, state,
-                  &nbsp;&nbsp;country
+                  <img src={require("../../images/icon2.png")} width="22" />
+                  &nbsp;&nbsp;publicArea, district, &nbsp;&nbsp;postalCode,
+                  city, state, &nbsp;&nbsp;country
                 </h5>
               </div>
             </div>
@@ -65,7 +65,7 @@ const CurriculumGenerated = curriculum => (
           <div className="row contactBar center-align">
             <div className="col s12">
               <h5 className="contactDiv">
-                <img src={require('../../images/icon1.png')} width="35" />
+                <img src={require("../../images/icon1.png")} width="35" />
                 &nbsp;&nbsp;OBJETIVOS
               </h5>
             </div>
@@ -74,11 +74,13 @@ const CurriculumGenerated = curriculum => (
             <div className="container">
               <div className="col s12">
                 <p className="objetiveText center-align">
-                  Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium
-                  doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore
-                  veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam
-                  voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur
-                  magni dolores eos qui ratione voluptatem sequi nesciunt.
+                  Sed ut perspiciatis unde omnis iste natus error sit voluptatem
+                  accusantium doloremque laudantium, totam rem aperiam, eaque
+                  ipsa quae ab illo inventore veritatis et quasi architecto
+                  beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem
+                  quia voluptas sit aspernatur aut odit aut fugit, sed quia
+                  consequuntur magni dolores eos qui ratione voluptatem sequi
+                  nesciunt.
                 </p>
               </div>
             </div>
@@ -86,7 +88,7 @@ const CurriculumGenerated = curriculum => (
           <div className="row contactBar center-align">
             <div className="col s12">
               <h5 className="contactDiv">
-                <img src={require('../../images/icon6.png')} width="35" />
+                <img src={require("../../images/icon6.png")} width="35" />
                 &nbsp;&nbsp;IDIOMAS
               </h5>
             </div>
@@ -124,7 +126,9 @@ const CurriculumGenerated = curriculum => (
               </div>
               <div className="row">
                 <div className="col s12 right-align">
-                  <h5 className="instituteFormacao">Instituto Federal de Alagoas</h5>
+                  <h5 className="instituteFormacao">
+                    Instituto Federal de Alagoas
+                  </h5>
                 </div>
               </div>
               <div className="row">
@@ -151,7 +155,9 @@ const CurriculumGenerated = curriculum => (
               </div>
               <div className="row">
                 <div className="col s12 right-align">
-                  <h5 className="instituteFormacao">Universidade Federal de Alagoas</h5>
+                  <h5 className="instituteFormacao">
+                    Universidade Federal de Alagoas
+                  </h5>
                 </div>
               </div>
               <div className="row">
@@ -167,7 +173,9 @@ const CurriculumGenerated = curriculum => (
             </div>
           </div>
           <div className="row">
-            <div className="painelFormacao right-align z-depth-3">EXPERIÊNCIAS</div>
+            <div className="painelFormacao right-align z-depth-3">
+              EXPERIÊNCIAS
+            </div>
           </div>
           <div className="row">
             <div className="col s12 painelFormacoes right-align">
@@ -194,8 +202,9 @@ const CurriculumGenerated = curriculum => (
               <div className="row">
                 <div className="col s12 left-align">
                   <p className="descEx">
-                    Descrição: It is a long established fact that a reader will be distracted by the
-                    readable content of a page when looking at its layout.
+                    Descrição: It is a long established fact that a reader will
+                    be distracted by the readable content of a page when looking
+                    at its layout.
                   </p>
                 </div>
               </div>
@@ -204,7 +213,7 @@ const CurriculumGenerated = curriculum => (
           <div className="row contactBar center-align z-depth-4">
             <div className="col s12">
               <h5 className="contactDiv">
-                <img src={require('../../images/icon8.png')} width="35" />
+                <img src={require("../../images/icon8.png")} width="35" />
                 &nbsp;&nbsp;HABILIDADES
               </h5>
             </div>
