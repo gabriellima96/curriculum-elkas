@@ -93,9 +93,12 @@ class FormModern extends Component {
     messageSkill: "",
     newEmail: "",
     emails: [],
-    date: "",
-    newSkill: "",
-    skills: []
+    date: '',
+    newSkill: '',
+    skills: [],
+    button: false,
+    error: '',
+    success: '',
   };
 
   async componentDidMount() {
@@ -197,22 +200,29 @@ class FormModern extends Component {
     this.setState({ emails });
   };
 
-  handleCurriculum = e => {
+  handleCurriculum = async (e) => {
+    this.setState({ button: true });
     e.preventDefault();
-    const { curriculum } = this.state;
-    console.log(curriculum);
-  };
+    const { curriculum, skills, emails } = this.state;
+    curriculum.skills = skills;
+    curriculum.emails = emails;
+
+    this.setState({ loading: true });
+    try {
+      const curriculum = await api.post('/curriculums', { curriculum });
+      console.log(curriculum._id);
+      this.setState({ success: 'Curriculo gerado com sucesso' });
+    } catch (error) {
+      this.setState({ error: error.response.data.error });
+      console.log(error.response.data.error);
+    } finally {
+      this.setState({ loading: false, button: false });
+    }
+  }
 
   render() {
-    const {
-      curriculum,
-      messageEmail,
-      date,
-      messageSkill,
-      emails,
-      skills
-    } = this.state;
-
+    const { curriculum, messageEmail, messageSkill, emails, skills, loading, button, error, sucess } = this.state;
+    let { date } = this.state;
     return (
       <div className="container">
         <div className="row titleForm">
@@ -380,16 +390,29 @@ class FormModern extends Component {
                     <input
                       type="text"
                       className="validate"
-                      placeholder="Rua, nº, Complemento"
+                      value={curriculum.address.publicArea}
+                      onChange={e => this.setState({ curriculum: { address: { publicArea: e.target.value } } })}
                     />
                   </div>
                   <div id="bairro" className="input-field col s4">
                     <p htmlFor="bairro">Bairro</p>
-                    <input type="text" className="validate" />
+                    <input
+                      type="text"
+                      className="validate"
+                      value={curriculum.address.district}
+                      onChange={e => this.setState({ curriculum: { address: { district: e.target.value } } })}
+
+                    />
                   </div>
                   <div id="cidade" className="input-field col s4">
                     <p htmlFor="cidade">Cidade</p>
-                    <input type="text" className="validate" />
+                    <input
+                      type="text"
+                      className="validate"
+                      value={curriculum.address.city}
+                      onChange={e => this.setState({ curriculum: { address: { city: e.target.value } } })}
+
+                    />
                   </div>
                 </div>
                 <div className="row">
@@ -401,16 +424,31 @@ class FormModern extends Component {
                       className="validate"
                       pattern="^\d{5}-\d{3}$"
                       placeholder="xxxxx-xxx"
+                      value={curriculum.address.postalCode}
+                      onChange={e => this.setState({ curriculum: { address: { postalCode: e.target.value } } })}
+
                     />
                   </div>
                   <div className="input-field col s4">
                     <p htmlFor="estado">Estado</p>
-                    <input id="estado" type="text" className="validate" />
+                    <input
+                      id="estado"
+                      type="text"
+                      className="validate"
+                      value={curriculum.address.state}
+                      onChange={e => this.setState({ curriculum: { address: { state: e.target.value } } })}
+                    />
                   </div>
 
                   <div className="input-field col s4">
                     <p>País</p>
-                    <input type="text" className="validate" />
+                    <input
+                      type="text"
+                      className="validate"
+                      value={curriculum.address.country}
+                      onChange={e => this.setState({ curriculum: { address: { country: e.target.value } } })}
+
+                    />
                   </div>
                   {curriculum.academicDegree &&
                     curriculum.academicDegree.map((academicDegree, index) => (
@@ -743,10 +781,22 @@ class FormModern extends Component {
                   className="waves-effect waves-light btn indigo"
                   type="submit"
                   name="action"
+                  disabled={button}
                 >
-                  Gerar Currículo <FontAwesomeIcon icon="link" />
+                  Gerar Currículo 
+                  {!loading ? (
+                    <FontAwesomeIcon icon="link" />
+                  ) : (
+                    <i className="fa fa-spinner fa-pulse" />
+                  )}
                 </button>
               </div>
+              {error && (
+                <p className="center-align red-text">{error}</p>
+              )}
+              {sucess && (
+                <p className="center-align green-text">{sucess}</p>
+              )}
             </form>
           </div>
         </div>
