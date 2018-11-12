@@ -1,11 +1,11 @@
-import React, { Fragment } from "react";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faGithubAlt } from "@fortawesome/free-brands-svg-icons";
-import SignUp from "../../components/SignUp";
-import SignIn from "../../components/SignIn";
-import Header from "../../components/Header";
+import React, { Fragment } from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faGithubAlt } from '@fortawesome/free-brands-svg-icons';
+import SignUp from '../../components/SignUp';
+import SignIn from '../../components/SignIn';
+import Header from '../../components/Header';
 
-import "./styles.css";
+import './styles.css';
 
 const Main = () => (
   <Fragment>
@@ -39,14 +39,9 @@ const Main = () => (
       <div className="row footer">
         <div className="col s6 right-align">
           <a href="http://ifal.edu.br" target="_blank">
-            <img
-              src={require("../../images/logo-horizontal.png")}
-              width="140"
-            />
+            <img src={require('../../images/logo-horizontal.png')} width="140" />
           </a>
-          <h6>
-            Instituto Federal de Alagoas - Sistema de geração de currículo
-          </h6>
+          <h6>Instituto Federal de Alagoas - Sistema de geração de currículo</h6>
           <h6>Bacharelado em Sistemas de Informação</h6>
         </div>
         <div className="col s6 left-align">
@@ -56,11 +51,20 @@ const Main = () => (
           <h6>Filipe Esteves do Rego</h6>
         </div>
       </div>
+      <div className="row">
+        <div className="col s12 center-align">
+          <h6>
+            Acesse a documentação do nosso back-end
+            {' '}
+            <a href="http://api.curriculumelkas.com" target="_blank" className="blue-text">
+              clicando aqui
+            </a>
+            .
+          </h6>
+        </div>
+      </div>
       <div className="githubIcon center-align">
-        <a
-          href="https://github.com/gabriellima96/curriculum-elkas"
-          target="_blank"
-        >
+        <a href="https://github.com/gabriellima96/curriculum-elkas" target="_blank">
           <FontAwesomeIcon icon={faGithubAlt} size="3x" spin />
         </a>
       </div>
