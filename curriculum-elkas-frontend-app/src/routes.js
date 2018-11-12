@@ -1,8 +1,7 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 import {
   BrowserRouter, Route, Switch, Redirect,
 } from 'react-router-dom';
-import HeaderApp from './components/HeaderApp';
 
 import { isAuthenticated } from './services/auth';
 import Main from './pages/main';
@@ -10,7 +9,6 @@ import Dashboard from './pages/dashboard';
 import Templates from './pages/templates';
 import Settings from './pages/settings';
 import ModernForm from './pages/modernForm';
-import CurriculumGenerated from './components/CurriculumGenerated';
 
 const PrivateRoute = ({ component: Component, ...rest }) => (
   <Route
@@ -37,13 +35,19 @@ const RouteDefaults = ({ component: Component, ...rest }) => (
 );
 
 function verifyTemplate(props) {
-  if (props.match.params.id === '1m') {
+  const {
+    match: { params },
+  } = props;
+
+  if (params.id.startsWith('1m')) {
     return <ModernForm {...props} />;
   }
 
-  if (props.match.params.id === '1c') {
+  if (params.id.startsWith('1c')) {
     return <h1>Hello</h1>;
   }
+
+  return <h1>Não foi encontrado nenhum curriculum com esse id</h1>;
 }
 
 const Routes = () => (
