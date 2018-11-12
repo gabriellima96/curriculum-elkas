@@ -1,101 +1,101 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import React, { Component } from 'react';
+import React, { Component } from "react";
 import { Input } from "react-materialize";
-import api from '../../services/api';
-import { getUsername } from '../../services/auth';
+import api from "../../services/api";
+import { getUsername } from "../../services/auth";
 
 class FormModern extends Component {
   state = {
     curriculum: {
-      template: '1m',
-      title: '',
-      name: '',
+      template: "1m",
+      title: "",
+      name: "",
       emails: [],
-      phones: ['', ''],
-      dateOfbirth: '',
-      maritalStatus: '',
+      phones: ["", ""],
+      dateOfbirth: "",
+      maritalStatus: "",
       academicDegree: [
         {
-          institution: '',
-          degree: '',
-          course: '',
-          initialization: '',
-          conclusion: '',
+          institution: "",
+          degree: "",
+          course: "",
+          initialization: "",
+          conclusion: ""
         },
         {
-          institution: '',
-          degree: '',
-          course: '',
-          initialization: '',
-          conclusion: '',
+          institution: "",
+          degree: "",
+          course: "",
+          initialization: "",
+          conclusion: ""
         },
         {
-          institution: '',
-          degree: '',
-          course: '',
-          initialization: '',
-          conclusion: '',
-        },
+          institution: "",
+          degree: "",
+          course: "",
+          initialization: "",
+          conclusion: ""
+        }
       ],
       address: {
-        publicArea: '',
-        district: '',
-        city: '',
-        postalCode: '',
-        country: '',
-        state: '',
+        publicArea: "",
+        district: "",
+        city: "",
+        postalCode: "",
+        country: "",
+        state: ""
       },
-      goals: '',
+      goals: "",
       languages: [
         {
-          language: '',
-          fluency: '',
+          language: "",
+          fluency: ""
         },
         {
-          language: '',
-          fluency: '',
+          language: "",
+          fluency: ""
         },
         {
-          language: '',
-          fluency: '',
-        },
+          language: "",
+          fluency: ""
+        }
       ],
       experiences: [
         {
-          office: '',
-          location: '',
-          company: '',
-          description: '',
-          initialization: '',
-          conclusion: '',
+          office: "",
+          location: "",
+          company: "",
+          description: "",
+          initialization: "",
+          conclusion: ""
         },
         {
-          office: '',
-          location: '',
-          company: '',
-          description: '',
-          initialization: '',
-          conclusion: '',
+          office: "",
+          location: "",
+          company: "",
+          description: "",
+          initialization: "",
+          conclusion: ""
         },
         {
-          office: '',
-          location: '',
-          company: '',
-          description: '',
-          initialization: '',
-          conclusion: '',
-        },
+          office: "",
+          location: "",
+          company: "",
+          description: "",
+          initialization: "",
+          conclusion: ""
+        }
       ],
-      skills: [],
+      skills: []
     },
     loading: false,
-    messageEmail: '',
-    messageSkill: '',
-    newEmail: '',
+    messageEmail: "",
+    messageSkill: "",
+    newEmail: "",
     emails: [],
-    date: '',
-    newSkill: '',
-    skills: [],
+    date: "",
+    newSkill: "",
+    skills: []
   };
 
   async componentDidMount() {
@@ -116,12 +116,16 @@ class FormModern extends Component {
       }
 
       if (academicDegree) {
-        academicDegree.map((academic, index) => (curriculum.academicDegree[index] = academic));
+        academicDegree.map(
+          (academic, index) => (curriculum.academicDegree[index] = academic)
+        );
       }
 
       if (data.personalInformation.dateOfBirth) {
         curriculum.dateOfbirth = data.personalInformation.dateOfBirth;
-        this.setState({ date: data.personalInformation.dateOfBirth.split('T')[0] });
+        this.setState({
+          date: data.personalInformation.dateOfBirth.split("T")[0]
+        });
       }
 
       curriculum.name = data.name;
@@ -130,7 +134,7 @@ class FormModern extends Component {
 
       console.log(curriculum);
 
-      this.setState({ curriculum, emails: data.personalInformation.emails});
+      this.setState({ curriculum, emails: data.personalInformation.emails });
     } catch (error) {
       console.log(error);
     } finally {
@@ -160,17 +164,17 @@ class FormModern extends Component {
     }
   };
 
-  addSkills = (e) => {
+  addSkills = e => {
     e.preventDefault();
     const { skills, newSkill } = this.state;
     if (skills) {
       const isOnTheList = skills.includes(newSkill);
 
       if (isOnTheList) {
-        this.setState({ messageSkill: 'Essa competência já foi adicionada!' });
-      } else if (newSkill !== '') {
+        this.setState({ messageSkill: "Essa competência já foi adicionada!" });
+      } else if (newSkill !== "") {
         skills.push(newSkill);
-        this.setState({ skills, messageSkill: '' });
+        this.setState({ skills, messageSkill: "" });
       }
     } else {
       const skillsnew = [];
@@ -184,7 +188,7 @@ class FormModern extends Component {
     const { skills } = this.state;
     skills.splice(skills.indexOf(skill), 1);
     this.setState({ skills });
-  }
+  };
 
   deleteEmail = (email, e) => {
     e.preventDefault();
@@ -193,25 +197,33 @@ class FormModern extends Component {
     this.setState({ emails });
   };
 
-  handleCurriculum = (e) => {
+  handleCurriculum = e => {
     e.preventDefault();
     const { curriculum } = this.state;
     console.log(curriculum);
-  }
+  };
 
   render() {
-    const { curriculum, messageEmail, date, messageSkill, emails, skills } = this.state;
+    const {
+      curriculum,
+      messageEmail,
+      date,
+      messageSkill,
+      emails,
+      skills
+    } = this.state;
 
     return (
       <div className="container">
         <div className="row titleForm">
           <div className="titleConfigs">
             <h5 className="valign-wrapper left-align title">
-              {' '}
-              Preencha o formulário para montarmos o seu currículo
-              {' '}
+              {" "}
+              Preencha o formulário para montarmos o seu currículo{" "}
             </h5>
-            <h6 className="right-align">Informações pessoais e acadêmicas/experiências</h6>
+            <h6 className="right-align">
+              Informações pessoais e acadêmicas/experiências
+            </h6>
           </div>
           <div className="container">
             <form onSubmit={this.handleCurriculum}>
@@ -224,7 +236,9 @@ class FormModern extends Component {
                     type="text"
                     className="validate"
                     value={curriculum.title}
-                    onChange={e => this.setState({ curriculum: { title: e.target.value } })}
+                    onChange={e =>
+                      this.setState({ curriculum: { title: e.target.value } })
+                    }
                   />
                 </div>
 
@@ -239,7 +253,9 @@ class FormModern extends Component {
                       type="text"
                       className="validate"
                       value={curriculum.name}
-                      onChange={e => this.setState({ curriculum: { name: e.target.value } })}
+                      onChange={e =>
+                        this.setState({ curriculum: { name: e.target.value } })
+                      }
                     />
                   </div>
                 </div>
@@ -256,7 +272,9 @@ class FormModern extends Component {
                         className="validate email"
                       />
                     </div>
-                    {messageEmail !== "" && <p className="red-text">{messageEmail}</p>}
+                    {messageEmail !== "" && (
+                      <p className="red-text">{messageEmail}</p>
+                    )}
                     {emails && emails.length > 0 && (
                       <div>
                         <table>
@@ -298,8 +316,8 @@ class FormModern extends Component {
                 </div>
 
                 <div className="row">
-                  {curriculum.phones
-                    && curriculum.phones.map((phone, index) => (
+                  {curriculum.phones &&
+                    curriculum.phones.map((phone, index) => (
                       <div className="input-field col s6">
                         <p htmlFor="tel">
                           Telefone
@@ -311,7 +329,7 @@ class FormModern extends Component {
                           pattern="^\d{2}\d{5}\d{4}$"
                           placeholder="ddxxxxxxxxx"
                           value={phone}
-                          onChange={(e) => {
+                          onChange={e => {
                             curriculum.phones[index] = e.target.value;
                             this.setState({ curriculum });
                           }}
@@ -342,7 +360,11 @@ class FormModern extends Component {
                       type="select"
                       defaultValue="1"
                       value={curriculum.maritalStatus}
-                      onChange={e => this.setState({ curriculum: { maritalStatus: e.target.value } })}
+                      onChange={e =>
+                        this.setState({
+                          curriculum: { maritalStatus: e.target.value }
+                        })
+                      }
                     >
                       <option value="1">Solteiro</option>
                       <option value="2">Casado</option>
@@ -358,24 +380,16 @@ class FormModern extends Component {
                     <input
                       type="text"
                       className="validate"
-
+                      placeholder="Rua, nº, Complemento"
                     />
                   </div>
                   <div id="bairro" className="input-field col s4">
                     <p htmlFor="bairro">Bairro</p>
-                    <input
-                      type="text"
-                      className="validate"
-
-                    />
+                    <input type="text" className="validate" />
                   </div>
                   <div id="cidade" className="input-field col s4">
                     <p htmlFor="cidade">Cidade</p>
-                    <input
-                      type="text"
-                      className="validate"
-
-                    />
+                    <input type="text" className="validate" />
                   </div>
                 </div>
                 <div className="row">
@@ -387,278 +401,276 @@ class FormModern extends Component {
                       className="validate"
                       pattern="^\d{5}-\d{3}$"
                       placeholder="xxxxx-xxx"
-
                     />
                   </div>
                   <div className="input-field col s4">
                     <p htmlFor="estado">Estado</p>
-                    <input
-                      id="estado"
-                      type="text"
-                      className="validate"
-
-                    />
+                    <input id="estado" type="text" className="validate" />
                   </div>
 
                   <div className="input-field col s4">
                     <p>País</p>
-                    <input
-                      type="text"
-                      className="validate"
-
-                    />
+                    <input type="text" className="validate" />
                   </div>
                   {curriculum.academicDegree &&
-                    curriculum.academicDegree.map(
-                      (academicDegree, index) => (
-                        <div className="row">
-                          <div className="col s12">
-                            <h5 className="title">{`Formação acadêmica ${index +
-                              1}`}</h5>
-                            <div className="row">
-                              <div className="input-field col s12">
-                                <p>Instituição acadêmica</p>
-                                <input
-                                  type="text"
-                                  className="validate"
-                                  value={academicDegree.institution}
-                                  onChange={e => {
-                                    curriculum.academicDegree[
-                                      index
-                                    ].institution = e.target.value;
-                                    this.setState({ curriculum});
-                                  }}
-                                />
-                              </div>
+                    curriculum.academicDegree.map((academicDegree, index) => (
+                      <div className="row">
+                        <div className="col s12">
+                          <h5 className="title">{`Formação acadêmica ${index +
+                            1}`}</h5>
+                          <div className="row">
+                            <div className="input-field col s12">
+                              <p>Instituição acadêmica</p>
+                              <input
+                                type="text"
+                                className="validate"
+                                value={academicDegree.institution}
+                                onChange={e => {
+                                  curriculum.academicDegree[index].institution =
+                                    e.target.value;
+                                  this.setState({ curriculum });
+                                }}
+                              />
                             </div>
-                            <div className="row">
-                              <div className="input-field col s4">
-                                <p>Curso</p>
-                                <input
-                                  type="text"
-                                  className="validate"
-                                  value={academicDegree.course}
-                                  onChange={e => {
-                                    curriculum.academicDegree[
-                                      index
-                                    ].course = e.target.value;
-                                    this.setState({ curriculum });
-                                  }}
-                                />
-                              </div>
-                              <div className="col s4">
-                                <p>Grau acadêmico</p>
-                                <Input
-                                  s={12}
-                                  type="select"
-                                  defaultValue="1"
-                                  value={academicDegree.degree}
-                                  onChange={e => {
-                                    curriculum.academicDegree[
-                                      index
-                                    ].degree = e.target.value;
-                                    this.setState({ curriculum });
-                                  }}
-                                >
-                                  <option value="1" />
-                                  <option value="2">Graduação</option>
-                                  <option value="3">Bacharelado</option>
-                                  <option value="4">Licenciatura</option>
-                                  <option value="5">Pós-graduação</option>
-                                  <option value="6">Mestrado</option>
-                                  <option value="7">Doutorado</option>
-                                </Input>
-                              </div>
-                              <div className="input-field col s2">
-                                <p>Início</p>
-                                <input
-                                  placeholder="Ano"
-                                  type="number"
-                                  className="validate"
-                                  min="1800"
-                                  max="2050"
-                                  value={academicDegree.initialization}
-                                  onChange={e => {
-                                    curriculum.academicDegree[
-                                      index
-                                    ].initialization = e.target.value;
-                                    this.setState({ curriculum });
-                                  }}
-                                />
-                              </div>
-                              <div className="input-field col s2">
-                                <p>Término</p>
-                                <input
-                                  placeholder="Ano"
-                                  type="number"
-                                  className="validate"
-                                  min="1800"
-                                  max="2050"
-                                  value={academicDegree.conclusion}
-                                  onChange={e => {
-                                    curriculum.academicDegree[
-                                      index
-                                    ].conclusion = e.target.value;
-                                    this.setState({ curriculum });
-                                  }}
-                                />
-                              </div>
-                              <div className="s12">
-                                <h6 className="orange-text">
-                                  Deixe o campo de término vazio para ser
-                                  considerado como "atual"
-                                </h6>
-                              </div>
+                          </div>
+                          <div className="row">
+                            <div className="input-field col s4">
+                              <p>Curso</p>
+                              <input
+                                type="text"
+                                className="validate"
+                                value={academicDegree.course}
+                                onChange={e => {
+                                  curriculum.academicDegree[index].course =
+                                    e.target.value;
+                                  this.setState({ curriculum });
+                                }}
+                              />
+                            </div>
+                            <div className="col s4">
+                              <p>Grau acadêmico</p>
+                              <Input
+                                s={12}
+                                type="select"
+                                defaultValue="1"
+                                value={academicDegree.degree}
+                                onChange={e => {
+                                  curriculum.academicDegree[index].degree =
+                                    e.target.value;
+                                  this.setState({ curriculum });
+                                }}
+                              >
+                                <option value="1" />
+                                <option value="2">Graduação</option>
+                                <option value="3">Bacharelado</option>
+                                <option value="4">Licenciatura</option>
+                                <option value="5">Pós-graduação</option>
+                                <option value="6">Mestrado</option>
+                                <option value="7">Doutorado</option>
+                              </Input>
+                            </div>
+                            <div className="input-field col s2">
+                              <p>Início</p>
+                              <input
+                                placeholder="Ano"
+                                type="number"
+                                className="validate"
+                                min="1800"
+                                max="2050"
+                                value={academicDegree.initialization}
+                                onChange={e => {
+                                  curriculum.academicDegree[
+                                    index
+                                  ].initialization = e.target.value;
+                                  this.setState({ curriculum });
+                                }}
+                              />
+                            </div>
+                            <div className="input-field col s2">
+                              <p>Término</p>
+                              <input
+                                placeholder="Ano"
+                                type="number"
+                                className="validate"
+                                min="1800"
+                                max="2050"
+                                value={academicDegree.conclusion}
+                                onChange={e => {
+                                  curriculum.academicDegree[index].conclusion =
+                                    e.target.value;
+                                  this.setState({ curriculum });
+                                }}
+                              />
+                            </div>
+                            <div className="s12">
+                              <h6 className="orange-text">
+                                Deixe o campo de término vazio para ser
+                                considerado como "atual"
+                              </h6>
                             </div>
                           </div>
                         </div>
-                      )
-                    )}
-                </div>
-                {curriculum.experiences && curriculum.experiences.map((experience, index) => (
-                  <div className="row">
-                    <h5 className="title right-align">Participação {index + 1}</h5>
-                    <div className="row">
-                      <div className="input-field col m6 s12">
-                        <p>Empresa</p>
-                        <input type="text" className="validate"
-                          value={experience.company}
-                          onChange={e => {
-                            curriculum.experiences[
-                              index
-                            ].company = e.target.value;
-                            this.setState({ curriculum });
-                          }}/>
                       </div>
-                      <div className="input-field col m6 s12">
-                        <p>Localização</p>
-                        <input type="text" className="validate"
+                    ))}
+                </div>
+                {curriculum.experiences &&
+                  curriculum.experiences.map((experience, index) => (
+                    <div className="row">
+                      <h5 className="title right-align">
+                        Participação {index + 1}
+                      </h5>
+                      <div className="row">
+                        <div className="input-field col m6 s12">
+                          <p>Empresa</p>
+                          <input
+                            type="text"
+                            className="validate"
+                            value={experience.company}
+                            onChange={e => {
+                              curriculum.experiences[index].company =
+                                e.target.value;
+                              this.setState({ curriculum });
+                            }}
+                          />
+                        </div>
+                        <div className="input-field col m6 s12">
+                          <p>Localização</p>
+                          <input
+                            type="text"
+                            className="validate"
                             value={experience.location}
                             onChange={e => {
-                              curriculum.experiences[
-                                index
-                              ].location = e.target.value;
-                              this.setState({ curriculum });
-                            }}/>
-                      </div>
-                    </div>
-                    <div className="row">
-                      <div className="input-field col m12 s12">
-                        <p>Descrição</p>
-
-                        <textarea id="textarea1" className="materialize-textarea" value={experience.description}
-                        onChange={e => {
-                          curriculum.experiences[
-                            index
-                          ].description = e.target.value;
-                          this.setState({ curriculum });
-                        }}/>
-                      </div>
-                    </div>
-                    <div className="row">
-                      <div className="input-field col m4 s12">
-                        <p>Cargo</p>
-                        <input type="text" className="validate"
-                        value={experience.office}
-                        onChange={e => {
-                          curriculum.experiences[
-                            index
-                          ].office = e.target.value;
-                          this.setState({ curriculum });
-                        }}/>
-                      </div>
-                      <div className="input-field col m4 s12">
-                        <p>Ano de início</p>
-                        <input
-                          placeholder="Ano"
-                          type="number"
-                          className="validate"
-                          min="1800"
-                          max="2050"
-                          value={experience.initialization}
-                            onChange={e => {
-                              curriculum.experiences[
-                                index
-                              ].initialization = e.target.value;
+                              curriculum.experiences[index].location =
+                                e.target.value;
                               this.setState({ curriculum });
                             }}
-                        />
+                          />
+                        </div>
                       </div>
-                      <div className="input-field col m4 s12">
-                        <p>Ano de término</p>
-                        <input
-                          placeholder="Ano"
-                          type="number"
-                          className="validate"
-                          min="1800"
-                          max="2050"
-                          value={experience.conclusion}
+                      <div className="row">
+                        <div className="input-field col m12 s12">
+                          <p>Descrição</p>
+
+                          <textarea
+                            id="textarea1"
+                            className="materialize-textarea"
+                            value={experience.description}
                             onChange={e => {
-                              curriculum.experiences[
-                                index
-                              ].conclusion = e.target.value;
+                              curriculum.experiences[index].description =
+                                e.target.value;
                               this.setState({ curriculum });
                             }}
-                        />
+                          />
+                        </div>
                       </div>
-                      <div className="s12">
-                        <h6 className="orange-text">
-                          Deixe o campo de término vazio para ser considerado como
-                          "atual"
-                        </h6>
+                      <div className="row">
+                        <div className="input-field col m4 s12">
+                          <p>Cargo</p>
+                          <input
+                            type="text"
+                            className="validate"
+                            value={experience.office}
+                            onChange={e => {
+                              curriculum.experiences[index].office =
+                                e.target.value;
+                              this.setState({ curriculum });
+                            }}
+                          />
+                        </div>
+                        <div className="input-field col m4 s12">
+                          <p>Ano de início</p>
+                          <input
+                            placeholder="Ano"
+                            type="number"
+                            className="validate"
+                            min="1800"
+                            max="2050"
+                            value={experience.initialization}
+                            onChange={e => {
+                              curriculum.experiences[index].initialization =
+                                e.target.value;
+                              this.setState({ curriculum });
+                            }}
+                          />
+                        </div>
+                        <div className="input-field col m4 s12">
+                          <p>Ano de término</p>
+                          <input
+                            placeholder="Ano"
+                            type="number"
+                            className="validate"
+                            min="1800"
+                            max="2050"
+                            value={experience.conclusion}
+                            onChange={e => {
+                              curriculum.experiences[index].conclusion =
+                                e.target.value;
+                              this.setState({ curriculum });
+                            }}
+                          />
+                        </div>
+                        <div className="s12">
+                          <h6 className="orange-text">
+                            Deixe o campo de término vazio para ser considerado
+                            como "atual"
+                          </h6>
+                        </div>
                       </div>
                     </div>
-                  </div>
-                ))}
-                {curriculum.languages && curriculum.languages.map((language, index) => (
-                  <div className="row">
-                    <h5 className="title">Idiomas</h5>
+                  ))}
+                {curriculum.languages &&
+                  curriculum.languages.map((language, index) => (
                     <div className="row">
-                      <div className="col m6 s12">
-                        <p>Idiomas</p>
-                        <Input s={12} type="select" defaultValue="1"
-                          value={language.language}
-                          onChange={e => {
-                            curriculum.languages[
-                              index
-                            ].language = e.target.value;
-                            this.setState({ curriculum });
-                          }}
+                      <h5 className="title">Idiomas</h5>
+                      <div className="row">
+                        <div className="col m6 s12">
+                          <p>Idiomas</p>
+                          <Input
+                            s={12}
+                            type="select"
+                            defaultValue="1"
+                            value={language.language}
+                            onChange={e => {
+                              curriculum.languages[index].language =
+                                e.target.value;
+                              this.setState({ curriculum });
+                            }}
                           >
-                          <option value="1" />
-                          <option value="2">Inglês</option>
-                          <option value="3">Português</option>
-                          <option value="4">Espanhol</option>
-                          <option value="5">Francês</option>
-                          <option value="6">Alemão</option>
-                          <option value="7">Mandarim</option>
-                          <option value="8">Japonês</option>
-                          <option value="9">Coreano</option>
-                          <option value="10">Árabe</option>
-                        </Input>
-                      </div>
-                      <div className="col m6 s12">
-                        <p>Nível</p>
-                        <Input s={12} type="select" defaultValue="1"
-
-                        value={language.fluency}
-                          onChange={e => {
-                            curriculum.languages[
-                              index
-                            ].fluency = e.target.value;
-                            this.setState({ curriculum });
-                          }}
+                            <option value="1" />
+                            <option value="2">Inglês</option>
+                            <option value="3">Português</option>
+                            <option value="4">Espanhol</option>
+                            <option value="5">Francês</option>
+                            <option value="6">Alemão</option>
+                            <option value="7">Mandarim</option>
+                            <option value="8">Japonês</option>
+                            <option value="9">Coreano</option>
+                            <option value="10">Árabe</option>
+                          </Input>
+                        </div>
+                        <div className="col m6 s12">
+                          <p>Nível</p>
+                          <Input
+                            s={12}
+                            type="select"
+                            defaultValue="1"
+                            value={language.fluency}
+                            onChange={e => {
+                              curriculum.languages[index].fluency =
+                                e.target.value;
+                              this.setState({ curriculum });
+                            }}
                           >
-                          <option value="1" />
-                          <option value="2">Básico</option>
-                          <option value="3">Intermediário</option>
-                          <option value="4">Avançado</option>
-                          <option value="5">Nativo</option>
-                        </Input>
+                            <option value="1" />
+                            <option value="2">Básico</option>
+                            <option value="3">Intermediário</option>
+                            <option value="4">Avançado</option>
+                            <option value="5">Nativo</option>
+                          </Input>
+                        </div>
                       </div>
                     </div>
-                  </div>
-                ))}
+                  ))}
 
                 <div className="row">
                   <div className="col s12">
@@ -679,7 +691,9 @@ class FormModern extends Component {
                           }
                         />
                       </div>
-                      {messageSkill !== '' && <p className="red-text">{messageSkill}</p>}
+                      {messageSkill !== "" && (
+                        <p className="red-text">{messageSkill}</p>
+                      )}
                       {skills && skills.length > 0 && (
                         <div>
                           <table>
@@ -695,7 +709,9 @@ class FormModern extends Component {
                                     <td>{skill}</td>
                                     <td className="right-align">
                                       <button
-                                        onClick={e => this.deleteSkill(skill, e)}
+                                        onClick={e =>
+                                          this.deleteSkill(skill, e)
+                                        }
                                         type="button"
                                         className="waves-effect waves-light btn red darken-3"
                                       >

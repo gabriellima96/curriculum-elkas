@@ -7,7 +7,11 @@ const CurriculumGenerated = curriculum => (
       <div className="col s12 backgroundCurriculo">
         <div className="col s5 painelPerfil z-depth-4">
           <div className="row perfil center-align ">
-            <img className="circulo" src={require("../../images/icon7.png")} />
+            <img
+              alt="imagemCE"
+              className="circulo"
+              src={require("../../images/icon7.png")}
+            />
           </div>
           <div className="row center-align ">
             <h5 className="nameUser">Filipe Esteves do Rego</h5>
@@ -16,7 +20,11 @@ const CurriculumGenerated = curriculum => (
           <div className="row contactBar center-align">
             <div className="col s12">
               <h5 className="contactDiv">
-                <img src={require("../../images/icon4.png")} width="30" />
+                <img
+                  alt="imagemCE"
+                  src={require("../../images/icon4.png")}
+                  width="30"
+                />
                 &nbsp;&nbsp;CONTATOS
               </h5>
             </div>
@@ -25,7 +33,11 @@ const CurriculumGenerated = curriculum => (
             <div className="container">
               <div className="col s12 contactsBar">
                 <h5 className="emailUser">
-                  <img src={require("../../images/icon3.png")} width="22" />
+                  <img
+                    alt="imagemCE"
+                    src={require("../../images/icon3.png")}
+                    width="22"
+                  />
                   &nbsp;&nbsp;filipe.esteves08@gmail.com
                 </h5>
               </div>
@@ -35,7 +47,11 @@ const CurriculumGenerated = curriculum => (
             <div className="container">
               <div className="col s12 contactsBar">
                 <h5 className="emailUser">
-                  <img src={require("../../images/icon3.png")} width="22" />
+                  <img
+                    alt="imagemCE"
+                    src={require("../../images/icon3.png")}
+                    width="22"
+                  />
                   &nbsp;&nbsp;braz.lipe.15@hotmail.com
                 </h5>
               </div>
@@ -45,7 +61,11 @@ const CurriculumGenerated = curriculum => (
             <div className="container">
               <div className="col s12 contactsBar">
                 <h5 className="emailUser">
-                  <img src={require("../../images/icon5.png")} width="22" />
+                  <img
+                    alt="imagemCE"
+                    src={require("../../images/icon5.png")}
+                    width="22"
+                  />
                   &nbsp;&nbsp;82999441387
                 </h5>
               </div>
@@ -55,7 +75,11 @@ const CurriculumGenerated = curriculum => (
             <div className="container">
               <div className="col s12 contactsBar">
                 <h5 className="emailUser">
-                  <img src={require("../../images/icon2.png")} width="22" />
+                  <img
+                    alt="imagemCE"
+                    src={require("../../images/icon2.png")}
+                    width="22"
+                  />
                   &nbsp;&nbsp;publicArea, district, &nbsp;&nbsp;postalCode,
                   city, state, &nbsp;&nbsp;country
                 </h5>
@@ -65,7 +89,11 @@ const CurriculumGenerated = curriculum => (
           <div className="row contactBar center-align">
             <div className="col s12">
               <h5 className="contactDiv">
-                <img src={require("../../images/icon1.png")} width="35" />
+                <img
+                  alt="imagemCE"
+                  src={require("../../images/icon1.png")}
+                  width="35"
+                />
                 &nbsp;&nbsp;OBJETIVOS
               </h5>
             </div>
@@ -88,7 +116,11 @@ const CurriculumGenerated = curriculum => (
           <div className="row contactBar center-align">
             <div className="col s12">
               <h5 className="contactDiv">
-                <img src={require("../../images/icon6.png")} width="35" />
+                <img
+                  alt="imagemCE"
+                  src={require("../../images/icon6.png")}
+                  width="35"
+                />
                 &nbsp;&nbsp;IDIOMAS
               </h5>
             </div>
@@ -213,7 +245,11 @@ const CurriculumGenerated = curriculum => (
           <div className="row contactBar center-align z-depth-4">
             <div className="col s12">
               <h5 className="contactDiv">
-                <img src={require("../../images/icon8.png")} width="35" />
+                <img
+                  alt="imagemCE"
+                  src={require("../../images/icon8.png")}
+                  width="35"
+                />
                 &nbsp;&nbsp;HABILIDADES
               </h5>
             </div>

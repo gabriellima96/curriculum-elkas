@@ -481,6 +481,7 @@ class SettingsUser extends Component {
                     <input
                       type="text"
                       className="validate"
+                      placeholder="Rua, nº, Complemento"
                       value={user.personalInformation.address.publicArea}
                       onChange={e => {
                         user.personalInformation.address.publicArea =
