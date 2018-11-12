@@ -1,11 +1,14 @@
 import React, { Fragment } from 'react';
-import HeaderApp from '../../components/HeaderApp';
-import FormModern from '../../components/FormModern';
+import Header from '../../components/Header';
+import CurriculumGenerated from '../../components/CurriculumGenerated';
+import './styles.css';
 
 const ModernForm = props => (
   <Fragment>
-    <HeaderApp />
-    <FormModern propsM={props} />
+    <Header />
+    <div className="header">
+      <CurriculumGenerated propsM={props} />
+    </div>
   </Fragment>
 );
 export default ModernForm;
