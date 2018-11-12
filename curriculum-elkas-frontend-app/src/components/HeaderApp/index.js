@@ -11,7 +11,6 @@ class HeaderApp extends Component {
   };
 
   async componentDidMount() {
-    console.log('Testando CI');
     const username = getUsername();
     if (username) {
       try {
@@ -45,7 +44,7 @@ class HeaderApp extends Component {
             <ul id="nav-mobile" className="right hide-on-med-and-down">
               <li>
                 <a href="/">
-                  Seja bem vindo,
+                  Seja bem vindo(a),
                   {' '}
                   {loading ? <i className="fa fa-spinner fa-pulse" /> : name}
 !
