@@ -1,0 +1,151 @@
+@import url("https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700,600,500,300,200,700i,200i");
+
+.backgroundCurriculo {
+  background-color: #6c44db;
+  padding-left: 70px;
+  padding-right: 70px;
+}
+
+.painelPerfil {
+  background-color: #493484;
+}
+.painelPerfil2 {
+  background-color: #b29eeb;
+}
+.circulo {
+  background-color: white;
+  box-shadow: 0px 0px 0px 10px #7b4dfb;
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+}
+
+.perfil {
+  padding-top: 60px;
+  padding-bottom: 10px;
+}
+
+.nameUser {
+  font-family: "Source Sans Pro", sans-serif;
+  color: white;
+  font-weight: 700;
+  font-size: 22px;
+}
+
+.dataUser {
+  font-family: "Source Sans Pro", sans-serif;
+  color: white;
+  font-weight: 500;
+  font-size: 15px;
+}
+
+.contactBar {
+  background-color: white;
+
+  margin-top: 40px;
+}
+
+.contactsBar {
+  background-color: white;
+  border-radius: 20px;
+  margin-bottom: -10px;
+}
+
+.contactDiv {
+  font-weight: 600;
+  font-size: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: black;
+}
+
+.emailUser {
+  color: black;
+  font-family: "Source Sans Pro", sans-serif;
+  font-weight: 600;
+  font-size: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: left;
+}
+
+.objetiveText {
+  color: white;
+
+  font-size: 11px;
+  font-weight: 300;
+}
+
+.idioma {
+  color: white;
+  font-weight: 700;
+  font-size: 17px;
+  display: flex;
+  align-items: center;
+  justify-content: left;
+}
+
+.painelFormacao {
+  background-color: white;
+  margin-top: 30px;
+  font-family: "Source Sans Pro", sans-serif;
+  font-weight: 200;
+  font-size: 30px;
+  padding: 10px;
+}
+
+.painelFormacoes {
+  background-color: white;
+  margin-top: 10px;
+  font-family: "Source Sans Pro", sans-serif;
+  font-weight: 200;
+  font-size: 40px;
+  padding: 20px;
+  border-top-right-radius: 20px;
+  border-bottom-right-radius: 20px;
+}
+
+.dateFormacao {
+  font-family: "Source Sans Pro", sans-serif;
+  color: rgb(48, 47, 47);
+  font-weight: 700;
+  font-size: 28px;
+  font-style: italic;
+}
+
+.instituteFormacao {
+  margin-top: -15px;
+  font-family: "Source Sans Pro", sans-serif;
+  color: rgb(48, 47, 47);
+  font-weight: 200;
+  font-size: 20px;
+  font-style: italic;
+}
+
+.curseFormacao {
+  margin-top: -15px;
+  font-family: "Source Sans Pro", sans-serif;
+  color: rgb(48, 47, 47);
+  font-weight: 200;
+  font-size: 17px;
+  font-style: italic;
+}
+
+.descEx {
+  margin-top: -15px;
+  font-family: "Source Sans Pro", sans-serif;
+  color: rgb(48, 47, 47);
+  font-weight: 200;
+  font-size: 14px;
+  font-style: italic;
+}
+
+.officeEx {
+  margin-top: -10px;
+  font-family: "Source Sans Pro", sans-serif;
+  color: rgb(48, 47, 47);
+  font-weight: 200;
+  font-size: 22px;
+  font-style: italic;
+}

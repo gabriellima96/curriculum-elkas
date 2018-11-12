@@ -1,24 +1,24 @@
-import React from 'react';
-import {
-  BrowserRouter, Route, Switch, Redirect,
-} from 'react-router-dom';
+import React from "react";
+import { BrowserRouter, Route, Switch, Redirect } from "react-router-dom";
 
-import { isAuthenticated } from './services/auth';
-import { verifyCurriculum } from './services/verifyCurriculum';
-import Main from './pages/main';
-import Dashboard from './pages/dashboard';
-import Templates from './pages/templates';
-import Settings from './pages/settings';
-import ModernForm from './pages/modernForm';
+import { isAuthenticated } from "./services/auth";
+import { verifyCurriculum } from "./services/verifyCurriculum";
+import Main from "./pages/main";
+import Dashboard from "./pages/dashboard";
+import Templates from "./pages/templates";
+import Settings from "./pages/settings";
+import ModernForm from "./pages/modernForm";
+import CurriculumGenerated from "./pages/curriculumGenerated";
 
 const PrivateRoute = ({ component: Component, ...rest }) => (
   <Route
     {...rest}
-    render={props => (isAuthenticated() ? (
-      <Component {...props} />
-    ) : (
-      <Redirect to={{ pathname: '/', state: { from: props.location } }} />
-    ))
+    render={props =>
+      isAuthenticated() ? (
+        <Component {...props} />
+      ) : (
+        <Redirect to={{ pathname: "/", state: { from: props.location } }} />
+      )
     }
   />
 );
@@ -26,11 +26,12 @@ const PrivateRoute = ({ component: Component, ...rest }) => (
 const RouteDefaults = ({ component: Component, ...rest }) => (
   <Route
     {...rest}
-    render={props => (!isAuthenticated() ? (
-      <Component {...props} />
-    ) : (
-      <Redirect to={{ pathname: '/app', state: { from: props.location } }} />
-    ))
+    render={props =>
+      !isAuthenticated() ? (
+        <Component {...props} />
+      ) : (
+        <Redirect to={{ pathname: "/app", state: { from: props.location } }} />
+      )
     }
   />
 );
