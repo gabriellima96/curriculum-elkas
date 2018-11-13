@@ -16,13 +16,13 @@ const ListCurriculums = ({ curriculums }) => (
           </div>
           <div className="card-content">
             <span className="card-title activator grey-text text-darken-4">
-              Título do currículo
+              {curriculum.title}
               <i className="material-icons right">more_vert</i>
             </span>
             <h6>{`Criado em: ${new Date(curriculum.createdAt).toLocaleString()}`}</h6>
             <div className="row acessarCurriculo">
               <div className="col s12 waves-effect waves-light btn btn-small indigo">
-                <Link className="curriculumAccess" to={`/${curriculum.template}.${curriculum._id}`}>
+                <Link className="curriculumAccess" to={`/${curriculum.template}${curriculum._id}`}>
                   Acessar currículo
                 </Link>
               </div>

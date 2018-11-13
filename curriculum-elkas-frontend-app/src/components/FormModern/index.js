@@ -558,11 +558,13 @@ class FormModern extends Component {
                               >
                                 <option value="1" />
                                 <option value="Graduação">Graduação</option>
-                                <option value="Bacharelado">Bacharelado</option>
                                 <option value="Licenciatura">Licenciatura</option>
                                 <option value="Pós-graduação">Pós-graduação</option>
                                 <option value="Mestrado">Mestrado</option>
                                 <option value="Doutorado">Doutorado</option>
+                                <option value="Técnico">Técnico</option>
+                                <option value="Médio">Médio</option>
+                                <option value="Fundamental">Fundamental</option>
                               </Input>
                             </div>
                             <div className="input-field col m2 s12">
@@ -733,15 +735,15 @@ class FormModern extends Component {
                             }}
                           >
                             <option value="1" />
-                            <option value="2">Inglês</option>
-                            <option value="3">Português</option>
-                            <option value="4">Espanhol</option>
-                            <option value="5">Francês</option>
-                            <option value="6">Alemão</option>
-                            <option value="7">Mandarim</option>
-                            <option value="8">Japonês</option>
-                            <option value="9">Coreano</option>
-                            <option value="10">Árabe</option>
+                            <option value="Inglês">Inglês</option>
+                            <option value="Português">Português</option>
+                            <option value="Espanhol">Espanhol</option>
+                            <option value="Francês">Francês</option>
+                            <option value="Alemão">Alemão</option>
+                            <option value="Mandarim">Mandarim</option>
+                            <option value="Japonês">Japonês</option>
+                            <option value="Coreano">Coreano</option>
+                            <option value="Árabe">Árabe</option>
                           </Input>
                         </div>
                         <div className="col m6 s12">

@@ -467,11 +467,11 @@ class SettingsUser extends Component {
                         this.setState({ user });
                       }}
                     >
-                      <option value="1">Solteiro</option>
-                      <option value="2">Casado</option>
-                      <option value="3">Separado</option>
-                      <option value="4">Divorciado</option>
-                      <option value="5">Viúvo</option>
+                      <option value="Solteiro">Solteiro</option>
+                      <option value="Casado">Casado</option>
+                      <option value="Separado">Separado</option>
+                      <option value="Divorciado">Divorciado</option>
+                      <option value="Viúvo(a)">Viúvo</option>
                     </Input>
                   </div>
                 </div>
@@ -613,12 +613,14 @@ class SettingsUser extends Component {
                                   }}
                                 >
                                   <option value="1" />
-                                  <option value="2">Graduação</option>
-                                  <option value="3">Bacharelado</option>
-                                  <option value="4">Licenciatura</option>
-                                  <option value="5">Pós-graduação</option>
-                                  <option value="6">Mestrado</option>
-                                  <option value="7">Doutorado</option>
+                                <option value="Graduação">Graduação</option>
+                                <option value="Licenciatura">Licenciatura</option>
+                                <option value="Pós-graduação">Pós-graduação</option>
+                                <option value="Mestrado">Mestrado</option>
+                                <option value="Doutorado">Doutorado</option>
+                                <option value="Técnico">Técnico</option>
+                                <option value="Médio">Médio</option>
+                                <option value="Fundamental">Fundamental</option>
                                 </Input>
                               </div>
                               <div className="input-field col s2">
