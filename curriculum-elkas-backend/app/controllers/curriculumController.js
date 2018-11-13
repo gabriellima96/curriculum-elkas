@@ -9,6 +9,7 @@ module.exports = {
   async store(req, res, next) {
     try {
       const id = req.userId;
+      console.log(req.body);
 
       const curriculum = await Curriculum.create({ ...req.body, user: id });
 
