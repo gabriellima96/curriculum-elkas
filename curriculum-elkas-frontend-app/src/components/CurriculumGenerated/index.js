@@ -15,7 +15,7 @@ const CurriculumGenerated = props => (
           </div>
           <div className="row center-align ">
             <h5 className="nameUser">{props.curriculum.name}</h5>
-            <h6 className="dataUser">{props.curriculum.dateOfBirth}</h6>
+            <h6 className="dataUser">{props.curriculum.dataOfbirth}</h6>
           </div>
           <div className="row contactBar center-align">
             <div className="col s12">
@@ -67,6 +67,7 @@ const CurriculumGenerated = props => (
                 </div>
               </div>
             ))}
+
           <div className="row">
             <div className="container">
               <div className="col s12 contactsBar">
@@ -76,8 +77,29 @@ const CurriculumGenerated = props => (
                     src={require("../../images/icon2.png")}
                     width="22"
                   />
-                  &nbsp;&nbsp;publicArea, district, &nbsp;&nbsp;postalCode,
-                  city, state, &nbsp;&nbsp;country
+                  {props.curriculum &&
+                    props.curriculum.address &&
+                    props.curriculum.address.publicArea}
+                  ,{" "}
+                  {props.curriculum &&
+                    props.curriculum.address &&
+                    props.curriculum.address.district}
+                  ,{" "}
+                  {props.curriculum &&
+                    props.curriculum.address &&
+                    props.curriculum.address.postalCode}
+                  ,{" "}
+                  {props.curriculum &&
+                    props.curriculum.address &&
+                    props.curriculum.address.city}
+                  ,{" "}
+                  {props.curriculum &&
+                    props.curriculum.address &&
+                    props.curriculum.address.state}
+                  ,{" "}
+                  {props.curriculum &&
+                    props.curriculum.address &&
+                    props.curriculum.address.country}
                 </h5>
               </div>
             </div>
@@ -137,6 +159,28 @@ const CurriculumGenerated = props => (
               </div>
             </div>
           </div>
+          <div className="row contactBar center-align">
+            <div className="col s12">
+              <h5 className="contactDiv">
+                <img
+                  alt="imagemCE"
+                  src={require("../../images/icon8.png")}
+                  width="35"
+                />
+                &nbsp;&nbsp;HABILIDADES
+              </h5>
+            </div>
+            <div className="col s12 painelPerfil">
+              {props.curriculum &&
+                props.curriculum.skills &&
+                props.curriculum.skills.length > 0 &&
+                props.curriculum.skills.map(skill => (
+                  <div className="col s4">
+                    <p className="habilidades">{skill}</p>
+                  </div>
+                ))}
+            </div>
+          </div>
         </div>
 
         <div className="col m7 s12">
@@ -155,7 +199,7 @@ const CurriculumGenerated = props => (
                     </div>
                     <div className="col m6 s12 right-align">
                       <h5 className="dateFormacao">
-                        {!degree.conclusion ? "Atual" : degree.conclusion}
+                        {!degree.conclusion ? "atual" : degree.conclusion}
                       </h5>
                     </div>
                   </div>
@@ -237,29 +281,6 @@ const CurriculumGenerated = props => (
           ) : (
             ""
           )}
-
-          <div className="row contactBar center-align z-depth-4">
-            <div className="col s12">
-              <h5 className="contactDiv">
-                <img
-                  alt="imagemCE"
-                  src={require("../../images/icon8.png")}
-                  width="35"
-                />
-                &nbsp;&nbsp;HABILIDADES
-              </h5>
-            </div>
-            <div className="col s12 painelPerfil">
-              {props.curriculum &&
-                props.curriculum.skills &&
-                props.curriculum.skills.length > 0 &&
-                props.curriculum.skills.map(skill => (
-                  <div className="col s4">
-                    <p className="habilidades">{skill}</p>
-                  </div>
-                ))}
-            </div>
-          </div>
         </div>
       </div>
     </div>
