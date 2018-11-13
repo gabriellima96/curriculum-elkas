@@ -613,14 +613,23 @@ class SettingsUser extends Component {
                                   }}
                                 >
                                   <option value="1" />
-                                <option value="Graduação">Graduação</option>
-                                <option value="Licenciatura">Licenciatura</option>
-                                <option value="Pós-graduação">Pós-graduação</option>
-                                <option value="Mestrado">Mestrado</option>
-                                <option value="Doutorado">Doutorado</option>
-                                <option value="Técnico">Técnico</option>
-                                <option value="Médio">Médio</option>
-                                <option value="Fundamental">Fundamental</option>
+                                  <option value="Graduação">Graduação</option>
+                                  <option value="Fundamental">
+                                    Bacharelado
+                                  </option>
+                                  <option value="Licenciatura">
+                                    Licenciatura
+                                  </option>
+                                  <option value="Pós-graduação">
+                                    Pós-graduação
+                                  </option>
+                                  <option value="Mestrado">Mestrado</option>
+                                  <option value="Doutorado">Doutorado</option>
+                                  <option value="Técnico">Técnico</option>
+                                  <option value="Médio">Médio</option>
+                                  <option value="Fundamental">
+                                    Fundamental
+                                  </option>
                                 </Input>
                               </div>
                               <div className="input-field col s2">

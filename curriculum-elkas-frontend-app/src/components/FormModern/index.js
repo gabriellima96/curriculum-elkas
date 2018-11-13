@@ -558,8 +558,13 @@ class FormModern extends Component {
                               >
                                 <option value="1" />
                                 <option value="Graduação">Graduação</option>
-                                <option value="Licenciatura">Licenciatura</option>
-                                <option value="Pós-graduação">Pós-graduação</option>
+                                <option value="Bacharelado">Bacharelado</option>
+                                <option value="Licenciatura">
+                                  Licenciatura
+                                </option>
+                                <option value="Pós-graduação">
+                                  Pós-graduação
+                                </option>
                                 <option value="Mestrado">Mestrado</option>
                                 <option value="Doutorado">Doutorado</option>
                                 <option value="Técnico">Técnico</option>
