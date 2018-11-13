@@ -41,7 +41,8 @@ function verifyTemplate(props) {
   } = props;
 
   if (params.id.startsWith('1m')) {
-    return <ModernForm {...props} />;
+    const id = params.id.substring(2);
+    return <ModernForm {...props} id={id} />;
   }
 
   if (params.id.startsWith('1c')) {
