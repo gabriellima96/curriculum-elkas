@@ -40,7 +40,7 @@ class HeaderApp extends Component {
         <nav>
           <div className="nav-wrapper blue darken-3">
             <a href="/" className="brand-logo left">
-              Curriculum Elkas
+              CurriculumElkas.com
             </a>
             <ul id="nav-mobile" className="right hide-on-med-and-down">
               <li>
