@@ -100,6 +100,15 @@ class FormModern extends Component {
     error: "",
     sucess: '',
     link: '',
+    address: {
+      publicArea: "",
+      district: "",
+      city: "",
+      postalCode: "",
+      country: "",
+      state: ""
+    },
+    title: '',
   };
 
   async componentDidMount() {
@@ -134,11 +143,10 @@ class FormModern extends Component {
 
       curriculum.name = data.name;
       curriculum.address = data.personalInformation.address;
+      console.log('adress: ', curriculum.address);
+      console.log('adress db:', data.personalInformation.address);
       curriculum.maritalStatus = data.personalInformation.maritalStatus;
-
-      console.log(curriculum);
-
-      this.setState({ curriculum, emails: data.personalInformation.emails });
+      this.setState({ curriculum, emails: data.personalInformation.emails, address: data.personalInformation.address });
     } catch (error) {
       console.log(error);
     } finally {
@@ -204,9 +212,10 @@ class FormModern extends Component {
   handleCurriculum = async e => {
     this.setState({ button: true });
     e.preventDefault();
-    const { curriculum, skills, emails } = this.state;
+    const { curriculum, skills, emails, address } = this.state;
     curriculum.skills = skills;
     curriculum.emails = emails;
+    curriculum.address = address;
 
     this.setState({ loading: true });
     try {
@@ -234,6 +243,7 @@ class FormModern extends Component {
       error,
       sucess,
       link,
+      address,
     } = this.state;
     let { date } = this.state;
     return (
@@ -259,9 +269,10 @@ class FormModern extends Component {
                     type="text"
                     className="validate"
                     value={curriculum.title}
-                    onChange={e =>
-                      this.setState({ curriculum: { title: e.target.value } })
-                    }
+                    onChange={e => {
+                      curriculum.title = e.target.value;
+                      this.setState({ curriculum })
+                    }}
                   />
                 </div>
 
@@ -276,9 +287,10 @@ class FormModern extends Component {
                       type="text"
                       className="validate"
                       value={curriculum.name}
-                      onChange={e =>
-                        this.setState({ curriculum: { name: e.target.value } })
-                      }
+                      onChange={e => {
+                        curriculum.name = e.target.value;
+                        this.setState({ curriculum });
+                      }}
                     />
                   </div>
                 </div>
@@ -383,10 +395,11 @@ class FormModern extends Component {
                       type="select"
                       defaultValue="1"
                       value={curriculum.maritalStatus}
-                      onChange={e =>
+                      onChange={e =>{
+                        curriculum.maritalStatus = e.target.value;
                         this.setState({
-                          curriculum: { maritalStatus: e.target.value }
-                        })
+                          curriculum
+                        })}
                       }
                     >
                       <option value="1">Solteiro</option>
@@ -403,14 +416,10 @@ class FormModern extends Component {
                     <input
                       type="text"
                       className="validate"
-                      value={curriculum.address.publicArea}
-                      onChange={e =>
-                        this.setState({
-                          curriculum: {
-                            address: { publicArea: e.target.value }
-                          }
-                        })
-                      }
+                      value={address.publicArea}
+                      onChange={e => {
+                        return this.setState({ address: { publicArea: e.target.value } });
+                      }}
                     />
                   </div>
                   <div id="bairro" className="input-field col m4 s12">
@@ -418,11 +427,9 @@ class FormModern extends Component {
                     <input
                       type="text"
                       className="validate"
-                      value={curriculum.address.district}
+                      value={address.district}
                       onChange={e =>
-                        this.setState({
-                          curriculum: { address: { district: e.target.value } }
-                        })
+                        this.setState({ address: { district: e.target.value } })
                       }
                     />
                   </div>
@@ -431,11 +438,9 @@ class FormModern extends Component {
                     <input
                       type="text"
                       className="validate"
-                      value={curriculum.address.city}
+                      value={address.city}
                       onChange={e =>
-                        this.setState({
-                          curriculum: { address: { city: e.target.value } }
-                        })
+                        this.setState({ address: { city: e.target.value } })
                       }
                     />
                   </div>
@@ -449,12 +454,10 @@ class FormModern extends Component {
                       className="validate"
                       pattern="^\d{5}-\d{3}$"
                       placeholder="xxxxx-xxx"
-                      value={curriculum.address.postalCode}
+                      value={address.postalCode}
                       onChange={e =>
                         this.setState({
-                          curriculum: {
                             address: { postalCode: e.target.value }
-                          }
                         })
                       }
                     />
@@ -465,11 +468,9 @@ class FormModern extends Component {
                       id="estado"
                       type="text"
                       className="validate"
-                      value={curriculum.address.state}
+                      value={address.state}
                       onChange={e =>
-                        this.setState({
-                          curriculum: { address: { state: e.target.value } }
-                        })
+                        this.setState({ address: { state: e.target.value } })
                       }
                     />
                   </div>
@@ -479,11 +480,9 @@ class FormModern extends Component {
                     <input
                       type="text"
                       className="validate"
-                      value={curriculum.address.country}
+                      value={address.country}
                       onChange={e =>
-                        this.setState({
-                          curriculum: { address: { country: e.target.value } }
-                        })
+                        this.setState({ address: { country: e.target.value } })
                       }
                     />
                   </div>
@@ -650,7 +649,7 @@ class FormModern extends Component {
                                 e.target.value;
                               this.setState({ curriculum });
                             }}
-                          />
+                          ></textarea>
                         </div>
                       </div>
                       <div className="row">
