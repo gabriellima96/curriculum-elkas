@@ -338,7 +338,7 @@ class FormModern extends Component {
                 <div className="row">
                   {curriculum.phones &&
                     curriculum.phones.map((phone, index) => (
-                      <div className="input-field col s6">
+                      <div className="input-field col m6 s12">
                         <p htmlFor="tel">
                           Telefone
                           {` ${index + 1}`}
@@ -358,7 +358,7 @@ class FormModern extends Component {
                     ))}
                 </div>
                 <div className="row">
-                  <div className="col s6">
+                  <div className="col m6 s12">
                     <p htmlFor="dataofbirth">Data de nascimento</p>
                     <input
                       id="dataofbirth"
@@ -373,7 +373,7 @@ class FormModern extends Component {
                       }}
                     />
                   </div>
-                  <div className="col s6">
+                  <div className="col m6 s12">
                     <p>Estado civil</p>
                     <Input
                       s={12}
@@ -395,7 +395,7 @@ class FormModern extends Component {
                   </div>
                 </div>
                 <div className="row">
-                  <div id="logradouro" className="input-field col s4">
+                  <div id="logradouro" className="input-field col m4 s12">
                     <p htmlFor="logradouro">Logradouro</p>
                     <input
                       type="text"
@@ -410,7 +410,7 @@ class FormModern extends Component {
                       }
                     />
                   </div>
-                  <div id="bairro" className="input-field col s4">
+                  <div id="bairro" className="input-field col m4 s12">
                     <p htmlFor="bairro">Bairro</p>
                     <input
                       type="text"
@@ -423,7 +423,7 @@ class FormModern extends Component {
                       }
                     />
                   </div>
-                  <div id="cidade" className="input-field col s4">
+                  <div id="cidade" className="input-field col m4 s12">
                     <p htmlFor="cidade">Cidade</p>
                     <input
                       type="text"
@@ -438,7 +438,7 @@ class FormModern extends Component {
                   </div>
                 </div>
                 <div className="row">
-                  <div className="input-field col s4">
+                  <div className="input-field col m4 s12">
                     <p htmlFor="cep">C.E.P.</p>
                     <input
                       id="cep"
@@ -456,7 +456,7 @@ class FormModern extends Component {
                       }
                     />
                   </div>
-                  <div className="input-field col s4">
+                  <div className="input-field col m4 s12">
                     <p htmlFor="estado">Estado</p>
                     <input
                       id="estado"
@@ -471,7 +471,7 @@ class FormModern extends Component {
                     />
                   </div>
 
-                  <div className="input-field col s4">
+                  <div className="input-field col m4 s12">
                     <p>País</p>
                     <input
                       type="text"
@@ -484,7 +484,7 @@ class FormModern extends Component {
                       }
                     />
                   </div>
-                  <div className="input-field col m12 s12">
+                  <div className="input-field col s12">
                     <p>
                       Objetivos (digite os objetivos que você pretende alcançar
                       detalhadamente)
@@ -516,7 +516,7 @@ class FormModern extends Component {
                             </div>
                           </div>
                           <div className="row">
-                            <div className="input-field col s4">
+                            <div className="input-field col m4 s12">
                               <p>Curso</p>
                               <input
                                 type="text"
@@ -529,7 +529,7 @@ class FormModern extends Component {
                                 }}
                               />
                             </div>
-                            <div className="col s4">
+                            <div className="col m4 s12">
                               <p>Grau acadêmico</p>
                               <Input
                                 s={12}
@@ -551,7 +551,7 @@ class FormModern extends Component {
                                 <option value="7">Doutorado</option>
                               </Input>
                             </div>
-                            <div className="input-field col s2">
+                            <div className="input-field col m2 s12">
                               <p>Início</p>
                               <input
                                 placeholder="Ano"
@@ -568,7 +568,7 @@ class FormModern extends Component {
                                 }}
                               />
                             </div>
-                            <div className="input-field col s2">
+                            <div className="input-field col m2 s12">
                               <p>Término</p>
                               <input
                                 placeholder="Ano"
@@ -630,7 +630,7 @@ class FormModern extends Component {
                         </div>
                       </div>
                       <div className="row">
-                        <div className="input-field col m12 s12">
+                        <div className="input-field col s12">
                           <p>Descrição</p>
 
                           <textarea
