@@ -78,4 +78,27 @@ module.exports = {
       return next(error);
     }
   },
+
+  /**
+  * Método que exclui um usuário por username
+  */
+  async destroy(req, res, next) {
+    try {
+      const userId = req.userId;
+      const user = await User.findOne({  _id: userId });
+    
+      if (!user) {
+        return res.status(404).json({ status: 404, error: 'Usuário não encontrado!' });
+      }
+     
+      const curriculum = await Curriculum.findOne({ user: userId });
+
+      await Curriculum.findOneAndRemove({ user: userId});
+      await User.findOneAndRemove({_id: userId});
+
+      return res.json();
+    } catch (error) {
+      return next(error);
+    }
+  },
 };

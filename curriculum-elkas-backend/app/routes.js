@@ -17,6 +17,7 @@ router.post('/users', controllers.authController.signup);
 router.post('/users/signin', controllers.authController.signin);
 router.put('/users/:username', authMiddleware, controllers.userController.update);
 router.get('/users/:username', authMiddleware, controllers.userController.index);
+router.delete('/users/:username', authMiddleware, controllers.userController.destroy);
 
 /**
  * CURRICULUM

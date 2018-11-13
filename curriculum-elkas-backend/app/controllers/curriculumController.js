@@ -82,18 +82,30 @@ module.exports = {
       return next(error);
     }
   },
-  /**
+   /**
    * Método que atualiza um currículo por ID.
    */
   async update(req, res, next) {
     try {
-      return res.send();
+      const { userId } = req;
+      const { id } = req.params;
+
+      const {
+        name, emails, phones, dataOfbirth, maritalStatus, address, academicDegree, goals, experiences,
+        languages, skills
+      } = req.body;
+
+      const user = await User.findOne({ _id: id });
+
+      await Curriculum.findByIdAndUpdate({ _id: id } , req.body);
+
+      return res.json();
     } catch (error) {
       return next(error);
     }
   },
   /**
-   * Método queexclui um currículo por ID.
+   * Método que exclui um currículo por ID.
    */
   async destroy(req, res, next) {
     try {
