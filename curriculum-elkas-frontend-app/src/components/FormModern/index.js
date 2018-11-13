@@ -143,8 +143,6 @@ class FormModern extends Component {
 
       curriculum.name = data.name;
       curriculum.address = data.personalInformation.address;
-      console.log("adress: ", curriculum.address);
-      console.log("adress db:", data.personalInformation.address);
       curriculum.maritalStatus = data.personalInformation.maritalStatus;
       this.setState({
         curriculum,
@@ -559,12 +557,12 @@ class FormModern extends Component {
                                 }}
                               >
                                 <option value="1" />
-                                <option value="2">Graduação</option>
-                                <option value="3">Bacharelado</option>
-                                <option value="4">Licenciatura</option>
-                                <option value="5">Pós-graduação</option>
-                                <option value="6">Mestrado</option>
-                                <option value="7">Doutorado</option>
+                                <option value="Graduação">Graduação</option>
+                                <option value="Bacharelado">Bacharelado</option>
+                                <option value="Licenciatura">Licenciatura</option>
+                                <option value="Pós-graduação">Pós-graduação</option>
+                                <option value="Mestrado">Mestrado</option>
+                                <option value="Doutorado">Doutorado</option>
                               </Input>
                             </div>
                             <div className="input-field col m2 s12">
@@ -760,10 +758,10 @@ class FormModern extends Component {
                             }}
                           >
                             <option value="1" />
-                            <option value="2">Básico</option>
-                            <option value="3">Intermediário</option>
-                            <option value="4">Avançado</option>
-                            <option value="5">Nativo</option>
+                            <option value="Básico">Básico</option>
+                            <option value="Intermediário">Intermediário</option>
+                            <option value="Avançado">Avançado</option>
+                            <option value="Nativo">Nativo</option>
                           </Input>
                         </div>
                       </div>
