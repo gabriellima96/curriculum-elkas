@@ -1,136 +1,130 @@
-const mongoose = require("mongoose");
+const mongoose = require('mongoose');
 
 const CurriculumSchema = new mongoose.Schema({
   user: {
     type: mongoose.Schema.ObjectId,
-    ref: "User",
-    required: true
+    ref: 'User',
+    required: true,
   },
   title: {
-    type: String
+    type: String,
   },
   activity: {
-    type: Boolean
+    type: Boolean,
   },
   template: {
     type: String,
-    required: true
+    required: true,
   },
   name: {
     type: String,
     required: true,
-    trim: true
+    trim: true,
   },
   emails: [
     {
       type: String,
-      trim: true
-    }
+      trim: true,
+    },
   ],
   phones: [
     {
-      type: String
-    }
+      type: String,
+    },
   ],
   dateOfBirth: {
-    type: Date
+    type: Date,
   },
   maritalStatus: {
-    type: String
+    type: String,
   },
   academicDegree: [
     {
       institution: {
-        type: String
+        type: String,
       },
       degree: {
-        type: String
+        type: String,
       },
       course: {
-        type: String
+        type: String,
       },
       initialization: {
-        type: Date
+        type: Number,
       },
       conclusion: {
-        type: Date
-      }
-    }
+        type: Number,
+      },
+    },
   ],
   address: {
     publicArea: {
-      type: String
+      type: String,
     },
     district: {
-      type: String
+      type: String,
     },
     city: {
-      type: String
+      type: String,
     },
     postalCode: {
-      type: String
+      type: String,
     },
     country: {
       type: String,
       required: false,
-      default: "Brasil"
+      default: 'Brasil',
     },
     state: {
       type: String,
-      required: false
-    }
+      required: false,
+    },
   },
   goals: {
     type: String,
-    required: true
   },
   skills: [
     {
-      title: {
-        type: String
-      },
-      other: {
-        type: String
-      }
-    }
+      type: String,
+    },
   ],
   experiences: [
     {
       office: {
-        type: String
+        type: String,
       },
       location: {
-        type: String
+        type: String,
       },
       company: {
-        type: String
+        type: String,
       },
       description: {
-        type: String
+        type: String,
       },
       initialization: {
-        type: Date
+        type: Number,
       },
       conclusion: {
-        type: Date
-      }
-    }
+        type: Number,
+      },
+    },
   ],
   languages: [
     {
       language: {
-        type: String
+        type: String,
       },
 
       fluency: {
-        type: String
-      }
-    }
+        type: String,
+      },
+    },
   ],
   createdAt: {
     type: Date,
-    default: Date.now
-  }
+    default: Date.now,
+  },
 });
 
-mongoose.model("Curriculum", CurriculumSchema);
+mongoose.model('Curriculum', CurriculumSchema);
