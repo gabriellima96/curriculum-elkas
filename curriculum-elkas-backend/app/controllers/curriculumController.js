@@ -113,7 +113,7 @@ module.exports = {
       const { userId } = req;
       const { id } = req.params;
 
-      await Curriculum.findOneAndRemove({ $and: [{ id }, { user: userId }] });
+      await Curriculum.findOneAndRemove({ $and: [{ _id: id }, { user: userId }] });
       return res.json();
     } catch (error) {
       return next(error);
