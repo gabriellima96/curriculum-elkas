@@ -98,7 +98,8 @@ class FormModern extends Component {
     skills: [],
     button: false,
     error: "",
-    success: ""
+    sucess: '',
+    link: '',
   };
 
   async componentDidMount() {
@@ -209,12 +210,13 @@ class FormModern extends Component {
 
     this.setState({ loading: true });
     try {
-      const curriculum = await api.post("/curriculums", { curriculum });
-      console.log(curriculum._id);
-      this.setState({ success: "Curriculo gerado com sucesso" });
+      const response = await api.post("/curriculums", curriculum);
+      const id = response.data._id;
+      const link = `http://curriculumelkas.com/1m${id}`;
+      this.setState({ sucess: "Curriculo gerado com sucesso", link });
     } catch (error) {
+      console.log(error);
       this.setState({ error: error.response.data.error });
-      console.log(error.response.data.error);
     } finally {
       this.setState({ loading: false, button: false });
     }
@@ -230,7 +232,8 @@ class FormModern extends Component {
       loading,
       button,
       error,
-      sucess
+      sucess,
+      link,
     } = this.state;
     let { date } = this.state;
     return (
@@ -490,7 +493,12 @@ class FormModern extends Component {
                       detalhadamente)
                     </p>
 
-                    <textarea id="textarea1" className="materialize-textarea" />
+                    <textarea id="textarea1" className="materialize-textarea" value={curriculum.goals}
+                                onChange={e => {
+                                  curriculum.goals =
+                                    e.target.value;
+                                  this.setState({ curriculum });
+                                }}></textarea>
                   </div>
                 </div>
                 <div className="row">
@@ -837,6 +845,7 @@ class FormModern extends Component {
               </div>
               {error && <p className="center-align red-text">{error}</p>}
               {sucess && <p className="center-align green-text">{sucess}</p>}
+              {link && <a href={link}>Link aqui</a>}
             </form>
           </div>
         </div>
