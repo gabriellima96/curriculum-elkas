@@ -82,7 +82,7 @@ module.exports = {
       return next(error);
     }
   },
-   /**
+  /**
    * Método que atualiza um currículo por ID.
    */
   async update(req, res, next) {
@@ -90,16 +90,17 @@ module.exports = {
       const { userId } = req;
       const { id } = req.params;
 
-      const {
-        name, emails, phones, dataOfbirth, maritalStatus, address, academicDegree, goals, experiences,
-        languages, skills
-      } = req.body;
+      const curriculum = await Curriculum.findOneAndUpdate(
+        { $and: [{ _id: id }, { user: userId }] },
+        req.body,
+        { new: true },
+      );
 
-      const user = await User.findOne({ _id: id });
+      if (!curriculum) {
+        return res.status(400).json({ error: 'Currículo não encontrado' });
+      }
 
-      await Curriculum.findByIdAndUpdate({ _id: id } , req.body);
-
-      return res.json();
+      return res.json(curriculum);
     } catch (error) {
       return next(error);
     }
