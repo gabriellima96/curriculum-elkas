@@ -6,7 +6,7 @@ const Header = () => (
     <nav>
       <div className="nav-wrapper blue darken-3">
         <a href="/" className="brand-logo center">
-          Curriculum Elkas
+          CurriculumElkas.com
         </a>
       </div>
     </nav>
