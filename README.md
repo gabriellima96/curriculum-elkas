@@ -89,11 +89,11 @@ git pull
 
 ### **Documentação das Rotas para os Testes de Rotas**
 
-* [CLIQUE AQUI](http://167.99.182.79/api/docs/)
+* [CLIQUE AQUI](http://api.curriculumelkas.com/api/docs/)
 
 ### **Aplicação Online**
 
-* [CLIQUE AQUI](http://167.99.182.79/)
+* [CLIQUE AQUI](http://curriculumelkas.com/)
 
 
 
