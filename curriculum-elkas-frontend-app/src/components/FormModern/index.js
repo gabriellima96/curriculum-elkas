@@ -93,12 +93,12 @@ class FormModern extends Component {
     messageSkill: "",
     newEmail: "",
     emails: [],
-    date: '',
-    newSkill: '',
+    date: "",
+    newSkill: "",
     skills: [],
     button: false,
-    error: '',
-    success: '',
+    error: "",
+    success: ""
   };
 
   async componentDidMount() {
@@ -200,7 +200,7 @@ class FormModern extends Component {
     this.setState({ emails });
   };
 
-  handleCurriculum = async (e) => {
+  handleCurriculum = async e => {
     this.setState({ button: true });
     e.preventDefault();
     const { curriculum, skills, emails } = this.state;
@@ -209,19 +209,29 @@ class FormModern extends Component {
 
     this.setState({ loading: true });
     try {
-      const curriculum = await api.post('/curriculums', { curriculum });
+      const curriculum = await api.post("/curriculums", { curriculum });
       console.log(curriculum._id);
-      this.setState({ success: 'Curriculo gerado com sucesso' });
+      this.setState({ success: "Curriculo gerado com sucesso" });
     } catch (error) {
       this.setState({ error: error.response.data.error });
       console.log(error.response.data.error);
     } finally {
       this.setState({ loading: false, button: false });
     }
-  }
+  };
 
   render() {
-    const { curriculum, messageEmail, messageSkill, emails, skills, loading, button, error, sucess } = this.state;
+    const {
+      curriculum,
+      messageEmail,
+      messageSkill,
+      emails,
+      skills,
+      loading,
+      button,
+      error,
+      sucess
+    } = this.state;
     let { date } = this.state;
     return (
       <div className="container">
@@ -391,7 +401,13 @@ class FormModern extends Component {
                       type="text"
                       className="validate"
                       value={curriculum.address.publicArea}
-                      onChange={e => this.setState({ curriculum: { address: { publicArea: e.target.value } } })}
+                      onChange={e =>
+                        this.setState({
+                          curriculum: {
+                            address: { publicArea: e.target.value }
+                          }
+                        })
+                      }
                     />
                   </div>
                   <div id="bairro" className="input-field col s4">
@@ -400,8 +416,11 @@ class FormModern extends Component {
                       type="text"
                       className="validate"
                       value={curriculum.address.district}
-                      onChange={e => this.setState({ curriculum: { address: { district: e.target.value } } })}
-
+                      onChange={e =>
+                        this.setState({
+                          curriculum: { address: { district: e.target.value } }
+                        })
+                      }
                     />
                   </div>
                   <div id="cidade" className="input-field col s4">
@@ -410,8 +429,11 @@ class FormModern extends Component {
                       type="text"
                       className="validate"
                       value={curriculum.address.city}
-                      onChange={e => this.setState({ curriculum: { address: { city: e.target.value } } })}
-
+                      onChange={e =>
+                        this.setState({
+                          curriculum: { address: { city: e.target.value } }
+                        })
+                      }
                     />
                   </div>
                 </div>
@@ -425,8 +447,13 @@ class FormModern extends Component {
                       pattern="^\d{5}-\d{3}$"
                       placeholder="xxxxx-xxx"
                       value={curriculum.address.postalCode}
-                      onChange={e => this.setState({ curriculum: { address: { postalCode: e.target.value } } })}
-
+                      onChange={e =>
+                        this.setState({
+                          curriculum: {
+                            address: { postalCode: e.target.value }
+                          }
+                        })
+                      }
                     />
                   </div>
                   <div className="input-field col s4">
@@ -436,7 +463,11 @@ class FormModern extends Component {
                       type="text"
                       className="validate"
                       value={curriculum.address.state}
-                      onChange={e => this.setState({ curriculum: { address: { state: e.target.value } } })}
+                      onChange={e =>
+                        this.setState({
+                          curriculum: { address: { state: e.target.value } }
+                        })
+                      }
                     />
                   </div>
 
@@ -446,10 +477,23 @@ class FormModern extends Component {
                       type="text"
                       className="validate"
                       value={curriculum.address.country}
-                      onChange={e => this.setState({ curriculum: { address: { country: e.target.value } } })}
-
+                      onChange={e =>
+                        this.setState({
+                          curriculum: { address: { country: e.target.value } }
+                        })
+                      }
                     />
                   </div>
+                  <div className="input-field col m12 s12">
+                    <p>
+                      Objetivos (digite os objetivos que você pretende alcançar
+                      detalhadamente)
+                    </p>
+
+                    <textarea id="textarea1" className="materialize-textarea" />
+                  </div>
+                </div>
+                <div className="row">
                   {curriculum.academicDegree &&
                     curriculum.academicDegree.map((academicDegree, index) => (
                       <div className="row">
@@ -555,7 +599,7 @@ class FormModern extends Component {
                   curriculum.experiences.map((experience, index) => (
                     <div className="row">
                       <h5 className="title right-align">
-                        Participação {index + 1}
+                        Experiência profissional {index + 1}
                       </h5>
                       <div className="row">
                         <div className="input-field col m6 s12">
@@ -783,7 +827,7 @@ class FormModern extends Component {
                   name="action"
                   disabled={button}
                 >
-                  Gerar Currículo 
+                  Gerar Currículo
                   {!loading ? (
                     <FontAwesomeIcon icon="link" />
                   ) : (
@@ -791,12 +835,8 @@ class FormModern extends Component {
                   )}
                 </button>
               </div>
-              {error && (
-                <p className="center-align red-text">{error}</p>
-              )}
-              {sucess && (
-                <p className="center-align green-text">{sucess}</p>
-              )}
+              {error && <p className="center-align red-text">{error}</p>}
+              {sucess && <p className="center-align green-text">{sucess}</p>}
             </form>
           </div>
         </div>
