@@ -34,14 +34,25 @@ o compartilhamento, atualização e manutenção dessas informações.
 * [Nodemon](https://nodemon.io/)
 * [bcrypt.js](http://npm.taobao.org/package/bcryptjs)
 * [body-parser](https://github.com/expressjs/body-parser)
+* [cors](https://libraries.io/npm/cors)
+* [dotenv](https://www.npmjs.com/package/dotenv)
 * [jsonwebtoken](https://www.jsonwebtoken.io/)
-* [mongoosejs](https://mongoosejs.com/docs/index.html)
+* [mongoose](https://www.npmjs.com/package/mongoose?activeTab=versions)
 * [requireDir](https://github.com/aseemk/requireDir)
 * [eslint](https://github.com/eslint/eslint)
+* [eslint-config-airbnb-base](https://www.npmjs.com/package/eslint-config-airbnb-base)
+* [eslint-plugin-import](https://www.npmjs.com/package/eslint-plugin-import)
+* [swagger-ui-express](https://www.npmjs.com/package/swagger-ui-express)
+
 
 ## **Front-end Modules**
 
 * [Font Awesome](https://fortawesome.com/)
+* [fontawesome-svg-core](https://www.npmjs.com/package/@fortawesome/fontawesome-svg-core)
+* [free-brands-svg-icons](https://www.npmjs.com/package/@fortawesome/free-brands-svg-icons)
+* [free-solid-svg-icons](https://www.npmjs.com/package/@fortawesome/free-solid-svg-icons/v/5.4.2)
+* [react-fontawesome](https://www.npmjs.com/package/@fortawesome/react-fontawesome)
+* [jquery](https://code.jquery.com/jquery/)
 * [Axios](https://github.com/axios/axios)
 * [prop-types](https://www.npmjs.com/package/prop-types)
 * [React](https://reactjs.org/)
@@ -50,6 +61,10 @@ o compartilhamento, atualização e manutenção dessas informações.
 * [React Router DOM](https://www.npmjs.com/package/react-router-dom)
 * [React Scripts](https://www.npmjs.com/package/react-scripts)
 * [eslint](https://github.com/eslint/eslint)
+* [eslint-config-airbnb](https://www.npmjs.com/package/eslint-config-airbnb)
+* [eslint-plugin-import](https://www.npmjs.com/package/eslint-plugin-import)
+* [eslint-plugin-import](https://www.npmjs.com/package/eslint-plugin-jsx-a11y)
+* [eslint-plugin-react](https://www.npmjs.com/package/eslint-plugin-react)
 
 ## Observações
 
